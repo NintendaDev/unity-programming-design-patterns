@@ -4,15 +4,16 @@ using UnityEngine;
 
 namespace Example03.Items
 {
-    public abstract class Ball : MonoBehaviour, IReadOnlyBall
+    public class Ball : MonoBehaviour, IReadOnlyBall
     {
+        [SerializeField] private BallColor _color;
+
         public event Action<IReadOnlyBall> Bursted;
 
-        public BallColor Color { get; private set; }
+        public BallColor Color => _color;
 
-        public virtual void Initialize()
+        public void Initialize()
         {
-            Color = GetInitializedBallColor();
             gameObject.SetActive(true);
         }
 
@@ -21,8 +22,6 @@ namespace Example03.Items
             Bursted?.Invoke(this);
             Die();
         }
-
-        protected abstract BallColor GetInitializedBallColor();
 
         private void Die()
         {
