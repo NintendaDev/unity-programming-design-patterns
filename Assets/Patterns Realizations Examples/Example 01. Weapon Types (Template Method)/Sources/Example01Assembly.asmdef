@@ -1,0 +1,17 @@
+{
+    "name": "Example01Assembly",
+    "rootNamespace": "Example01",
+    "references": [
+        "Nova",
+        "Nova.UIControls"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
