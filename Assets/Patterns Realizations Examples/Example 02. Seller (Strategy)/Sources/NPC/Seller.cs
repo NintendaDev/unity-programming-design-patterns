@@ -7,43 +7,43 @@ namespace Example02.NPC
 {
     public class Seller : MonoBehaviour
     {
-        [SerializeField, Required]private string _name = "Very harmful seller";
-        [SerializeField, Required] private PlayerDetector _playerDetector;
+        [SerializeField, Required] private string _name = "Harmful seller";
+        [SerializeField, Required] private TradableDetector _tradableDetector;
 
-        private IPlayerGreeting _playerGreetingUpponDetection;
+        private ITradableGreeting _greetingForDetection;
         private readonly string _defaultGreeting = "Come over to me, I have excellent merchandise!";
 
-        public event Action<string> PlayerGreeted;
+        public event Action<string> TradableGreeted;
 
         public string Name => _name;
 
         public string DefaultGreeting => _defaultGreeting;
 
-        public void SetPlayerGreeting(IPlayerGreeting playerGreetingUpponDetection)
+        public void SetGreeting(ITradableGreeting greetingForDetection)
         {
-            _playerGreetingUpponDetection = playerGreetingUpponDetection;
+            _greetingForDetection = greetingForDetection;
         }
 
         private void OnEnable()
         {
-            _playerDetector.Detected += OnPlayerDetect;
-            _playerDetector.Lost += OnPlayerLost;
+            _tradableDetector.Detected += OnTradableDetect;
+            _tradableDetector.Lost += OnTradableLost;
         }
 
         private void OnDisable()
         {
-            _playerDetector.Detected -= OnPlayerDetect;
-            _playerDetector.Lost -= OnPlayerLost;
+            _tradableDetector.Detected -= OnTradableDetect;
+            _tradableDetector.Lost -= OnTradableLost;
         }
 
-        private void OnPlayerDetect()
+        private void OnTradableDetect(ITradable tradableSubject)
         {
-            PlayerGreeted?.Invoke(_playerGreetingUpponDetection.GetPlayerGreeting());
+            TradableGreeted?.Invoke(_greetingForDetection.GetPlayerGreeting());
         }
 
-        private void OnPlayerLost()
+        private void OnTradableLost(ITradable tradableSubject)
         {
-            PlayerGreeted?.Invoke(_defaultGreeting);
+            TradableGreeted?.Invoke(_defaultGreeting);
         }
     }
 }

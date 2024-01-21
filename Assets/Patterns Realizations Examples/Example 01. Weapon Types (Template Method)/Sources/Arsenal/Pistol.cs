@@ -9,7 +9,7 @@ namespace Example01.Arsenal
 
         private readonly int _bulletsPerShoot = 1;
 
-        protected override void DoAfterAwake()
+        protected override void InitializeAdditionaly()
         {
             Initialize(_bulletsPerShoot);
         }

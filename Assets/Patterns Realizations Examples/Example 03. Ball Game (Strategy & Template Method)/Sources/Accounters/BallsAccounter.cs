@@ -1,41 +1,20 @@
-using Example03.Item;
 using Example03.Items;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
 using Specifications;
 using Sirenix.OdinInspector;
 
 namespace Example03.Accounters
 {
-    public class BallsAccounter : MonoBehaviour, ILevelBalls
+    public class BallsAccounter
     {
         private List<Ball> _allLevelBalls = new();
         private List<IReadOnlyBall> _currentBalls = new();
         private Dictionary<BallColor, int> _ballsColorStatistic = new();
         private ISpecification<int> _colorStatisticSpecification = new IntGreatOrEqualZeroSpecification();
 
-        public IReadOnlyList<IReadOnlyBall> CurrentBalls => _currentBalls;
-
-        public IReadOnlyDictionary<BallColor, int> BallsColorStatistic => _ballsColorStatistic;
-
-        [ShowInInspector, ReadOnly]
-        public int BallsCount => _currentBalls.Count;
-
-        public void Initialize()
+        public BallsAccounter(IEnumerable<Ball> balls)
         {
-            _ballsColorStatistic.Clear();
-            _currentBalls.Clear();
-
-            if (_allLevelBalls.Count > 0)
-            {
-                foreach (Ball ball in _allLevelBalls)
-                    ball.Bursted -= OnBallBursted;
-            }
-            else
-            {
-                _allLevelBalls = GetComponentsInChildren<Ball>().ToList();
-            }
+            _allLevelBalls = new List<Ball>(balls);
 
             foreach (Ball ball in _allLevelBalls)
             {
@@ -51,6 +30,13 @@ namespace Example03.Accounters
                 _currentBalls.Add(ball);
             }
         }
+
+        public IReadOnlyList<IReadOnlyBall> CurrentBalls => _currentBalls;
+
+        public IReadOnlyDictionary<BallColor, int> BallsColorStatistic => _ballsColorStatistic;
+
+        [ShowInInspector, ReadOnly]
+        public int BallsCount => _currentBalls.Count;
 
         private void OnBallBursted(IReadOnlyBall ball)
         {

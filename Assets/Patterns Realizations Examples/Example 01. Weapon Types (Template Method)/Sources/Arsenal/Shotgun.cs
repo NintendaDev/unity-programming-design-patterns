@@ -8,7 +8,7 @@ namespace Example01.Arsenal
         [RequiredListLength(1, null)]
         [SerializeField, ChildGameObjectsOnly] private Transform[] _shootPoints;
 
-        protected override void DoAfterAwake()
+        protected override void InitializeAdditionaly()
         {
             Initialize(_shootPoints.Length);
         }

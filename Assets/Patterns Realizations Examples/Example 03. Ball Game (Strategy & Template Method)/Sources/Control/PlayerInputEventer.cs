@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Example02.Control
+namespace Example03.Control
 {
     public class PlayerInputEventer : AbstractInputEventer
     {

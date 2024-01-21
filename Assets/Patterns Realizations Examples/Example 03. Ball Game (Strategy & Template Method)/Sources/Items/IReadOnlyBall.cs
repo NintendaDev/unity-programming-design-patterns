@@ -1,7 +1,6 @@
-using Example03.Items;
 using System;
 
-namespace Example03.Item
+namespace Example03.Items
 {
     public interface IReadOnlyBall
     {

@@ -16,9 +16,9 @@ namespace Example02.Strategy
         private Seller _seller;
         private Age _playerAge;
         private bool _isInitialized;
-        private IPlayerGreeting _noSellGreeting = new NoSellPlayerGreeting();
-        private IPlayerGreeting _fruitSellGreeting = new FruitSellPlayerGreeting();
-        private IPlayerGreeting _shieldSellGreeting = new ShieldSellPlayerGreeting();
+        private ITradableGreeting _noSellGreeting = new NoSellPlayerGreeting();
+        private ITradableGreeting _fruitSellGreeting = new FruitSellPlayerGreeting();
+        private ITradableGreeting _shieldSellGreeting = new ShieldSellPlayerGreeting();
         private bool _isSubscribed;
 
         public void Initialize(Seller seller, Player player)
@@ -57,11 +57,11 @@ namespace Example02.Strategy
 
         private void OnPlayerAgeChange(int ageValue)
         {
-            IPlayerGreeting playerGreetin = GetPlayerGreeting(ageValue);
-            _seller.SetPlayerGreeting(playerGreetin);
+            ITradableGreeting playerGreetin = GetPlayerGreeting(ageValue);
+            _seller.SetGreeting(playerGreetin);
         }
 
-        private IPlayerGreeting GetPlayerGreeting(int playerAge)
+        private ITradableGreeting GetPlayerGreeting(int playerAge)
         {
             if (playerAge < _noSellAgeThreshold)
                 return _noSellGreeting;

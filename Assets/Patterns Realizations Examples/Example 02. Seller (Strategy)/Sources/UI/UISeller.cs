@@ -21,11 +21,11 @@ namespace Example02
 
         private void OnEnable()
         {
-            _seller.PlayerGreeted += OnPlayerGreeting;
+            _seller.TradableGreeted += OnPlayerGreeting;
         }
         private void OnDisable()
         {
-            _seller.PlayerGreeted -= OnPlayerGreeting;
+            _seller.TradableGreeted -= OnPlayerGreeting;
         }
 
         private void SetSekkerNameText()

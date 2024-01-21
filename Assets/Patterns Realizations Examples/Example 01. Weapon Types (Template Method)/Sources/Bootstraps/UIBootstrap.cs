@@ -9,6 +9,7 @@ namespace Example01.Bootstraps
     {
         [SerializeField, Required, SceneObjectsOnly] private UIShootButton _uiShootButton;
         [SerializeField, Required, SceneObjectsOnly] private UIChangeWeaponButton _uiChangeWeaponButton;
+        [SerializeField, Required, SceneObjectsOnly] private UIBulletsCounter _uiBulletsCounter;
         [SerializeField, Required, SceneObjectsOnly] private Shooter _shooter;
         [SerializeField, Required, SceneObjectsOnly] private WeaponChanger _weaponChanger;
 
@@ -16,6 +17,7 @@ namespace Example01.Bootstraps
         {
             _uiShootButton.Initialize(_shooter);
             _uiChangeWeaponButton.Initialize(_weaponChanger);
+            _uiBulletsCounter.Initialize(_weaponChanger);
         }
     }
 }

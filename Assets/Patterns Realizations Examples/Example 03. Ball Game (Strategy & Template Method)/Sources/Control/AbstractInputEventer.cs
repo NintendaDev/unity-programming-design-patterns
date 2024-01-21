@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Example02.Control
+namespace Example03.Control
 {
     public class AbstractInputEventer
     {

@@ -1,22 +1,57 @@
+using Example01.Arsenal;
 using UnityEngine;
 
 namespace Example01.Control
 {
+    [RequireComponent(typeof(WeaponChanger))]
     public class Shooter : MonoBehaviour
     {
-        private ICurrentWeapon _currentWeapon;
+        private IWeaponChangeEventer _weaponChangeEventer;
+        private Weapon _currentWeapon;
+        private bool _isSubscribed;
 
-        private void Awake()
+        public void Initialize()
         {
-            _currentWeapon = GetComponent<ICurrentWeapon>();
+            _weaponChangeEventer = GetComponent<IWeaponChangeEventer>();
+            Subscribe();
+        }
+
+        private void OnEnable()
+        {
+            Subscribe();
+        }
+
+        private void OnDisable()
+        {
+            Unsubscribe();
         }
 
         public void Shoot()
         {
-            if (_currentWeapon == null)
-                throw new System.ArgumentNullException($"Не инициализировано значение {nameof(_currentWeapon)}");
+            _currentWeapon.Shoot();
+        }
 
-            _currentWeapon.CurrentWeapon.Shoot();
+        private void Subscribe()
+        {
+            if (_isSubscribed)
+                return;
+
+            _weaponChangeEventer.WeaponChanged += OnWeaponChange;
+            _isSubscribed = true;
+        }
+
+        private void OnWeaponChange(Weapon changedWeapon)
+        {
+            _currentWeapon = changedWeapon;
+        }
+
+        private void Unsubscribe()
+        {
+            if (_isSubscribed == false)
+                return;
+
+            _weaponChangeEventer.WeaponChanged -= OnWeaponChange;
+            _isSubscribed = false;
         }
     }
 }

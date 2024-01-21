@@ -1,9 +1,9 @@
 using Example03.Items;
 using UnityEngine;
 
-namespace Example02.Control
+namespace Example03.Control
 {
-    public class PlayerInputReceiver : MonoBehaviour
+    public class PlayerInputReceiver : MonoBehaviour, IPlayerInput
     {
         private const int MaxHitInfoCount = 10;
         private PlayerInputEventer _playerInputEventer;
@@ -26,6 +26,16 @@ namespace Example02.Control
         {
             _playerInputEventer.Disable();
             _playerInputEventer.ClickPressed -= OnClick;
+        }
+
+        public void Enable()
+        {
+            gameObject.SetActive(true);
+        }
+
+        public void Disable()
+        {
+            gameObject.SetActive(false);
         }
 
         private void OnClick(Vector2 screenPosition)

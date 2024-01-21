@@ -1,41 +1,27 @@
-using Example03.Item;
 using Example03.Items;
-using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Example03.Accounters
 {
-    public class BurstBallsAccounter : MonoBehaviour, IBurstedBalls
+    public class BurstBallsAccounter
     {
-        private IEnumerable<IReadOnlyBall> _balls;
+        private IEnumerable<IReadOnlyBall> _currentBalls;
         private Dictionary<BallColor, int> _burstedBallsStatistics = new();
 
-        public event Action<BallColor> BallBursted;
-
-        public IReadOnlyDictionary<BallColor, int> BurstedBallsStatistic => _burstedBallsStatistics;
-
-        public void Initialize(IEnumerable<IReadOnlyBall> balls)
+        public BurstBallsAccounter(BallsAccounter ballsAccounter)
         {
-            _burstedBallsStatistics.Clear();
+            _currentBalls = ballsAccounter.CurrentBalls;
 
-            if (_balls != null)
-            {
-                foreach (IReadOnlyBall ballBurstEvent in _balls)
-                    ballBurstEvent.Bursted -= OnBallBurst;
-            }
-
-            _balls = balls;
-
-            foreach (IReadOnlyBall ball in _balls)
+            foreach (IReadOnlyBall ball in _currentBalls)
                 ball.Bursted += OnBallBurst;
         }
+
+        public IReadOnlyDictionary<BallColor, int> BurstedBallsStatistic => _burstedBallsStatistics;
 
         private void OnBallBurst(IReadOnlyBall ball)
         {
             ball.Bursted -= OnBallBurst;
             Account(ball.Color);
-            BallBursted?.Invoke(ball.Color);
         }
 
         private void Account(BallColor ballColor)

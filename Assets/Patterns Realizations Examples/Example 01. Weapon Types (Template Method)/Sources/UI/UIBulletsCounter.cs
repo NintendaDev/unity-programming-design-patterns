@@ -2,39 +2,52 @@ using Example01.Arsenal;
 using Example01.Control;
 using Nova;
 using Sirenix.OdinInspector;
-using System.Linq;
 using UnityEngine;
 
 namespace Example01
 {
     public class UIBulletsCounter : MonoBehaviour
     {
-        [SerializeField, Required, SceneObjectsOnly] private WeaponChanger _weaponChanger;
         [SerializeField, Required] private TextBlock _bulletCounterText;
 
         private readonly string _infiniteBulletsMessage = "Infinite";
-        private AbstractWeapon _currentWeapon;
+        private WeaponChanger _weaponChanger;
+        private bool _isSubscribed;
+
+        public void Initialize(WeaponChanger weaponChanger)
+        {
+            _weaponChanger = weaponChanger;
+            Subscribe();
+        }
 
         private void OnEnable()
         {
-            _weaponChanger.Changed += OnWeaponChanged;
+            Subscribe();
         }
 
         private void OnDisable()
         {
-            _weaponChanger.Changed -= OnWeaponChanged;
+            Unsubscribe();
         }
 
-        private void OnWeaponChanged(AbstractWeapon currentWeapon)
+        private void Subscribe()
+        {
+            if (_isSubscribed)
+                return;
+
+            _weaponChanger.WeaponChanged += OnWeaponChanged;
+            _isSubscribed = true;
+        }
+
+        private void OnWeaponChanged(Weapon currentWeapon)
         {
             if (currentWeapon is FiniteWeapon lastFiniteWeapon)
-                lastFiniteWeapon.ChamberChanged -= OnWeaponChamberChange;
+                lastFiniteWeapon.MagazineChanged -= OnWeaponChamberChange;
 
             if (_weaponChanger.CurrentWeapon is FiniteWeapon currentFiniteWeapon)
             {
-                OnWeaponChamberChange(currentFiniteWeapon.BulletsInChamber);
-                currentFiniteWeapon.ChamberChanged += OnWeaponChamberChange;
-                _currentWeapon = currentWeapon;
+                OnWeaponChamberChange(currentFiniteWeapon.BulletsInMagazine);
+                currentFiniteWeapon.MagazineChanged += OnWeaponChamberChange;
             } 
             else
             {
@@ -45,6 +58,15 @@ namespace Example01
         private void OnWeaponChamberChange(int bulletsCount)
         {
             _bulletCounterText.Text = bulletsCount.ToString();
+        }
+
+        private void Unsubscribe()
+        {
+            if (_isSubscribed == false)
+                return;
+
+            _weaponChanger.WeaponChanged -= OnWeaponChanged;
+            _isSubscribed = false;
         }
     }
 }

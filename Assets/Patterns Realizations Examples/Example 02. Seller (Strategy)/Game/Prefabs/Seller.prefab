@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 212571235114368172}
   - component: {fileID: 4401465910461950910}
   m_Layer: 0
-  m_Name: PlayerDetector
+  m_Name: TradableDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Harmful seller
-  _playerDetector: {fileID: 4401465910461950910}
+  _tradableDetector: {fileID: 4401465910461950910}
 --- !u!208 &4875653363140600619
 NavMeshObstacle:
   m_ObjectHideFlags: 0

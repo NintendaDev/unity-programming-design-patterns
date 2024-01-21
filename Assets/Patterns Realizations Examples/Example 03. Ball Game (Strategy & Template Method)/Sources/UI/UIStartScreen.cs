@@ -1,4 +1,6 @@
+using Example03.Control;
 using Example03.GameRules;
+using Example03.Strategies;
 using NovaSamples.UIControls;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -13,12 +15,15 @@ namespace Example03.UI
         private LevelRestarter _levelRestarter;
         private WinLoseStrategyChanger _winLoseStrategyChanger;
         private GameRulesNames _gameRulesNames;
+        private IPlayerInput _playerInput;
 
-        public void Initialize(LevelRestarter levelRestarter, WinLoseStrategyChanger winLoseStrategyChanger, GameRulesNames gameRulesNames)
+        public void Initialize(LevelRestarter levelRestarter, WinLoseStrategyChanger winLoseStrategyChanger, 
+            GameRulesNames gameRulesNames, IPlayerInput playerInput)
         {
             _levelRestarter = levelRestarter;
             _winLoseStrategyChanger = winLoseStrategyChanger;
             _gameRulesNames = gameRulesNames;
+            _playerInput = playerInput;
 
             SetGameRule(_gameRulesDropdown.CurrentSelection);
         }
@@ -53,6 +58,7 @@ namespace Example03.UI
         private void OnStartButtonClick()
         {
             _levelRestarter.Restart();
+            _playerInput.Enable();
             Disable();
         }
     }

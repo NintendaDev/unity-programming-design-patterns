@@ -6,18 +6,18 @@ using UnityEngine;
 
 namespace Example01.Control
 {
-    public class WeaponChanger : MonoBehaviour, ICurrentWeapon
+    public class WeaponChanger : MonoBehaviour, IWeaponChangeEventer
     {
         [RequiredListLength(1, null)]
-        [SerializeField] private List<AbstractWeapon> _weapons;
+        [SerializeField] private List<Weapon> _weapons;
 
-        private Queue<AbstractWeapon> _weaponsQueue;
+        private Queue<Weapon> _weaponsQueue;
 
-        public event Action<AbstractWeapon> Changed;
+        public event Action<Weapon> WeaponChanged;
 
-        public AbstractWeapon CurrentWeapon { get; private set; }
+        public Weapon CurrentWeapon { get; private set; }
 
-        private void Awake()
+        public void Initialize()
         {
             InitializeWeaponQueue();
             ChangeWeapon();
@@ -28,21 +28,24 @@ namespace Example01.Control
         {
             if (CurrentWeapon != null)
             {
-                CurrentWeapon.gameObject.SetActive(false);
+                CurrentWeapon.Disable();
                 _weaponsQueue.Enqueue(CurrentWeapon);
             }
                 
             CurrentWeapon = _weaponsQueue.Dequeue();
-            CurrentWeapon.gameObject.SetActive(true);
-            Changed?.Invoke(CurrentWeapon);
+            CurrentWeapon.Enable();
+            WeaponChanged?.Invoke(CurrentWeapon);
         }
 
         private void InitializeWeaponQueue()
         {
-            foreach (AbstractWeapon weapon in _weapons)
-                weapon.gameObject.SetActive(false);
-
-            _weaponsQueue = new Queue<AbstractWeapon>(_weapons);
+            foreach (Weapon weapon in _weapons)
+            {
+                weapon.Initialize();
+                weapon.Disable();
+            }
+                
+            _weaponsQueue = new Queue<Weapon>(_weapons);
         }
     }
 }

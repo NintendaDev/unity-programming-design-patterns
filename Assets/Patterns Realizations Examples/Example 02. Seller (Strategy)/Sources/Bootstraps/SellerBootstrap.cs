@@ -15,8 +15,8 @@ namespace Example02
 
         public void Initialize()
         {
-            IPlayerGreeting defaultPlayerGreetingUpponDetection = new NoSellPlayerGreeting();
-            _seller.SetPlayerGreeting(defaultPlayerGreetingUpponDetection);
+            ITradableGreeting defaultPlayerGreetingUpponDetection = new NoSellPlayerGreeting();
+            _seller.SetGreeting(defaultPlayerGreetingUpponDetection);
 
             _sellerDialogueStrategy.Initialize(_seller, _player);
 

@@ -5,49 +5,47 @@ using UnityEngine;
 
 namespace Example01
 {
-    public class FiniteWeapon : AbstractWeapon
+    public class FiniteWeapon : Weapon
     {
-        [SerializeField, Required, MinValue(0)] private int _bulletsInChamber = 30;
+        [SerializeField, Required, MinValue(0)] private int _bulletsInMagazine = 30;
 
         private const int MinBulletsPerShoot = 1;
         private int _bulletsPerShoot;
-        private bool _isInitialized;
+        private bool _isInitializedBulletsPerShoot;
 
-        public event Action<int> ChamberChanged;
+        public event Action<int> MagazineChanged;
 
-        public int BulletsInChamber => _bulletsInChamber;
+        public int BulletsInMagazine => _bulletsInMagazine;
 
-        protected bool IsInitialized => _isInitialized;
-
-        public void Initialize(int bulletsPerShoot)
+        protected void Initialize(int bulletsPerShoot)
         {
             if (bulletsPerShoot < MinBulletsPerShoot)
-                throw new System.Exception($"Минимум пуль за выстрел: {MinBulletsPerShoot}");
+                throw new Exception($"Minimum bullets per shot: {MinBulletsPerShoot}");
 
             _bulletsPerShoot = bulletsPerShoot;
-            _isInitialized = true;
+            _isInitializedBulletsPerShoot = true;
         }
 
-        public sealed override bool CanShoot()
+        protected sealed override bool IsPassedAdditionalShootingChecks()
         {
-            return _bulletsInChamber > 0 && _bulletsInChamber >= _bulletsPerShoot;
-        }
-
-        protected override void DoAfterAwake()
-        {
+            return _bulletsInMagazine > 0 && _bulletsInMagazine >= _bulletsPerShoot;
         }
 
         protected sealed override void StartShootingBehaviour()
         {
-            if (_bulletsInChamber < 0)
-                throw new System.Exception("Отсутствуют пули в обойме");
+            if (_isInitializedBulletsPerShoot == false)
+                throw new Exception("The number of bullets in the magazine is not initialized");
 
-            if (_bulletsInChamber < _bulletsPerShoot)
-                throw new System.Exception("не хватает пуль для выстрела");
+            if (_bulletsInMagazine < 0)
+                throw new Exception("No bullets in the magazine");
+
+            if (_bulletsInMagazine < _bulletsPerShoot)
+                throw new Exception("Not enough bullets for a shot");
 
             DoShootAction();
-            _bulletsInChamber -= _bulletsPerShoot;
-            ChamberChanged?.Invoke(_bulletsInChamber);
+
+            _bulletsInMagazine -= _bulletsPerShoot;
+            MagazineChanged?.Invoke(_bulletsInMagazine);
         }
 
         protected virtual void DoShootAction() 

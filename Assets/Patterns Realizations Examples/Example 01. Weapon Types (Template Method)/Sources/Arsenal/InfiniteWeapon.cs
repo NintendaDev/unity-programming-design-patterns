@@ -2,19 +2,11 @@ using Example01.Arsenal;
 
 namespace Example01
 {
-    public class InfiniteWeapon : AbstractWeapon
+    public class InfiniteWeapon : Weapon
     {
-        public sealed override bool CanShoot()
+        protected sealed override bool IsPassedAdditionalShootingChecks()
         {
             return true;
-        }
-
-        protected override void DoAfterAwake()
-        {
-        }
-
-        protected override void StartShootingBehaviour() 
-        { 
         }
     }
 }
