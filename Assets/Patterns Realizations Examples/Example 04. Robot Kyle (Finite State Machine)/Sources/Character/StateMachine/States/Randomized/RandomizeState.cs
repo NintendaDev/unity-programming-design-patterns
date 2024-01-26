@@ -1,4 +1,3 @@
-using UnityEngine;
 using Utils.Timers;
 
 namespace Example04.Characters.StateMachine.States.Randomized

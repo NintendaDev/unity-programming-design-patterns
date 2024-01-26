@@ -17,10 +17,13 @@ namespace Example04.Characters
         private RobotStateMachine _stateMachine;
         private Mover _mover;
 
-        private void Awake()
-        {
-            Initialize();
-        }
+        public Mover Mover => _mover;
+
+        public RobotView View { get; private set; }
+
+        public IReadOnlyList<Transform> PatrolPoints => _pointsInitializer.Points;
+
+        public Vector2 MinMaxRandomStateTime => _minMaxRandomStateTime;
 
         public void Initialize()
         {
@@ -34,14 +37,6 @@ namespace Example04.Characters
 
             _stateMachine = new RobotStateMachine(this);
         }
-
-        public Mover Mover => _mover;
-
-        public RobotView View { get; private set; }
-
-        public IReadOnlyList<Transform> PatrolPoints => _pointsInitializer.Points;
-
-        public Vector2 MinMaxRandomStateTime => _minMaxRandomStateTime;
 
         private void Update()
         {
