@@ -1,4 +1,4 @@
-namespace Example04.Character.States
+namespace Example04.Characters.StateMachine.States
 {
     public interface IState
     {

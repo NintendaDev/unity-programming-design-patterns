@@ -1,6 +1,6 @@
 {
-    "name": "Example04",
-    "rootNamespace": "Example04",
+    "name": "TimersAssembly",
+    "rootNamespace": "Utils.Timers",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
