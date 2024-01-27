@@ -1,6 +1,7 @@
 using Example04.Characters.StateMachine;
 using Example04.Control;
 using Example04.Core;
+using MonoUtils;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ namespace Example04.Characters
 {
     [RequireComponent(typeof(Mover))]
     [RequireComponent(typeof(RobotView))]
-    public class Robot : MonoBehaviour
+    public class Robot : InitializedMonobehaviour
     {
         [SerializeField, Required] private PatrolPointsInitializer _pointsInitializer;
         [SerializeField, Required] private Vector2 _minMaxRandomStateTime = new Vector2(3, 5);
@@ -36,6 +37,8 @@ namespace Example04.Characters
             View.Initialize();
 
             _stateMachine = new RobotStateMachine(this);
+
+            IsInitialized = true;
         }
 
         private void Update()

@@ -22,11 +22,6 @@ namespace Example01.Arsenal
             _isInitialized = true;
         }
 
-        private void Reset()
-        {
-            _isInitialized = false;
-        }
-
         private void Update()
         {
             if (_isInitialized == false)
@@ -37,6 +32,11 @@ namespace Example01.Arsenal
 
             if (_lifeTime > _temporaryProperties.MaxLifeTime)
                 Die();
+        }
+
+        private void Reset()
+        {
+            _isInitialized = false;
         }
 
         private void Move()

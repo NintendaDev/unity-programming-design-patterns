@@ -2,11 +2,12 @@ using Example05.Core;
 using UnityEngine;
 using Example05.Characters.StateMachine;
 using Sirenix.OdinInspector;
+using MonoUtils;
 
 namespace Example05.Characters
 {
     [RequireComponent(typeof(CharacterController))]
-    public class Character : MonoBehaviour
+    public class Character : InitializedMonobehaviour
     {
         [SerializeField, Required] private CharacterConfiguration _configuration;
         [SerializeField, Required] private CharacterView _view;
@@ -32,6 +33,8 @@ namespace Example05.Characters
             _characterController = GetComponent<CharacterController>();
             _input = new PlayerInput();
             _stateMachine = new CharacterStateMachine(this);
+
+            IsInitialized = true;
         }
 
         private void OnEnable()

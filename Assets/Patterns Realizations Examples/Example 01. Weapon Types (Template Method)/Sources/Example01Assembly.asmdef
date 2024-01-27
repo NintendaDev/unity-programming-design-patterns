@@ -3,7 +3,8 @@
     "rootNamespace": "Example01",
     "references": [
         "Nova",
-        "Nova.UIControls"
+        "Nova.UIControls",
+        "MonoUtilsAssembly"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -26,6 +26,8 @@ namespace Example03.UI
             _playerInput = playerInput;
 
             SetGameRule(_gameRulesDropdown.CurrentSelection);
+
+            IsInitialized = true;
         }
 
         private void OnEnable()

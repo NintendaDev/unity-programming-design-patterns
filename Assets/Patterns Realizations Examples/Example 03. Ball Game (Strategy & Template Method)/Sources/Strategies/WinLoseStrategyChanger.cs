@@ -1,13 +1,13 @@
 using Example03.Accounters;
 using Example03.GameRules;
 using Example03.Handler;
+using MonoUtils;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Example03.Strategies
 {
-    public class WinLoseStrategyChanger : MonoBehaviour
+    public class WinLoseStrategyChanger : InitializedMonobehaviour
     {
         private IWinLoseCondition _allBallsBurstWinRule;
         private IWinLoseCondition _oneColorBallBurstWinRule;
@@ -28,6 +28,8 @@ namespace Example03.Strategies
                 );
 
             _level = level;
+
+            IsInitialized = true;
         }
 
         public void ActivateGameRule(GameRuleType gameRuleType)

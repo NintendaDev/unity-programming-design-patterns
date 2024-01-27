@@ -1,3 +1,4 @@
+using MonoUtils;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,25 +6,19 @@ using UnityEngine;
 
 namespace Example04.Core
 {
-    public class PointsInitializer : MonoBehaviour
+    public class PointsInitializer : InitializedMonobehaviour
     {
         [SerializeField, Required, MinValue(0)] protected float PointVisualRadius = 0.2f;
         [SerializeField, Required] private Transform _pointsParrent;
 
         private List<Transform> _points;
-        private bool _isInitialized;
 
         public IReadOnlyList<Transform> Points => _points;
 
         public void Initialize()
         {
             TryInitializePoints();
-            _isInitialized = true;
-        }
-
-        private void Awake()
-        {
-            ValidateInitialization();
+            IsInitialized = true;
         }
 
         private void OnDrawGizmos()
@@ -47,12 +42,6 @@ namespace Example04.Core
                 .ToList();
 
             return _points != null && _points.Count > 0;
-        }
-
-        private void ValidateInitialization()
-        {
-            if (_isInitialized == false)
-                throw new System.Exception($"{nameof(PointsInitializer)} is not initialized");
         }
     }
 }

@@ -1,10 +1,10 @@
-using System;
+using MonoUtils;
 using UnityEngine;
 
 namespace Example04.Characters
 {
     [RequireComponent(typeof(Animator))]
-    public class RobotView : MonoBehaviour
+    public class RobotView : InitializedMonobehaviour
     {
         private readonly string _isWalkingParameterName = "IsWalking";
         private readonly string _isDanceParameterName = "IsDance";
@@ -41,6 +41,8 @@ namespace Example04.Characters
             StopWalk();
             StopDance();
             StopSitup();
+
+            IsInitialized = true;
         }
 
         public void StartMoving() => _animator.SetBool(_isMovementParameterHash, true);

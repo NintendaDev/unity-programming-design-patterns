@@ -15,6 +15,7 @@ namespace Example02
 
         public void Initialize()
         {
+            _seller.Initialize();
             ITradableGreeting defaultPlayerGreetingUpponDetection = new NoSellPlayerGreeting();
             _seller.SetGreeting(defaultPlayerGreetingUpponDetection);
 

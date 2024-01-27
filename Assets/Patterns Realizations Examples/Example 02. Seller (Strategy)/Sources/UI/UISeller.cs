@@ -1,11 +1,12 @@
 using Example02.NPC;
+using MonoUtils;
 using Nova;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Example02
 {
-    public class UISeller : MonoBehaviour
+    public class UISeller : InitializedMonobehaviour
     {
         [SerializeField, Required] private TextBlock _sellerNameText;
         [SerializeField, Required] private TextBlock _sellerDialogueText;
@@ -17,6 +18,8 @@ namespace Example02
             _seller = seller;
             SetSekkerNameText();
             SetGreetingText(_seller.DefaultGreeting);
+
+            IsInitialized = true;
         }
 
         private void OnEnable()
@@ -37,7 +40,6 @@ namespace Example02
         {
             _sellerDialogueText.Text = greeting;
         }
-
         private void OnPlayerGreeting(string greeting)
         {
             SetGreetingText(greeting);

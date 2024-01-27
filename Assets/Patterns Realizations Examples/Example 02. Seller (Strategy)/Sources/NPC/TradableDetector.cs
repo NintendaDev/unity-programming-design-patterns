@@ -1,10 +1,11 @@
+using MonoUtils;
 using System;
 using UnityEngine;
 
 namespace Example02.NPC
 {
     [RequireComponent(typeof(BoxCollider))]
-    public class TradableDetector : MonoBehaviour
+    public class TradableDetector : InitializedMonobehaviour
     {
         private Collider _collider;
 
@@ -12,10 +13,11 @@ namespace Example02.NPC
 
         public event Action<ITradable> Lost;
 
-        private void Awake()
+        public void Initialize()
         {
             _collider = GetComponent<BoxCollider>();
             _collider.isTrigger = true;
+            IsInitialized = true;
         }
 
         private void OnTriggerEnter(Collider other)

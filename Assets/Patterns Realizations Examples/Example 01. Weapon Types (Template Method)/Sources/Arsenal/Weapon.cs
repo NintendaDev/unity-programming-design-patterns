@@ -1,9 +1,10 @@
+using MonoUtils;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Example01.Arsenal
 {
-    public abstract class Weapon : MonoBehaviour
+    public abstract class Weapon : InitializedMonobehaviour
     {
         [SerializeField, Required, MinValue(0), Unit(Units.Second)] private float _shootDelay = 0.2f;
         [SerializeField, Required, InlineEditor] private BulletSettings _bulletSettings;
@@ -12,8 +13,6 @@ namespace Example01.Arsenal
         private float _shootTimer;
 
         private bool IsTooFastShooting => _shootTimer < _shootDelay;
-
-        protected bool IsInitialized { get; private set; }
 
         public void Initialize()
         {

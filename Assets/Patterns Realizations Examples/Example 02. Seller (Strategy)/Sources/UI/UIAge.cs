@@ -1,11 +1,12 @@
 using Example02.Attributes;
+using MonoUtils;
 using Nova;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Example02
 {
-    public class UIAge : MonoBehaviour
+    public class UIAge : InitializedMonobehaviour
     {
         [SerializeField, Required] private TextBlock _ageValueText;
 
@@ -15,6 +16,7 @@ namespace Example02
         {
             _age = age;
             OnAgeChange(_age.Value);
+            IsInitialized = true;
         }
 
         private void OnEnable()

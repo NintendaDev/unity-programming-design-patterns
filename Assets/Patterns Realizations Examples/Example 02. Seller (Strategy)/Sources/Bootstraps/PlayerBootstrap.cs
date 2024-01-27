@@ -10,17 +10,18 @@ namespace Example02.Bootstraps
         [SerializeField, Required, SceneObjectsOnly] private Player _player;
         [SerializeField, Required, SceneObjectsOnly] private UIAge _uiAge;
 
-        private PlayerInputReceiver _inputReceiver;
-        private Age _age;
-
         public void Initialize()
         {
-            _inputReceiver = _player.GetComponent<PlayerInputReceiver>();
-            _inputReceiver.Initialize();
+            PlayerInputReceiver inputReceiver = _player.GetComponent<PlayerInputReceiver>();
+            inputReceiver.Initialize();
 
-            _age = _player.GetComponent<Age>();
-            _age.Initialize();
-            _uiAge.Initialize(_age);
+            Age age = _player.GetComponent<Age>();
+            age.Initialize();
+
+            Mover mover = _player.GetComponent<Mover>();
+            mover.Initalize();
+
+            _uiAge.Initialize(age);
         }
     }
 }

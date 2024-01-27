@@ -1,10 +1,11 @@
 using Example01.Arsenal;
+using MonoUtils;
 using UnityEngine;
 
 namespace Example01.Control
 {
     [RequireComponent(typeof(WeaponChanger))]
-    public class Shooter : MonoBehaviour
+    public sealed class Shooter : InitializedMonobehaviour
     {
         private IWeaponChangeEventer _weaponChangeEventer;
         private Weapon _currentWeapon;
@@ -14,6 +15,8 @@ namespace Example01.Control
         {
             _weaponChangeEventer = GetComponent<IWeaponChangeEventer>();
             Subscribe();
+
+            IsInitialized = true;
         }
 
         private void OnEnable()

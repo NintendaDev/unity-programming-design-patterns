@@ -1,11 +1,12 @@
 using Example02.Dialogue;
+using MonoUtils;
 using Sirenix.OdinInspector;
 using System;
 using UnityEngine;
 
 namespace Example02.NPC
 {
-    public class Seller : MonoBehaviour
+    public class Seller : InitializedMonobehaviour
     {
         [SerializeField, Required] private string _name = "Harmful seller";
         [SerializeField, Required] private TradableDetector _tradableDetector;
@@ -18,6 +19,12 @@ namespace Example02.NPC
         public string Name => _name;
 
         public string DefaultGreeting => _defaultGreeting;
+
+        public void Initialize()
+        {
+            _tradableDetector.Initialize();
+            IsInitialized = true;
+        }
 
         public void SetGreeting(ITradableGreeting greetingForDetection)
         {

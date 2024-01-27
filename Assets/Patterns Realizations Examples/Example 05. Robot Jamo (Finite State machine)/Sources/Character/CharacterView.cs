@@ -1,9 +1,10 @@
+using MonoUtils;
 using UnityEngine;
 
 namespace Example05.Characters
 {
     [RequireComponent(typeof(Animator))]
-    public class CharacterView : MonoBehaviour
+    public class CharacterView : InitializedMonobehaviour
     {
         private const string IsIdling = "IsIdling";
         private const string IsRunning = "IsRunning";
@@ -15,7 +16,11 @@ namespace Example05.Characters
 
         private Animator _animator;
 
-        public void Initialize() => _animator = GetComponent<Animator>();
+        public void Initialize()
+        {
+            _animator = GetComponent<Animator>();
+            IsInitialized = true;
+        }
 
         public void StartIdling() => _animator.SetBool(IsIdling, true);
 

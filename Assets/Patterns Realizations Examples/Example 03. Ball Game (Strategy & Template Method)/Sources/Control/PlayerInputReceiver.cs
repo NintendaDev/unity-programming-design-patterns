@@ -1,9 +1,10 @@
 using Example03.Items;
+using MonoUtils;
 using UnityEngine;
 
 namespace Example03.Control
 {
-    public class PlayerInputReceiver : MonoBehaviour, IPlayerInput
+    public class PlayerInputReceiver : InitializedMonobehaviour, IPlayerInput
     {
         private const int MaxHitInfoCount = 10;
         private PlayerInputEventer _playerInputEventer;
@@ -14,6 +15,7 @@ namespace Example03.Control
         {
             _playerInputEventer = new PlayerInputEventer();
             _camera = Camera.main;
+            IsInitialized = true;
         }
 
         private void OnEnable()

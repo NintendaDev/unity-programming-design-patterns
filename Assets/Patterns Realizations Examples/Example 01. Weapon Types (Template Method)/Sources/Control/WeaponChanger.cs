@@ -1,4 +1,5 @@
 using Example01.Arsenal;
+using MonoUtils;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using UnityEngine;
 
 namespace Example01.Control
 {
-    public class WeaponChanger : MonoBehaviour, IWeaponChangeEventer
+    public class WeaponChanger : InitializedMonobehaviour, IWeaponChangeEventer
     {
         [RequiredListLength(1, null)]
         [SerializeField] private List<Weapon> _weapons;
@@ -21,6 +22,8 @@ namespace Example01.Control
         {
             InitializeWeaponQueue();
             ChangeWeapon();
+
+            IsInitialized = true;
         }
 
         [Button, DisableInEditorMode]
