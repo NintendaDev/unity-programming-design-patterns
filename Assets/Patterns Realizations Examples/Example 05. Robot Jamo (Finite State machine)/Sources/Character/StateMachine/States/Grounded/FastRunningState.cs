@@ -3,35 +3,35 @@ using UnityEngine.InputSystem;
 
 namespace Example05.Characters.StateMachine.States.Grounded
 {
-    public class WalkingState : GroundMovementState
+    public class FastRunningState : GroundMovementState
     {
         private readonly GroundedStateConfiurationg _configuration;
 
-        public WalkingState(IStateSwitcher stateSwitcher, StateMachineData data, Character character) : base(stateSwitcher, data, character)
+        public FastRunningState(IStateSwitcher stateSwitcher, StateMachineData data, Character character) : base(stateSwitcher, data, character)
         {
             _configuration = character.Configuration.GroundedStateConfiguration;
         }
 
         protected override float GetSpeed()
         {
-            return _configuration.WalkingSpeed;
+            return _configuration.FastRuningSpeed;
         }
 
         protected override void AddInputActionCallbacks()
         {
             base.AddInputActionCallbacks();
 
-            Input.Movement.Walk.canceled += OnWalkCanceled;
+            Input.Movement.FastRun.canceled += OnFastRunCanceled;
         }
 
         protected override void RemoveInputActionCallbacks()
         {
             base.RemoveInputActionCallbacks();
 
-            Input.Movement.Walk.canceled -= OnWalkCanceled;
+            Input.Movement.FastRun.canceled -= OnFastRunCanceled;
         }
 
-        private void OnWalkCanceled(InputAction.CallbackContext context)
+        private void OnFastRunCanceled(InputAction.CallbackContext context)
         {
             StateSwitcher.SwitchState<RunningState>();
         }

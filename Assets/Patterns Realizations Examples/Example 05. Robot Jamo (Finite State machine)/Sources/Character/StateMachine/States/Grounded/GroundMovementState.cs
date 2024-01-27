@@ -11,7 +11,6 @@ namespace Example05.Characters.StateMachine.States.Grounded
             base.Enter();
 
             View.StartRunning();
-
             Data.Speed = GetSpeed();
         }
 

@@ -78,7 +78,7 @@ namespace Example05.Characters.StateMachine.States
 
         private float ReadHorizontalInput()
         {
-            return Input.Movement.Move.ReadValue<float>();
+            return Input.Movement.MoveInput.ReadValue<float>();
         }
     }
 }

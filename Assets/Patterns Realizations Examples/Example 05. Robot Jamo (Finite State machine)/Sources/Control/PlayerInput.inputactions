@@ -6,12 +6,30 @@
             "id": "708ef2cd-bd2c-4aed-8c88-287bfb9c7d3f",
             "actions": [
                 {
-                    "name": "Move",
+                    "name": "MoveInput",
                     "type": "Value",
                     "id": "618ee21c-e85d-4e9d-b4e7-9afe1b66a70b",
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Walk",
+                    "type": "Button",
+                    "id": "57701329-d60c-433f-9bff-c77d7d3c7432",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "FastRun",
+                    "type": "Button",
+                    "id": "dd6cd3c8-aa87-4c30-ac3f-4e2e3dd3fc95",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)",
                     "initialStateCheck": true
                 },
                 {
@@ -26,13 +44,35 @@
             ],
             "bindings": [
                 {
+                    "name": "",
+                    "id": "33e7e7d7-056d-47a6-a762-282e73ab5cbc",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4414202c-42ec-43ac-a3e9-91854b5a3c0a",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Walk",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "1D Axis",
                     "id": "2a2101f2-c6d1-40b5-b472-615930053f46",
                     "path": "1DAxis(whichSideWins=1)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "MoveInput",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -43,7 +83,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "MoveInput",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -54,18 +94,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "MoveInput",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "",
-                    "id": "33e7e7d7-056d-47a6-a762-282e73ab5cbc",
-                    "path": "<Keyboard>/space",
+                    "id": "578c1ede-8a7f-46f9-bd64-94c49dee8101",
+                    "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Jump",
+                    "action": "FastRun",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
