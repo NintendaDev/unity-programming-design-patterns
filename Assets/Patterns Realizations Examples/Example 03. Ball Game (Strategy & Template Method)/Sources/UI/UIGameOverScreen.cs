@@ -1,4 +1,3 @@
-using Nova;
 using NovaSamples.UIControls;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -14,6 +13,7 @@ namespace Example03.UI
         public void Initialize(UIStartScreen startScreen)
         {
             _startScreen = startScreen;
+            IsInitialized = true;
         }
 
         private void OnEnable()

@@ -1,12 +1,13 @@
 using Example02.Attributes;
 using Example02.Dialogue;
 using Example02.NPC;
+using MonoUtils;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Example02.Strategy
 {
-    public class SellerDialogueStrategyChanger : MonoBehaviour
+    public class SellerDialogueStrategyChanger : InitializedMonobehaviour
     {
         [ValidateInput(nameof(IsValidStrategyThresholds))]
         [SerializeField, Required, MinValue(0)] private int _noSellAgeThreshold = 8;
@@ -15,7 +16,6 @@ namespace Example02.Strategy
 
         private Seller _seller;
         private Age _playerAge;
-        private bool _isInitialized;
         private ITradableGreeting _noSellGreeting = new NoSellPlayerGreeting();
         private ITradableGreeting _fruitSellGreeting = new FruitSellPlayerGreeting();
         private ITradableGreeting _shieldSellGreeting = new ShieldSellPlayerGreeting();
@@ -25,9 +25,9 @@ namespace Example02.Strategy
         {
             _seller = seller;
             _playerAge = player.GetComponent<Age>();
-            _isInitialized = true;
-
             Subscribe();
+
+            IsInitialized = true;
         }
 
         private void OnEnable()
@@ -48,7 +48,7 @@ namespace Example02.Strategy
 
         private void Subscribe()
         {
-            if (_isInitialized == false || _isSubscribed)
+            if (_isSubscribed)
                 return;
 
             _playerAge.Changed += OnPlayerAgeChange;
@@ -73,9 +73,6 @@ namespace Example02.Strategy
 
         private void Unsubscribe()
         {
-            if (_isInitialized == false)
-                return;
-
             _playerAge.Changed -= OnPlayerAgeChange;
             _isSubscribed = false;
         }

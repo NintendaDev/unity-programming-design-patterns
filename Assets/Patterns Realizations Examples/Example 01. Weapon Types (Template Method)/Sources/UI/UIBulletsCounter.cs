@@ -1,12 +1,13 @@
 using Example01.Arsenal;
 using Example01.Control;
+using MonoUtils;
 using Nova;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Example01
+namespace Example01.UI
 {
-    public class UIBulletsCounter : MonoBehaviour
+    public class UIBulletsCounter : InitializedMonobehaviour
     {
         [SerializeField, Required] private TextBlock _bulletCounterText;
 
@@ -18,6 +19,7 @@ namespace Example01
         {
             _weaponChanger = weaponChanger;
             Subscribe();
+            IsInitialized = true;
         }
 
         private void OnEnable()

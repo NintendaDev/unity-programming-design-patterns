@@ -1,24 +1,23 @@
 using Example03.Items;
-using UnityEngine;
+using MonoUtils;
 
 namespace Example03.Accounters
 {
-    public class BallAccounterInitializer : MonoBehaviour
+    public class BallAccounterInitializer : InitializedMonobehaviour
     {
-        private bool _isInitialized;
         private Ball[] _allBalls;
 
         public BallsAccounter BallsAccounter { get; private set; }
 
         public void Initialize()
         {
-            if (_isInitialized)
+            if (IsInitialized)
                 Reset();
             else
                 _allBalls = GetComponentsInChildren<Ball>();
 
             BallsAccounter = new BallsAccounter(_allBalls);
-            _isInitialized = true;
+            IsInitialized = true;
         }
 
         private void Reset()

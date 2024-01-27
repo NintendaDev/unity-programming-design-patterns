@@ -1,11 +1,12 @@
 using Example03.GameRules;
+using MonoUtils;
 using NovaSamples.UIControls;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Example03
 {
-    public class UIRulesSelector : MonoBehaviour
+    public class UIRulesSelector : InitializedMonobehaviour
     {
         [SerializeField, Required, ChildGameObjectsOnly] private Dropdown _gameRulesDropdown;
 
@@ -17,6 +18,8 @@ namespace Example03
             {
                 _gameRulesDropdown.AddOption(gameRuleDescription.Name);
             }
+
+            IsInitialized = true;
         }
     }
 }

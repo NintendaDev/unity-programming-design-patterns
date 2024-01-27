@@ -4,7 +4,8 @@
     "references": [
         "Nova",
         "Unity.InputSystem",
-        "SpecificationsAssembly"
+        "SpecificationsAssembly",
+        "MonoUtilsAssembly"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

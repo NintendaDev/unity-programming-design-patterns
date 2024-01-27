@@ -1,8 +1,9 @@
+using MonoUtils;
 using UnityEngine;
 
 namespace Example03.UI
 {
-    public class UIScreen : MonoBehaviour
+    public class UIScreen : InitializedMonobehaviour
     {
         public void Disable()
         {

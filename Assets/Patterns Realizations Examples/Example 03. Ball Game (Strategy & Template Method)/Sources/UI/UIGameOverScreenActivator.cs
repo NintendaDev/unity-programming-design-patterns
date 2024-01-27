@@ -1,11 +1,11 @@
 using Example03.Control;
 using Example03.Handler;
 using Example03.UI;
-using UnityEngine;
+using MonoUtils;
 
 namespace Example03
 {
-    public class UIGameOverScreenActivator : MonoBehaviour
+    public class UIGameOverScreenActivator : InitializedMonobehaviour
     {
         private UIGameOverScreen _winScreen;
         private UIGameOverScreen _loseScreen;
@@ -18,6 +18,8 @@ namespace Example03
             _loseScreen = loseScreen;
             _level = level;
             _playerInput = playerInput;
+
+            IsInitialized = true;
         }
 
         private void OnEnable()

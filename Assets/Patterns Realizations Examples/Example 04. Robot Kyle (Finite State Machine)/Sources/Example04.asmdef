@@ -1,0 +1,17 @@
+{
+    "name": "Example04",
+    "rootNamespace": "Example04",
+    "references": [
+        "GUID:a21a28525f551cf40a8c9ee424feda1c",
+        "GUID:533da2fac530b884382c8f9f4c716499"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
