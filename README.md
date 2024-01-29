@@ -33,7 +33,7 @@
 
 Реализован контроль роботом Джамо со стороны игрока на основе иерархии состояний.
 
-## 6. Assets\Patterns Realizations Examples\Example 06. Experience UI (Mediator)
+## 6. Assets\Patterns Realizations Examples\Example 06. UI Clicker (Mediator)
 
 Паттерн "Медиатор"
 
