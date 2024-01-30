@@ -1,9 +1,10 @@
 using MonoUtils;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Example06.UI.GameScreens
 {
-    public class Screen : InitializedMonobehaviour
+    public class Screen : MonoBehaviour
     {
         [Button, DisableInEditorMode]
         public void Enable()

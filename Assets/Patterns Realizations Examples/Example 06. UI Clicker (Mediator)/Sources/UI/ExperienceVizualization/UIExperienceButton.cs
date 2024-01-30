@@ -7,17 +7,18 @@ namespace Example06.UI.ExperienceVisualization
     {
         [SerializeField, Required, MinValue(0)] private int _addExperienceValue = 100;
 
-        private ExperienceMediator _experienceMediator;
+        private ExperienceMediator _experienceButtonMediator;
 
-        public void Initialize(ExperienceMediator experienceMediator)
+        public void Initialize(ExperienceMediator experienceButtonMediator)
         {
-            _experienceMediator = experienceMediator;
-            IsInitialized = true;
+            _experienceButtonMediator = experienceButtonMediator;
+
+            CompleteInitialization();
         }
 
         protected override void OnButtonClick()
         {
-            _experienceMediator.AddExperience(_addExperienceValue);
+            _experienceButtonMediator.AddExperience(_addExperienceValue);
         }
     }
 }

@@ -10,35 +10,36 @@ namespace Example04.Characters
 {
     [RequireComponent(typeof(Mover))]
     [RequireComponent(typeof(RobotView))]
-    public class Robot : InitializedMonobehaviour
+    public class Robot : InitializedMonoBehaviour
     {
-        [SerializeField, Required] private PatrolPointsInitializer _pointsInitializer;
+        [SerializeField, Required] private RobotView _view;
         [SerializeField, Required] private Vector2 _minMaxRandomStateTime = new Vector2(3, 5);
 
+        private PatrolPointsInitializer _pointsInitializer;
         private RobotStateMachine _stateMachine;
         private Mover _mover;
 
         public Mover Mover => _mover;
 
-        public RobotView View { get; private set; }
+        public RobotView View => _view;
 
         public IReadOnlyList<Transform> PatrolPoints => _pointsInitializer.Points;
 
         public Vector2 MinMaxRandomStateTime => _minMaxRandomStateTime;
 
-        public void Initialize()
+        public void Initialize(PatrolPointsInitializer pointsInitializer)
         {
+            _pointsInitializer = pointsInitializer;
             _pointsInitializer.Initialize();
 
             _mover = GetComponent<Mover>();
             _mover.Initialize();
 
-            View = GetComponent<RobotView>();
             View.Initialize();
 
             _stateMachine = new RobotStateMachine(this);
 
-            IsInitialized = true;
+            CompleteInitialization();
         }
 
         private void Update()

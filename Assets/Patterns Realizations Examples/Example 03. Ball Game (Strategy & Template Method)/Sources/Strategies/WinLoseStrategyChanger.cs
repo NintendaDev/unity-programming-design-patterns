@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Example03.Strategies
 {
-    public class WinLoseStrategyChanger : InitializedMonobehaviour
+    public class WinLoseStrategyChanger : InitializedMonoBehaviour
     {
         private IWinLoseCondition _allBallsBurstWinRule;
         private IWinLoseCondition _oneColorBallBurstWinRule;
@@ -29,7 +29,7 @@ namespace Example03.Strategies
 
             _level = level;
 
-            IsInitialized = true;
+            CompleteInitialization();
         }
 
         public void ActivateGameRule(GameRuleType gameRuleType)

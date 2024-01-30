@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Example02.NPC
 {
     [RequireComponent(typeof(BoxCollider))]
-    public class TradableDetector : InitializedMonobehaviour
+    public class TradableDetector : InitializedMonoBehaviour
     {
         private Collider _collider;
 
@@ -17,7 +17,8 @@ namespace Example02.NPC
         {
             _collider = GetComponent<BoxCollider>();
             _collider.isTrigger = true;
-            IsInitialized = true;
+
+            CompleteInitialization();
         }
 
         private void OnTriggerEnter(Collider other)

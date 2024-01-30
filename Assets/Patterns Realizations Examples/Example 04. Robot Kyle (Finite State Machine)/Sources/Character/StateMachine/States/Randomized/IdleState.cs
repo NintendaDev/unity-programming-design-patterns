@@ -1,6 +1,6 @@
-namespace Example04.Characters.StateMachine.States.Randomized
+namespace Example04.Characters.StateMachine.States.Action
 {
-    public class IdleState : RandomizeState
+    public class IdleState : ActionState
     {
         public IdleState(IStateSwitcher stateSwitcher, Robot robot) : base(stateSwitcher, robot)
         { 

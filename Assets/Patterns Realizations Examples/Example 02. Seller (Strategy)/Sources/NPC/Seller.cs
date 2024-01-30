@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Example02.NPC
 {
-    public class Seller : InitializedMonobehaviour
+    public class Seller : InitializedMonoBehaviour
     {
         [SerializeField, Required] private string _name = "Harmful seller";
         [SerializeField, Required] private TradableDetector _tradableDetector;
@@ -23,7 +23,8 @@ namespace Example02.NPC
         public void Initialize()
         {
             _tradableDetector.Initialize();
-            IsInitialized = true;
+
+            CompleteInitialization();
         }
 
         public void SetGreeting(ITradableGreeting greetingForDetection)

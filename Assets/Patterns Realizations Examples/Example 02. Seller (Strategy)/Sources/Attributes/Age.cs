@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Example02.Attributes
 {
-    public class Age : InitializedMonobehaviour
+    public class Age : InitializedMonoBehaviour
     {
         [SerializeField, Required, MinValue(0)] private int _startValue = 1;
 
@@ -22,7 +22,8 @@ namespace Example02.Attributes
         {
             _ageCounter = new IntCounterBehaviour(_startValue, _ageSpecification);
             Changed?.Invoke(Value);
-            IsInitialized = true;
+
+            CompleteInitialization();
         }
 
         public void Increase(int value)

@@ -1,18 +1,19 @@
 using Example05.UI.HealthVisualization;
+using Example06.Core;
 using Specifications;
 using System;
 using UnityEngine;
 
 namespace Example06.Attributes
 {
-    public class Health : IHealth<int>, IDamageable, IDisposable
+    public class Health : IHealth, IDamageable, IDisposable
     {
         private int _currentValue;
         private int _maxValue;
-        private IReadOnlyLevel _level;
+        private IReadOnlyNotifiedValue _level;
         private IValueByLevel _healthConfiguration;
 
-        public Health(IReadOnlyLevel level, IValueByLevel healthConfiguration, int currentValue) : this(level, healthConfiguration)
+        public Health(IReadOnlyNotifiedValue level, IValueByLevel healthConfiguration, int currentValue) : this(level, healthConfiguration)
         {
             if (currentValue > MaxValue)
                 throw new Exception("An attempt to set the current health above the maximum");
@@ -26,7 +27,7 @@ namespace Example06.Attributes
             CurrentValue = currentValue;
         }
 
-        public Health(IReadOnlyLevel level, IValueByLevel healthConfiguration)
+        public Health(IReadOnlyNotifiedValue level, IValueByLevel healthConfiguration)
         {
             _level = level;
             _healthConfiguration = healthConfiguration;
@@ -36,7 +37,7 @@ namespace Example06.Attributes
             CurrentValue = MaxValue;
         }
 
-        public event Action<int> Changed;
+        public event Action<int, int> Changed;
 
         public event Action Died;
 
@@ -71,9 +72,11 @@ namespace Example06.Attributes
         public void TakeDamage(int damage)
         {
             StaticSpecification.ValidateIntGreatOrEqualZero(damage);
+
+            int previousValue = CurrentValue;
             CurrentValue -= damage;
 
-            Changed?.Invoke(CurrentValue);
+            Changed?.Invoke(previousValue, CurrentValue);
 
             if (CurrentValue == 0)
                 Died?.Invoke();
@@ -84,12 +87,14 @@ namespace Example06.Attributes
             _level.Changed -= OnLevelChanged;
         }
 
-        private void OnLevelChanged(int level)
+        private void OnLevelChanged(int previousLevelValue, int currentLevelValue)
         {
             UpdateMaxValueFromConfiguration();
 
+            int previousHealthValue = CurrentValue;
             CurrentValue = MaxValue;
-            Changed?.Invoke(CurrentValue);
+
+            Changed?.Invoke(previousHealthValue, CurrentValue);
         }
 
         private void UpdateMaxValueFromConfiguration()

@@ -27,7 +27,7 @@ namespace Example03.UI
 
             SetGameRule(_gameRulesDropdown.CurrentSelection);
 
-            IsInitialized = true;
+            CompleteInitialization();
         }
 
         private void OnEnable()

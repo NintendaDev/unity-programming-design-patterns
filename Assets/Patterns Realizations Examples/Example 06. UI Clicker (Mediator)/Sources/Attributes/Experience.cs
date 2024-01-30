@@ -4,7 +4,7 @@ using System;
 
 namespace Example06.Attributes
 {
-    public class Experience : IReadOnlyExperience, IReset
+    public class Experience : IReadOnlyNotifiedValue, IReset
     {
         public Experience()
         {
@@ -17,22 +17,23 @@ namespace Example06.Attributes
             Value = currentValue;
         }
 
-        public event Action<int> Changed;
+        public event Action<int, int> Changed;
 
         public int Value { get; private set; }
 
         public void Reset()
         {
             Value = 0;
-            Changed?.Invoke(Value);
+            Changed?.Invoke(Value, Value);
         }
 
         public void AddExperience(int delta)
         {
             StaticSpecification.ValidateIntGreatOrEqualZero(delta);
-            Value += delta;
 
-            Changed?.Invoke(Value);
+            int previousExperienceValue = Value;
+            Value += delta;
+            Changed?.Invoke(previousExperienceValue, Value);
         }
     }
 }

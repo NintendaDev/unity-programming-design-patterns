@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Example03.Control
 {
-    public class PlayerInputReceiver : InitializedMonobehaviour, IPlayerInput
+    public class PlayerInputReceiver : InitializedMonoBehaviour, IPlayerInput
     {
         private const int MaxHitInfoCount = 10;
         private PlayerInputEventer _playerInputEventer;
@@ -15,7 +15,8 @@ namespace Example03.Control
         {
             _playerInputEventer = new PlayerInputEventer();
             _camera = Camera.main;
-            IsInitialized = true;
+
+            CompleteInitialization();
         }
 
         private void OnEnable()

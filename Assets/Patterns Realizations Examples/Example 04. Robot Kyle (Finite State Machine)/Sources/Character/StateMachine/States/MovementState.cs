@@ -1,39 +1,23 @@
 namespace Example04.Characters.StateMachine.States
 {
-    public abstract class MovementState : IState
+    public abstract class MovementState : BaseState
     {
-        public MovementState(IStateSwitcher stateSwitcher, Robot robot)
+        public MovementState(IStateSwitcher stateSwitcher, Robot robot) : base(stateSwitcher, robot)
         {
-            _stateSwitcher = stateSwitcher;
-            View = robot.View;
         }
 
-        private IStateSwitcher _stateSwitcher;
-
-        protected RobotView View { get; private set; }
-
-        public virtual void Enter()
+        public override void Enter()
         {
+            base.Enter();
+
             View.StartMoving();
         }
 
-        public virtual void Exit() 
+        public override void Exit() 
         {
+            base.Exit();
+
             View.StopMoving();
-        }
-
-        public virtual void Update()
-        {
-        }
-
-        protected void SwitchState<T>() where T : IState
-        {
-            _stateSwitcher.SwitchState<T>();
-        }
-
-        protected void SwitchRandomState()
-        {
-            _stateSwitcher.SwitchRandomState();
         }
     }
 }

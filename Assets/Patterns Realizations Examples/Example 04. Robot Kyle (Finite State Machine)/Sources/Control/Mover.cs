@@ -5,7 +5,7 @@ using UnityEngine.AI;
 namespace Example04.Control
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    public class Mover : InitializedMonobehaviour
+    public class Mover : InitializedMonoBehaviour
     {
         private Transform _transform;
         private NavMeshAgent _agent;
@@ -18,7 +18,8 @@ namespace Example04.Control
         {
             _transform = transform;
             _agent = GetComponent<NavMeshAgent>();
-            IsInitialized = true;
+
+            CompleteInitialization();
         }
 
         public void Move(Vector3 target)

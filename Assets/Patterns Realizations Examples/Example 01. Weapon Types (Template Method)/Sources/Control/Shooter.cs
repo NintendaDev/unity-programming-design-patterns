@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Example01.Control
 {
     [RequireComponent(typeof(WeaponChanger))]
-    public sealed class Shooter : InitializedMonobehaviour
+    public sealed class Shooter : InitializedMonoBehaviour
     {
         private IWeaponChangeEventer _weaponChangeEventer;
         private Weapon _currentWeapon;
@@ -16,7 +16,7 @@ namespace Example01.Control
             _weaponChangeEventer = GetComponent<IWeaponChangeEventer>();
             Subscribe();
 
-            IsInitialized = true;
+            CompleteInitialization();
         }
 
         private void OnEnable()

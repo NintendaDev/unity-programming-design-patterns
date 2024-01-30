@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Example01.UI
 {
-    public class UIBulletsCounter : InitializedMonobehaviour
+    public class UIBulletsCounter : InitializedMonoBehaviour
     {
         [SerializeField, Required] private TextBlock _bulletCounterText;
 
@@ -19,7 +19,8 @@ namespace Example01.UI
         {
             _weaponChanger = weaponChanger;
             Subscribe();
-            IsInitialized = true;
+
+            CompleteInitialization();
         }
 
         private void OnEnable()

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Example01.Control
 {
-    public class WeaponChanger : InitializedMonobehaviour, IWeaponChangeEventer
+    public class WeaponChanger : InitializedMonoBehaviour, IWeaponChangeEventer
     {
         [RequiredListLength(1, null)]
         [SerializeField] private List<Weapon> _weapons;
@@ -23,7 +23,7 @@ namespace Example01.Control
             InitializeWeaponQueue();
             ChangeWeapon();
 
-            IsInitialized = true;
+            CompleteInitialization();
         }
 
         [Button, DisableInEditorMode]

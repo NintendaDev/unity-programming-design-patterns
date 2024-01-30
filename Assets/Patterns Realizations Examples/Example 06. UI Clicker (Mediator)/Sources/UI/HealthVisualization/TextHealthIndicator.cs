@@ -4,16 +4,15 @@ using Nova;
 
 namespace Example05.UI.HealthVisualization
 {
-    public class TextHealthIndicator<T> : HealthIndicator<T>
-        where T : struct, IFormattable
+    public class TextHealthIndicator : HealthIndicator
     {
         [SerializeField] private TextBlock _currentValueText;
         [SerializeField] private TextBlock _maxValueText;
 
-        protected override void UpdateHealthVisualization()
+        public override void UpdateHealthVisualization(int previousValue, int currentValue, int maxValue)
         {
-            _currentValueText.Text = HealthMediator.Health.CurrentValue.ToString();
-            _maxValueText.Text = HealthMediator.Health.MaxValue.ToString();
+            _currentValueText.Text = currentValue.ToString();
+            _maxValueText.Text = maxValue.ToString();
         }
     }
 }

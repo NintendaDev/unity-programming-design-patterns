@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Example04.Core
 {
-    public class PointsInitializer : InitializedMonobehaviour
+    public class PointsInitializer : InitializedMonoBehaviour
     {
         [SerializeField, Required, MinValue(0)] protected float PointVisualRadius = 0.2f;
         [SerializeField, Required] private Transform _pointsParrent;
@@ -18,7 +18,7 @@ namespace Example04.Core
         public void Initialize()
         {
             TryInitializePoints();
-            IsInitialized = true;
+            CompleteInitialization();
         }
 
         private void OnDrawGizmos()

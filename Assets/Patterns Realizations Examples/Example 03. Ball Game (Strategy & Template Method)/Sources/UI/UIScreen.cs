@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Example03.UI
 {
-    public class UIScreen : InitializedMonobehaviour
+    public class UIScreen : InitializedMonoBehaviour
     {
         public void Disable()
         {

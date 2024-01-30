@@ -2,13 +2,18 @@ using UnityEngine;
 
 namespace MonoUtils
 {
-    public class InitializedMonobehaviour : MonoBehaviour
+    public class InitializedMonoBehaviour : MonoBehaviour
     {
-        protected bool IsInitialized { get; set; }
+        protected bool IsInitialized { get; private set; }
 
         private void Awake()
         {
             ValidateInitialization();
+        }
+
+        public void CompleteInitialization()
+        {
+            IsInitialized = true;
         }
 
         private void ValidateInitialization()

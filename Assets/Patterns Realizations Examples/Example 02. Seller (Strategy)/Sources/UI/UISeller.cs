@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Example02
 {
-    public class UISeller : InitializedMonobehaviour
+    public class UISeller : InitializedMonoBehaviour
     {
         [SerializeField, Required] private TextBlock _sellerNameText;
         [SerializeField, Required] private TextBlock _sellerDialogueText;
@@ -19,7 +19,7 @@ namespace Example02
             SetSekkerNameText();
             SetGreetingText(_seller.DefaultGreeting);
 
-            IsInitialized = true;
+            CompleteInitialization();
         }
 
         private void OnEnable()

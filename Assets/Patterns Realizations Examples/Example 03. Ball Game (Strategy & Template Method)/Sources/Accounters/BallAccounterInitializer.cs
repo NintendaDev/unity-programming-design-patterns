@@ -3,7 +3,7 @@ using MonoUtils;
 
 namespace Example03.Accounters
 {
-    public class BallAccounterInitializer : InitializedMonobehaviour
+    public class BallAccounterInitializer : InitializedMonoBehaviour
     {
         private Ball[] _allBalls;
 
@@ -17,7 +17,8 @@ namespace Example03.Accounters
                 _allBalls = GetComponentsInChildren<Ball>();
 
             BallsAccounter = new BallsAccounter(_allBalls);
-            IsInitialized = true;
+
+            CompleteInitialization();
         }
 
         private void Reset()

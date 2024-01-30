@@ -7,7 +7,8 @@ namespace Example06.UI.Reset
         public void Initialize(ResetMediator resetMediator)
         {
             _resetMediator = resetMediator;
-            IsInitialized = true;
+
+            CompleteInitialization();
         }
 
         protected override void OnButtonClick()

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Example05.Characters
 {
     [RequireComponent(typeof(Animator))]
-    public class CharacterView : InitializedMonobehaviour
+    public class CharacterView : InitializedMonoBehaviour
     {
         private const string IsIdling = "IsIdling";
         private const string IsRunning = "IsRunning";
@@ -19,7 +19,7 @@ namespace Example05.Characters
         public void Initialize()
         {
             _animator = GetComponent<Animator>();
-            IsInitialized = true;
+            CompleteInitialization();
         }
 
         public void StartIdling() => _animator.SetBool(IsIdling, true);

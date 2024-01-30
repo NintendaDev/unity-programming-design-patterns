@@ -2,11 +2,11 @@ using Example06.Attributes;
 
 namespace Example06.UI.ExperienceVisualization
 {
-    public class ExperienceMediator : NotifiedValueMediator
+    public class ExperienceMediator
     {
         private Experience _experience;
 
-        public ExperienceMediator(Experience experience) : base(experience)
+        public ExperienceMediator(Experience experience)
         {
             _experience = experience;
         }
