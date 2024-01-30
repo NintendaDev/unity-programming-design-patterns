@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Example02.Control
 {
     [RequireComponent(typeof(Mover))]
-    public class PlayerInputReceiver : InitializedMonobehaviour
+    public class PlayerInputReceiver : InitializedMonoBehaviour
     {
         private PlayerInputEventer _playerInputEventer;
         private Mover _mover;

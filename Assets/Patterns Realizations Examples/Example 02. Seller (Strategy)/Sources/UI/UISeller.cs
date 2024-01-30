@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Example02
 {
-    public class UISeller : InitializedMonobehaviour
+    public class UISeller : InitializedMonoBehaviour
     {
         [SerializeField, Required] private TextBlock _sellerNameText;
         [SerializeField, Required] private TextBlock _sellerDialogueText;

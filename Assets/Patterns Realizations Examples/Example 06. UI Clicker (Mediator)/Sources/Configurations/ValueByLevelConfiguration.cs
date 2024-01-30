@@ -18,10 +18,8 @@ namespace Example06
 
             if (levelDataArraySize == 0)
                 value = 0;
-
             else if (level >= levelDataArraySize)
                 value = levelDataArray.Last();
-
             else
                 value = levelDataArray.ElementAtOrDefault(level);
 

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Example04.Characters
 {
     [RequireComponent(typeof(Animator))]
-    public class RobotView : InitializedMonobehaviour
+    public class RobotView : InitializedMonoBehaviour
     {
         private RobotAnimatorParameters _animatorParameters = new();
         private Animator _animator;

@@ -2,29 +2,28 @@ using System;
 
 namespace Example05.UI.HealthVisualization
 {
-    public class HealthMediator<T> : IDisposable
-        where T : struct, IFormattable
+    public class HealthMediator : IDisposable
     {
-        private IHealth<T> _health;
+        private IHealth _health;
+        private HealthIndicator _healthIndicator;
 
-        public HealthMediator(IHealth<T> health)
+        public HealthMediator(IHealth health, HealthIndicator healthIndicator)
         {
             _health = health;
+            _healthIndicator = healthIndicator;
             _health.Changed += OnHealthChanged;
+
+            OnHealthChanged(_health.CurrentValue, _health.CurrentValue);
         }
-
-        public event Action<T> Changed;
-
-        public IHealth<T> Health => _health;
 
         public void Dispose()
         {
             _health.Changed -= OnHealthChanged;
         }
 
-        private void OnHealthChanged(T value)
+        private void OnHealthChanged(int previousValue, int currentValue)
         {
-            Changed?.Invoke(value);
+            _healthIndicator.UpdateHealthVisualization(previousValue, currentValue, _health.MaxValue);
         }
     }
 }

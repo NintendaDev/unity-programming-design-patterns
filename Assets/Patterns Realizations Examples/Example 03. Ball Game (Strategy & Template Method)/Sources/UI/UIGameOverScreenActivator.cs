@@ -5,7 +5,7 @@ using MonoUtils;
 
 namespace Example03
 {
-    public class UIGameOverScreenActivator : InitializedMonobehaviour
+    public class UIGameOverScreenActivator : InitializedMonoBehaviour
     {
         private UIGameOverScreen _winScreen;
         private UIGameOverScreen _loseScreen;

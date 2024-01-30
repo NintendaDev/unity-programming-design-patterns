@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Example01.Arsenal
 {
-    public abstract class Weapon : InitializedMonobehaviour
+    public abstract class Weapon : InitializedMonoBehaviour
     {
         [SerializeField, Required, MinValue(0), Unit(Units.Second)] private float _shootDelay = 0.2f;
         [SerializeField, Required, InlineEditor] private BulletSettings _bulletSettings;

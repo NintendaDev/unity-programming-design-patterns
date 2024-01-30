@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Example03
 {
-    public class UIRulesSelector : InitializedMonobehaviour
+    public class UIRulesSelector : InitializedMonoBehaviour
     {
         [SerializeField, Required, ChildGameObjectsOnly] private Dropdown _gameRulesDropdown;
 

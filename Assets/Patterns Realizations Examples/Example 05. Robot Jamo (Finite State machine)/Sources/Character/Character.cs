@@ -7,7 +7,7 @@ using MonoUtils;
 namespace Example05.Characters
 {
     [RequireComponent(typeof(CharacterController))]
-    public class Character : InitializedMonobehaviour
+    public class Character : InitializedMonoBehaviour
     {
         [SerializeField, Required] private CharacterConfiguration _configuration;
         [SerializeField, Required] private CharacterView _view;

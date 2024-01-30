@@ -1,5 +1,4 @@
 using Example05.UI.HealthVisualization;
-using Example05.UI.HealthVisualization.Integer;
 using Example06.UI.DamageVisualization;
 using Example06.UI.ExperienceVisualization;
 using Example06.UI.LevelVisualization;
@@ -10,28 +9,20 @@ namespace Example06.UI.GameScreens
 {
     public class LevelScreen : Screen
     {
-        [SerializeField, Required] private IntTextHealthIndicator _healthTextIndicator;
+        [SerializeField, Required] private TextHealthIndicator _healthTextIndicator;
         [SerializeField, Required] private UIDamageButton _damageButton;
-        [SerializeField, Required] private UIExperienceButton _uiExperienceButton;
-        [SerializeField, Required] private UILevelLabel _uiLevelLabel;
-        [SerializeField, Required] private UIExperienceLabel _uiExperienceLabel;
+        [SerializeField, Required] private UIExperienceLabel _experienceLabel;
+        [SerializeField, Required] private UIExperienceButton _experienceButton;
+        [SerializeField, Required] private UILevelLabel _levelLabel;
 
-        public void Initialize(Player player)
-        {
-            IntHealthMediator healthMediator = new(player.Health);
-            _healthTextIndicator.Initialize(healthMediator);
+        public TextHealthIndicator HealthIndicator => _healthTextIndicator;
 
-            DamageMediator damageMediator = new(player.Health);
-            _damageButton.Initialize(damageMediator);
+        public UIDamageButton DamageButton => _damageButton;
 
-            LevelMediator levelMediator = new(player.Level);
-            _uiLevelLabel.Initialize(levelMediator);
+        public UIExperienceLabel ExperienceLabel => _experienceLabel;
 
-            ExperienceMediator experienceMediator = new(player.Experience);
-            _uiExperienceLabel.Initialize(experienceMediator);
-            _uiExperienceButton.Initialize(experienceMediator);
+        public UIExperienceButton ExperienceButton => _experienceButton;
 
-            CompleteInitialization();
-        }
+        public UILevelLabel LevelLabel => _levelLabel;
     }
 }

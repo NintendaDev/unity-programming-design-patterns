@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Example02.Attributes
 {
-    public class Age : InitializedMonobehaviour
+    public class Age : InitializedMonoBehaviour
     {
         [SerializeField, Required, MinValue(0)] private int _startValue = 1;
 

@@ -6,25 +6,23 @@ namespace Example06.UI
     public class NotifiedValueMediator : IDisposable
     {
         private IReadOnlyNotifiedValue _notifiedValue;
+        private UIValueText<int> _uiValue;
 
-        public NotifiedValueMediator(IReadOnlyNotifiedValue notifiedValue)
+        public NotifiedValueMediator(IReadOnlyNotifiedValue notifiedValue, UIValueText<int> uiValue)
         {
             _notifiedValue = notifiedValue;
+            _uiValue = uiValue;
             _notifiedValue.Changed += OnValueChanged;
         }
-
-        public event Action<int> Changed;
-
-        public int Value => _notifiedValue.Value;
 
         public void Dispose()
         {
             _notifiedValue.Changed -= OnValueChanged;
         }
 
-        private void OnValueChanged(int value)
+        private void OnValueChanged(int previousValue, int currentValue)
         {
-            Changed?.Invoke(value);
+            _uiValue.SetValueText(currentValue);
         }
     }
 }

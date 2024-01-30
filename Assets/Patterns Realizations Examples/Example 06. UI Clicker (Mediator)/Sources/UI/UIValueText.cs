@@ -4,16 +4,16 @@ using UnityEngine;
 using Nova;
 using System;
 
-namespace Example06
+namespace Example06.UI
 {
-    public class UIValueText<T> : InitializedMonobehaviour
+    public class UIValueText<T> : MonoBehaviour
         where T : struct, IFormattable
     {
         [SerializeField, Required] private TextBlock _valueTextBlock;
 
-        protected void SetValueText(T value)
+        public void SetValueText(T currentValue)
         {
-            _valueTextBlock.Text = value.ToString();
+            _valueTextBlock.Text = currentValue.ToString();
         }
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Example02.NPC
 {
-    public class Seller : InitializedMonobehaviour
+    public class Seller : InitializedMonoBehaviour
     {
         [SerializeField, Required] private string _name = "Harmful seller";
         [SerializeField, Required] private TradableDetector _tradableDetector;

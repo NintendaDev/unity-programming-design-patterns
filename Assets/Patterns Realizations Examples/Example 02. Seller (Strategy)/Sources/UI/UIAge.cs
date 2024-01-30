@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Example02
 {
-    public class UIAge : InitializedMonobehaviour
+    public class UIAge : InitializedMonoBehaviour
     {
         [SerializeField, Required] private TextBlock _ageValueText;
 

@@ -1808,9 +1808,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthTextIndicator: {fileID: 1754667061}
   _damageButton: {fileID: 594866869}
-  _uiExperienceButton: {fileID: 1241816561231053735}
-  _uiLevelLabel: {fileID: 1742233538}
-  _uiExperienceLabel: {fileID: 339450036}
+  _experienceLabel: {fileID: 339450036}
+  _experienceButton: {fileID: 1241816561231053735}
+  _levelLabel: {fileID: 1742233538}
 --- !u!1 &534046907
 GameObject:
   m_ObjectHideFlags: 0
@@ -3903,7 +3903,7 @@ Transform:
   m_GameObject: {fileID: 920607463}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 252.14775, z: 0}
+  m_LocalPosition: {x: 0, y: 254.78426, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7072,7 +7072,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1754667057}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f6d960e9a92bd34488c14e99e53489e, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d3fb323ddd918449a5dea5821d837ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _currentValueText: {fileID: 386734755}
@@ -7104,7 +7104,7 @@ Transform:
   m_GameObject: {fileID: 1766102307}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -252.14775, z: 0}
+  m_LocalPosition: {x: 0, y: -254.78426, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8518,7 +8518,7 @@ MonoBehaviour:
         Raw: 1920
         Type: 0
       Y:
-        Raw: 630.3694
+        Raw: 636.96063
         Type: 0
       Z:
         Raw: 0
@@ -8755,7 +8755,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 0.01831784, y: 0.01831784, z: 0.01831784}
+  m_LocalScale: {x: 0.018128287, y: 0.018128287, z: 0.018128287}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1437959718}

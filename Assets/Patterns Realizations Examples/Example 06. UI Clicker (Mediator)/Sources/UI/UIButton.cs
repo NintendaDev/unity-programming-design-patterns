@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Example06.UI
 {
-    public abstract class UIButton : InitializedMonobehaviour
+    public abstract class UIButton : InitializedMonoBehaviour
     {
         [SerializeField, Required] private Button _button;
 

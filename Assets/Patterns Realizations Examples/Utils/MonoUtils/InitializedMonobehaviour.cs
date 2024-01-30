@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace MonoUtils
 {
-    public class InitializedMonobehaviour : MonoBehaviour
+    public class InitializedMonoBehaviour : MonoBehaviour
     {
         protected bool IsInitialized { get; private set; }
 

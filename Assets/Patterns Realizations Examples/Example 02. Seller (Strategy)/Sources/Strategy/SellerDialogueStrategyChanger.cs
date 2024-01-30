@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Example02.Strategy
 {
-    public class SellerDialogueStrategyChanger : InitializedMonobehaviour
+    public class SellerDialogueStrategyChanger : InitializedMonoBehaviour
     {
         [ValidateInput(nameof(IsValidStrategyThresholds))]
         [SerializeField, Required, MinValue(0)] private int _noSellAgeThreshold = 8;

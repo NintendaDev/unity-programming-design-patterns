@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Example04.Core
 {
-    public class PointsInitializer : InitializedMonobehaviour
+    public class PointsInitializer : InitializedMonoBehaviour
     {
         [SerializeField, Required, MinValue(0)] protected float PointVisualRadius = 0.2f;
         [SerializeField, Required] private Transform _pointsParrent;

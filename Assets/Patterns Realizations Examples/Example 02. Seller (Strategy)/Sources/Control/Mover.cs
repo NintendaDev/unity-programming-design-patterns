@@ -5,7 +5,7 @@ using UnityEngine.AI;
 namespace Example02.Control
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    public class Mover : InitializedMonobehaviour
+    public class Mover : InitializedMonoBehaviour
     {
         private NavMeshAgent _agent;
 

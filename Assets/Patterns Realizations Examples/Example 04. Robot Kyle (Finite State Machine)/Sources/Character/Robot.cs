@@ -10,7 +10,7 @@ namespace Example04.Characters
 {
     [RequireComponent(typeof(Mover))]
     [RequireComponent(typeof(RobotView))]
-    public class Robot : InitializedMonobehaviour
+    public class Robot : InitializedMonoBehaviour
     {
         [SerializeField, Required] private RobotView _view;
         [SerializeField, Required] private Vector2 _minMaxRandomStateTime = new Vector2(3, 5);

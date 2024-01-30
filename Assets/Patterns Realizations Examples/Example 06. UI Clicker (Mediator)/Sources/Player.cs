@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Example06
 {
-    public class Player : InitializedMonobehaviour, IReset
+    public class Player : InitializedMonoBehaviour, IReset
     {
         [SerializeField, Required, AssetsOnly] private LevelConfiguration _levelConfiguration;
         [SerializeField, Required, AssetsOnly] private HealthMaxValueConfiguration _healthConfiguration;
