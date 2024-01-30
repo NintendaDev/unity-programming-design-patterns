@@ -31,7 +31,7 @@ namespace Example06.UI.GameScreens
             _uiExperienceLabel.Initialize(experienceMediator);
             _uiExperienceButton.Initialize(experienceMediator);
 
-            IsInitialized = true;
+            CompleteInitialization();
         }
     }
 }

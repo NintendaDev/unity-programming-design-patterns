@@ -27,7 +27,7 @@ namespace Example02.Strategy
             _playerAge = player.GetComponent<Age>();
             Subscribe();
 
-            IsInitialized = true;
+            CompleteInitialization();
         }
 
         private void OnEnable()

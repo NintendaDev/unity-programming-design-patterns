@@ -18,7 +18,8 @@ namespace Example04.Control
         {
             _transform = transform;
             _agent = GetComponent<NavMeshAgent>();
-            IsInitialized = true;
+
+            CompleteInitialization();
         }
 
         public void Move(Vector3 target)

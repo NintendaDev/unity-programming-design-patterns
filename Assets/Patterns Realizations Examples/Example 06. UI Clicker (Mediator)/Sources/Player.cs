@@ -28,7 +28,7 @@ namespace Example06
             _level = new Level(_experience, _levelConfiguration);
             _health = new Health(_level, _healthConfiguration);
 
-            IsInitialized = true;
+            CompleteInitialization();
         }
 
         public void Reset()

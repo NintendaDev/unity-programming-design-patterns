@@ -19,7 +19,8 @@ namespace Example01.UI
         {
             _weaponChanger = weaponChanger;
             Subscribe();
-            IsInitialized = true;
+
+            CompleteInitialization();
         }
 
         private void OnEnable()

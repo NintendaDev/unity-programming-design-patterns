@@ -22,7 +22,8 @@ namespace Example02.Attributes
         {
             _ageCounter = new IntCounterBehaviour(_startValue, _ageSpecification);
             Changed?.Invoke(Value);
-            IsInitialized = true;
+
+            CompleteInitialization();
         }
 
         public void Increase(int value)

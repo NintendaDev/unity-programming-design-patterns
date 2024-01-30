@@ -6,87 +6,65 @@ namespace Example04.Characters
     [RequireComponent(typeof(Animator))]
     public class RobotView : InitializedMonobehaviour
     {
-        private readonly string _isWalkingParameterName = "IsWalking";
-        private readonly string _isDanceParameterName = "IsDance";
-        private readonly string _isSitupParameterName = "IsSitup";
-        private readonly string _isIdleParameterName = "IsIdle";
-        private readonly string _isMovementParameterName = "IsMovement";
-        private readonly string _isRandomizeParameterName = "IsRandomize";
-        private readonly string _walkAnimationName = "walking";
-        private readonly string _situpAnimationName = "situp";
-        private readonly string _danceAnimationName = "dance";
-        private readonly string _idleAnimationName = "idle";
-        private int _isWalkingParameterHash;
-        private int _isDanceParameterHash;
-        private int _isSitupParameterHash;
-        private int _isIdleParameterHash;
-        private int _isMovementParameterHash;
-        private int _isRandomizeParameterHash;
+        private RobotAnimatorParameters _animatorParameters = new();
         private Animator _animator;
 
         public void Initialize()
         {
             _animator = GetComponent<Animator>();
 
-            _isWalkingParameterHash = Animator.StringToHash(_isWalkingParameterName);
-            _isDanceParameterHash = Animator.StringToHash(_isDanceParameterName);
-            _isSitupParameterHash = Animator.StringToHash(_isSitupParameterName);
-            _isIdleParameterHash = Animator.StringToHash(_isIdleParameterName);
-            _isMovementParameterHash = Animator.StringToHash(_isMovementParameterName);
-            _isRandomizeParameterHash = Animator.StringToHash(_isRandomizeParameterName);
-
             StopMoving();
-            StopRandomize();
+            StopAction();
             StopIdle();
             StopWalk();
             StopDance();
             StopSitup();
 
-            IsInitialized = true;
+            CompleteInitialization();
         }
 
-        public void StartMoving() => _animator.SetBool(_isMovementParameterHash, true);
+        public void StartMoving() => _animator.SetBool(_animatorParameters.IsMovementParameterHash, true);
 
-        public void StopMoving() => _animator.SetBool(_isMovementParameterHash, false);
+        public void StopMoving() => _animator.SetBool(_animatorParameters.IsMovementParameterHash, false);
 
-        public void StartRandomize() => _animator.SetBool(_isRandomizeParameterHash, true);
+        public void StartAction() => _animator.SetBool(_animatorParameters.IsActionParameterHash, true);
 
-        public void StopRandomize() => _animator.SetBool(_isRandomizeParameterHash, false);
+        public void StopAction() => _animator.SetBool(_animatorParameters.IsActionParameterHash, false);
 
-        public void StartIdle() => _animator.SetBool(_isIdleParameterHash, true);
+        public void StartIdle() => _animator.SetBool(_animatorParameters.IsIdleParameterHash, true);
 
-        public void StopIdle() => _animator.SetBool(_isIdleParameterHash, false);
+        public void StopIdle() => _animator.SetBool(_animatorParameters.IsIdleParameterHash, false);
 
-        public void StartWalk() => _animator.SetBool(_isWalkingParameterHash, true);
+        public void StartWalk() => _animator.SetBool(_animatorParameters.IsWalkingParameterHash, true);
 
-        public void StopWalk() => _animator.SetBool(_isWalkingParameterHash, false);
+        public void StopWalk() => _animator.SetBool(_animatorParameters.IsWalkingParameterHash, false);
 
-        public void StartDance() => _animator.SetBool(_isDanceParameterHash, true);
+        public void StartDance() => _animator.SetBool(_animatorParameters.IsDanceParameterHash, true);
 
-        public void StopDance() => _animator.SetBool(_isDanceParameterHash, false);
+        public void StopDance() => _animator.SetBool(_animatorParameters.IsDanceParameterHash, false);
 
-        public void StartSitup() => _animator.SetBool(_isSitupParameterHash, true);
+        public void StartSitup() => _animator.SetBool(_animatorParameters.IsSitupParameterHash, true);
 
-        public void StopSitup() => _animator.SetBool(_isSitupParameterHash, false);
+        public void StopSitup() => _animator.SetBool(_animatorParameters.IsSitupParameterHash, false);
 
         public bool IsPlayingWalkAnimation()
         {
-            return _animator.GetCurrentAnimatorStateInfo(0).IsName(_walkAnimationName);
+            return _animator.GetCurrentAnimatorStateInfo(0).IsName(_animatorParameters.WalkAnimationName);
         }
 
         public bool IsPlayingSitupAnimation()
         {
-            return _animator.GetCurrentAnimatorStateInfo(0).IsName(_situpAnimationName);
+            return _animator.GetCurrentAnimatorStateInfo(0).IsName(_animatorParameters.SitupAnimationName);
         }
 
         public bool IsPlayingDanceAnimation()
         {
-            return _animator.GetCurrentAnimatorStateInfo(0).IsName(_danceAnimationName);
+            return _animator.GetCurrentAnimatorStateInfo(0).IsName(_animatorParameters.DanceAnimationName);
         }
 
         public bool IsPlayingIdleAnimation()
         {
-            return _animator.GetCurrentAnimatorStateInfo(0).IsName(_idleAnimationName);
+            return _animator.GetCurrentAnimatorStateInfo(0).IsName(_animatorParameters.IdleAnimationName);
         }
     }
 }

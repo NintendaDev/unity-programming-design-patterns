@@ -1,5 +1,5 @@
 using Example04.Characters.StateMachine.States;
-using Example04.Characters.StateMachine.States.Randomized;
+using Example04.Characters.StateMachine.States.Action;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,16 +41,6 @@ namespace Example04.Characters.StateMachine
         public void Update()
         {
             _currentState.Update();
-        }
-
-        public void SwitchRandomState()
-        {
-            List<IState> filteredStates = _states
-                .Where(state => _randomStatesFilter.TrueForAll(filteredType => state.GetType() != filteredType)).ToList();
-
-            int randomStateIndex = _random.Next(filteredStates.Count);
-
-            SwitchState(filteredStates[randomStateIndex]);
         }
 
         private void SwitchState(IState nextState)

@@ -8,7 +8,8 @@ namespace Example06.UI.LevelVisualization
         public void Initialize(LevelMediator levelMediator)
         {
             _levelMediator = levelMediator;
-            IsInitialized = true;
+
+            CompleteInitialization();
         }
 
         private void Start()

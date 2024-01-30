@@ -34,7 +34,7 @@ namespace Example05.Characters
             _input = new PlayerInput();
             _stateMachine = new CharacterStateMachine(this);
 
-            IsInitialized = true;
+            CompleteInitialization();
         }
 
         private void OnEnable()

@@ -23,7 +23,8 @@ namespace Example02.NPC
         public void Initialize()
         {
             _tradableDetector.Initialize();
-            IsInitialized = true;
+
+            CompleteInitialization();
         }
 
         public void SetGreeting(ITradableGreeting greetingForDetection)

@@ -16,7 +16,8 @@ namespace Example02
         {
             _age = age;
             OnAgeChange(_age.Value);
-            IsInitialized = true;
+
+            CompleteInitialization();
         }
 
         private void OnEnable()

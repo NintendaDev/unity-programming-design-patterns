@@ -19,7 +19,7 @@ namespace Example01.Arsenal
             _bulletsPool = new BulletsPool(_bulletSettings.Prefab, transform);
             InitializeAdditionaly();
 
-            IsInitialized = true;
+            CompleteInitialization();
         }
 
         private void Update()

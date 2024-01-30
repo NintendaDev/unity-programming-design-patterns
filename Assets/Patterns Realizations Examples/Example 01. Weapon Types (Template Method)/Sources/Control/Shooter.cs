@@ -16,7 +16,7 @@ namespace Example01.Control
             _weaponChangeEventer = GetComponent<IWeaponChangeEventer>();
             Subscribe();
 
-            IsInitialized = true;
+            CompleteInitialization();
         }
 
         private void OnEnable()

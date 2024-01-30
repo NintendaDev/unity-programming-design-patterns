@@ -1,13 +1,13 @@
 using Utils.Timers;
 
-namespace Example04.Characters.StateMachine.States.Randomized
+namespace Example04.Characters.StateMachine.States.Action
 {
-    public abstract class RandomizeState : MovementState
+    public abstract class ActionState : BaseState
     {
         private Timer _timer;
         private bool _timerStarted;
 
-        public RandomizeState(IStateSwitcher stateSwitcher, Robot robot) : base(stateSwitcher, robot)
+        public ActionState(IStateSwitcher stateSwitcher, Robot robot) : base(stateSwitcher, robot)
         {
             _timer = new RandomCountdownTimer(robot.MinMaxRandomStateTime.x, robot.MinMaxRandomStateTime.y);
         }
@@ -17,18 +17,21 @@ namespace Example04.Characters.StateMachine.States.Randomized
             base.Enter();
 
             Reset();
-            View.StartRandomize();
+            View.StartAction();
             _timer.Finished += OnStateTimerFinish;
         }
 
         public override void Exit()
         {
             base.Exit();
-            View.StopRandomize();
+
+            View.StopAction();
         }
 
         public override void Update()
         {
+            base.Update();
+
             _timer.Tick();
 
             if (_timerStarted == false && IsPlayingStateAnimation())

@@ -29,7 +29,7 @@ namespace Example03.Strategies
 
             _level = level;
 
-            IsInitialized = true;
+            CompleteInitialization();
         }
 
         public void ActivateGameRule(GameRuleType gameRuleType)

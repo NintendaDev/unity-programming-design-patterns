@@ -12,7 +12,8 @@ namespace Example06.UI.DamageVisualization
         public void Initialize(DamageMediator damageMediator)
         {
             _damageMediator = damageMediator;
-            IsInitialized = true;
+
+            CompleteInitialization();
         }
 
         protected override void OnButtonClick()

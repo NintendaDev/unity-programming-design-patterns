@@ -12,7 +12,8 @@ namespace Example06.UI.ExperienceVisualization
         public void Initialize(ExperienceMediator experienceMediator)
         {
             _experienceMediator = experienceMediator;
-            IsInitialized = true;
+
+            CompleteInitialization();
         }
 
         protected override void OnButtonClick()

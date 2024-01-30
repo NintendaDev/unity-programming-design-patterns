@@ -19,7 +19,7 @@ namespace Example05.Characters
         public void Initialize()
         {
             _animator = GetComponent<Animator>();
-            IsInitialized = true;
+            CompleteInitialization();
         }
 
         public void StartIdling() => _animator.SetBool(IsIdling, true);

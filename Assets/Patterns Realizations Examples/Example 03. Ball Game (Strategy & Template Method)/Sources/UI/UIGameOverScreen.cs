@@ -13,7 +13,8 @@ namespace Example03.UI
         public void Initialize(UIStartScreen startScreen)
         {
             _startScreen = startScreen;
-            IsInitialized = true;
+
+            CompleteInitialization();
         }
 
         private void OnEnable()

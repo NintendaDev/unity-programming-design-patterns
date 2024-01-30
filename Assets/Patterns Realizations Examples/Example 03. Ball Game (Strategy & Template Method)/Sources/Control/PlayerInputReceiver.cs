@@ -15,7 +15,8 @@ namespace Example03.Control
         {
             _playerInputEventer = new PlayerInputEventer();
             _camera = Camera.main;
-            IsInitialized = true;
+
+            CompleteInitialization();
         }
 
         private void OnEnable()

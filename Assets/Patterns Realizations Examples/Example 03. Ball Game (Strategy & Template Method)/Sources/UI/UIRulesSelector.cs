@@ -19,7 +19,7 @@ namespace Example03
                 _gameRulesDropdown.AddOption(gameRuleDescription.Name);
             }
 
-            IsInitialized = true;
+            CompleteInitialization();
         }
     }
 }

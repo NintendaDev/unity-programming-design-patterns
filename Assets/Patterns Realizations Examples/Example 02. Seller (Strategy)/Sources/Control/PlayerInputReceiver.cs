@@ -13,7 +13,8 @@ namespace Example02.Control
         {
             _playerInputEventer = new PlayerInputEventer();
             _mover = GetComponent<Mover>();
-            IsInitialized = true;
+
+            CompleteInitialization();
         }
 
         private void OnEnable()

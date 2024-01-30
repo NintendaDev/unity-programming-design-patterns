@@ -18,7 +18,7 @@ namespace Example04.Core
         public void Initialize()
         {
             TryInitializePoints();
-            IsInitialized = true;
+            CompleteInitialization();
         }
 
         private void OnDrawGizmos()

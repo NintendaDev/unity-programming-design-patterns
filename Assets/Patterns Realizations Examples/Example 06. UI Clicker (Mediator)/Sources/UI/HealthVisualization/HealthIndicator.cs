@@ -11,7 +11,8 @@ namespace Example05.UI.HealthVisualization
         public void Initialize(HealthMediator<T> healthMediator)
         {
             HealthMediator = healthMediator;
-            IsInitialized = true;
+
+            CompleteInitialization();
         }
 
         private void Start()

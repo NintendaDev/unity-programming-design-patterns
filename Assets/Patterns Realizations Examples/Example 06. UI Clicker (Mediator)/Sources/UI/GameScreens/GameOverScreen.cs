@@ -18,7 +18,7 @@ namespace Example06.UI.GameScreens
 
             Subscribe();
 
-            IsInitialized = true;
+            CompleteInitialization();
         }
 
         private void OnDestroy()

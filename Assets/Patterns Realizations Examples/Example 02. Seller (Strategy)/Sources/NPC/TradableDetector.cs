@@ -17,7 +17,8 @@ namespace Example02.NPC
         {
             _collider = GetComponent<BoxCollider>();
             _collider.isTrigger = true;
-            IsInitialized = true;
+
+            CompleteInitialization();
         }
 
         private void OnTriggerEnter(Collider other)

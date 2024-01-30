@@ -19,7 +19,7 @@ namespace Example02
             SetSekkerNameText();
             SetGreetingText(_seller.DefaultGreeting);
 
-            IsInitialized = true;
+            CompleteInitialization();
         }
 
         private void OnEnable()

@@ -12,7 +12,8 @@ namespace Example02.Control
         public void Initalize()
         {
             _agent = GetComponent<NavMeshAgent>();
-            IsInitialized = true;
+
+            CompleteInitialization();
         }
 
         public void Move(Vector3 target)

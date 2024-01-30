@@ -19,7 +19,7 @@ namespace Example03
             _level = level;
             _playerInput = playerInput;
 
-            IsInitialized = true;
+            CompleteInitialization();
         }
 
         private void OnEnable()

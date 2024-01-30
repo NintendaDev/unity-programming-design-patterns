@@ -23,7 +23,7 @@ namespace Example01.Control
             InitializeWeaponQueue();
             ChangeWeapon();
 
-            IsInitialized = true;
+            CompleteInitialization();
         }
 
         [Button, DisableInEditorMode]
