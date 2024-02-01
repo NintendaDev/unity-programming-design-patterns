@@ -3,12 +3,14 @@ using Example07.GameResources;
 using Example07.UI;
 using Example07.UI.Factories;
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Example07.Bootstraps
 {
     public class UIBootstrap : MonoBehaviour
     {
+        [SerializeField, Required] private ChangeFubricButton _changeFubricButton;
         [SerializeField, Required] private ResourceCell _gemResourceCell;
         [SerializeField, Required] private ResourceCell _energyResourceCell;
         [SerializeField, Required] private PentagonGemViewFactory _pentagonGemViewFactory;
@@ -20,14 +22,16 @@ namespace Example07.Bootstraps
         {
             _pentagonGemViewFactory.Initialize(resourceAccounter);
             _triangleGemViewFactory.Initialize(resourceAccounter);
+
             _badgeEnergyViewFactory.Initialize(resourceAccounter);
             _batteryEnergyViewFactory.Initialize(resourceAccounter);
 
             _gemResourceCell.Initialize(_pentagonGemViewFactory);
             _energyResourceCell.Initialize(_badgeEnergyViewFactory);
 
-            _gemResourceCell.CreateResourceView(ResourceColor.Green);
-            _energyResourceCell.CreateResourceView(ResourceColor.Green);
+            _changeFubricButton.Initialize(_gemResourceCell, _energyResourceCell,
+                new List<ResourceViewFactory> { _pentagonGemViewFactory, _triangleGemViewFactory },
+                new List<ResourceViewFactory> { _badgeEnergyViewFactory, _batteryEnergyViewFactory });
         }
     }
 }
