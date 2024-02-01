@@ -10,7 +10,7 @@ namespace Example07.Bootstraps
 {
     public class UIBootstrap : MonoBehaviour
     {
-        [SerializeField, Required] private ChangeFubricButton _changeFubricButton;
+        [SerializeField, Required] private ChangeDesignButton _changeFubricButton;
         [SerializeField, Required] private ResourceCell _gemResourceCell;
         [SerializeField, Required] private ResourceCell _energyResourceCell;
         [SerializeField, Required] private PentagonGemViewFactory _pentagonGemViewFactory;
@@ -29,7 +29,7 @@ namespace Example07.Bootstraps
             _gemResourceCell.Initialize(_pentagonGemViewFactory);
             _energyResourceCell.Initialize(_badgeEnergyViewFactory);
 
-            ChangeFabricMediator changeFabricMediator = new(_gemResourceCell, _energyResourceCell,
+            ChangeDesignMediator changeFabricMediator = new(_gemResourceCell, _energyResourceCell,
                 new List<ResourceViewFactory> { _pentagonGemViewFactory, _triangleGemViewFactory },
                 new List<ResourceViewFactory> { _badgeEnergyViewFactory, _batteryEnergyViewFactory });
 

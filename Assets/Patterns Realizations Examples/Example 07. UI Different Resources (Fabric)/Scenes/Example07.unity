@@ -146,6 +146,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2816127514442098654, guid: 304529e3a1dd6814c91a2ae476daa0e5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 47.73999
+      objectReference: {fileID: 0}
     - target: {fileID: 3733232212519093257, guid: 304529e3a1dd6814c91a2ae476daa0e5,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1440,6 +1445,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2816127514442098654, guid: 304529e3a1dd6814c91a2ae476daa0e5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 47.73999
+      objectReference: {fileID: 0}
     - target: {fileID: 3733232212519093257, guid: 304529e3a1dd6814c91a2ae476daa0e5,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2109,10 +2119,10 @@ MonoBehaviour:
   layout:
     Size:
       X:
-        Raw: 226.51042
+        Raw: 275.10556
         Type: 0
       Y:
-        Raw: 40.920002
+        Raw: 47.440002
         Type: 0
       Z:
         Raw: 0
@@ -2290,7 +2300,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8232903261261657317, guid: f1eaba59f4eef0646af1d2c27a22cde8, type: 2}
+  - {fileID: 1805697429188284346, guid: 88859655ac95d304998f9a96568d29aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2351,10 +2361,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Change Fabric
+  m_text: Change Design
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f1eaba59f4eef0646af1d2c27a22cde8, type: 2}
-  m_sharedMaterial: {fileID: -8232903261261657317, guid: f1eaba59f4eef0646af1d2c27a22cde8,
+  m_fontAsset: {fileID: 11400000, guid: 88859655ac95d304998f9a96568d29aa, type: 2}
+  m_sharedMaterial: {fileID: 1805697429188284346, guid: 88859655ac95d304998f9a96568d29aa,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2379,8 +2389,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 300
-  m_fontSizeBase: 300
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0.5
@@ -2566,10 +2576,10 @@ MonoBehaviour:
   layout:
     Size:
       X:
-        Raw: 326.51044
+        Raw: 375.10556
         Type: 0
       Y:
-        Raw: 75
+        Raw: 100
         Type: 0
       Z:
         Raw: 0
@@ -2812,7 +2822,7 @@ GameObject:
   - component: {fileID: 2007276570473655943}
   - component: {fileID: 2007276570473655944}
   m_Layer: 0
-  m_Name: ChangeFabric
+  m_Name: ChangeDesignButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

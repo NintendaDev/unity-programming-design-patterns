@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 namespace Example07.UI
 {
-    public class ChangeFabricMediator
+    public class ChangeDesignMediator
     {
         private Queue<ResourceViewFactory> _gemFactories;
         private Queue<ResourceViewFactory> _energyFactories;
         private ResourceCell _gemResourceCell;
         private ResourceCell _batteryResourceCell;
 
-        public ChangeFabricMediator(ResourceCell gemResourceCell, ResourceCell batteryResourceCell,
+        public ChangeDesignMediator(ResourceCell gemResourceCell, ResourceCell batteryResourceCell,
             IEnumerable<ResourceViewFactory> gemFactories, IEnumerable<ResourceViewFactory> energyFactories)
         {
             _gemResourceCell = gemResourceCell;

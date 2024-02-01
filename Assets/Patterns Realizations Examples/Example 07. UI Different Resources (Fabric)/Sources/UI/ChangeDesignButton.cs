@@ -1,10 +1,10 @@
 namespace Example07.UI
 {
-    public class ChangeFubricButton : UIButton
+    public class ChangeDesignButton : UIButton
     {
-        private ChangeFabricMediator _changeFabricMediator;
+        private ChangeDesignMediator _changeFabricMediator;
 
-        public void Initialize(ChangeFabricMediator changeFabricMediator)
+        public void Initialize(ChangeDesignMediator changeFabricMediator)
         {
             _changeFabricMediator = changeFabricMediator;
             _changeFabricMediator.Change();
