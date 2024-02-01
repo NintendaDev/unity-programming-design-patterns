@@ -22,3 +22,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 91d96b2c56a4bf640bf9ed2ee0162c1a, type: 2}
   - {fileID: 11400000, guid: ae76356c6db876c4fb81b3c4f26477b0, type: 2}
   - {fileID: 11400000, guid: bd6e704f9c668e0459b0966e0d2ea8bc, type: 2}
+  _badgeEnergies:
+  - {fileID: 11400000, guid: 40e4eedd8180d804cb0d3d86f3c676c5, type: 2}
+  - {fileID: 11400000, guid: 3385e08f071e2b142b74f88b2fa208fa, type: 2}
+  - {fileID: 11400000, guid: e68637f5f575d6a4b880f22aa9cc0fc7, type: 2}
+  - {fileID: 11400000, guid: 9a91b7f6026746244afb91cd1f02901d, type: 2}
+  _batteryEnergies:
+  - {fileID: 11400000, guid: 18cd496002e9adf45a4c0f8248b8eff6, type: 2}
+  - {fileID: 11400000, guid: 78f4cc4926cc06e40af319faf6f57a48, type: 2}
+  - {fileID: 11400000, guid: 43e778bb7ccac2d4e9b651a86fa0821a, type: 2}
+  - {fileID: 11400000, guid: d194877af6369d247a1ec5559cbbb8fa, type: 2}

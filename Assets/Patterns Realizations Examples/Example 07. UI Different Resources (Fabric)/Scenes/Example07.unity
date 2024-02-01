@@ -141,6 +141,21 @@ PrefabInstance:
       propertyPath: texture
       value: 
       objectReference: {fileID: 2800000, guid: 14d722e5cb773403aa2415d38bb6ab8e, type: 3}
+    - target: {fileID: 2816127514442098654, guid: 304529e3a1dd6814c91a2ae476daa0e5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3733232212519093257, guid: 304529e3a1dd6814c91a2ae476daa0e5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3733232212519093257, guid: 304529e3a1dd6814c91a2ae476daa0e5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -102.259995
+      objectReference: {fileID: 0}
     - target: {fileID: 7823373161879098290, guid: 304529e3a1dd6814c91a2ae476daa0e5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -332,6 +347,10 @@ MonoBehaviour:
   _pentagonGemViewFactory: {fileID: 11400000, guid: 71955454242d4484290f560629bdf5ea,
     type: 2}
   _triangleGemViewFactory: {fileID: 11400000, guid: 9c0c13bc66cddc348b19a9ec01acc751,
+    type: 2}
+  _badgeEnergyViewFactory: {fileID: 11400000, guid: 84005bc1f8d14374388389e9f37ebd8e,
+    type: 2}
+  _batteryEnergyViewFactory: {fileID: 11400000, guid: 2c734442150fcab4f9246d927dce214d,
     type: 2}
 --- !u!4 &591599745
 Transform:
@@ -678,7 +697,7 @@ MonoBehaviour:
     ReceiveShadows: 1
   PreviewSize: {x: 1, y: 1, z: 0}
   visuals:
-    Color: {r: 0.5372549, g: 0.5372549, b: 0.5372549, a: 1}
+    Color: {r: 0.6698113, g: 0.6476949, b: 0.6476949, a: 1}
     CornerRadius:
       Raw: 0
       Type: 0
@@ -710,7 +729,7 @@ MonoBehaviour:
           Raw: 1
           Type: 1
       Rotation: 0
-      Enabled: 1
+      Enabled: 0
     Border:
       Color: {r: 1, g: 1, b: 1, a: 1}
       Width:
@@ -1121,6 +1140,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ResourceView
+      objectReference: {fileID: 0}
+    - target: {fileID: 2816127514442098654, guid: 304529e3a1dd6814c91a2ae476daa0e5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3733232212519093257, guid: 304529e3a1dd6814c91a2ae476daa0e5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3733232212519093257, guid: 304529e3a1dd6814c91a2ae476daa0e5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -102.259995
       objectReference: {fileID: 0}
     - target: {fileID: 7823373161879098290, guid: 304529e3a1dd6814c91a2ae476daa0e5,
         type: 3}

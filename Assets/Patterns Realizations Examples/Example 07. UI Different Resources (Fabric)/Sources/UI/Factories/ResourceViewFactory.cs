@@ -29,11 +29,10 @@ namespace Example07.UI.Factories
 
             Resource resource = GetResource(color);
             ResourceView view = Instantiate(_viewPrefab);
+            view.Initialize(resource);
 
             ResourceType resourceType = GetResourceType();
             ResourceMediator mediator = new(resourceType, _resourceAccounter, view);
-
-            view.Initialize(resource);
 
             return view;
         }

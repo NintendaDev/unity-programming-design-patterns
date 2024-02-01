@@ -13,17 +13,21 @@ namespace Example07.Bootstraps
         [SerializeField, Required] private ResourceCell _energyResourceCell;
         [SerializeField, Required] private PentagonGemViewFactory _pentagonGemViewFactory;
         [SerializeField, Required] private TriangleGemViewFactory _triangleGemViewFactory;
+        [SerializeField, Required] private BadgeEnergyViewFactory _badgeEnergyViewFactory;
+        [SerializeField, Required] private BatteryEnergyViewFactory _batteryEnergyViewFactory;
 
         public void Initialize(ResourceAccounter resourceAccounter)
         {
             _pentagonGemViewFactory.Initialize(resourceAccounter);
             _triangleGemViewFactory.Initialize(resourceAccounter);
+            _badgeEnergyViewFactory.Initialize(resourceAccounter);
+            _batteryEnergyViewFactory.Initialize(resourceAccounter);
 
             _gemResourceCell.Initialize(_pentagonGemViewFactory);
-            _energyResourceCell.Initialize(_triangleGemViewFactory);
+            _energyResourceCell.Initialize(_badgeEnergyViewFactory);
 
             _gemResourceCell.CreateResourceView(ResourceColor.Green);
-            _energyResourceCell.CreateResourceView(ResourceColor.Red);
+            _energyResourceCell.CreateResourceView(ResourceColor.Green);
         }
     }
 }

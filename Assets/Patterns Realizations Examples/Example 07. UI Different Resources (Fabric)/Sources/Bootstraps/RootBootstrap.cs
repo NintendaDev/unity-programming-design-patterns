@@ -20,6 +20,7 @@ namespace Example07.Bootstraps
         {
             ResourceAccounter resourceAccounter = new ResourceAccounter();
             resourceAccounter.Add(ResourceType.Gem, 450);
+            resourceAccounter.Add(ResourceType.Energy, 200);
             _uiBootstrap.Initialize(resourceAccounter);
         }
     }

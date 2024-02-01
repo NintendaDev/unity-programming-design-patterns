@@ -16,6 +16,8 @@ namespace Example07.UI
             _resourcesAccounter = resourcesAccounter;
             _resourceView = resourceView;
 
+            SetResourceCounter(_resourcesAccounter.GetCount(mediatorResourceType));
+
             _resourcesAccounter.Changed += OnResourceChanged;
         }
 
@@ -29,6 +31,11 @@ namespace Example07.UI
             if (resourceType != _mediatorResourceType)
                 return;
 
+            SetResourceCounter(currentValue);
+        }
+
+        private void SetResourceCounter(int currentValue)
+        {
             _resourceView.SetResourceCounter(currentValue);
         }
     }
