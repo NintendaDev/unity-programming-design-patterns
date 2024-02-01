@@ -9,6 +9,9 @@ namespace Example07.Bootstraps
     {
         [SerializeField, Required] private UIBootstrap _uiBootstrap;
 
+        private const int DefaultGemsCount = 450;
+        private const int DefaultEnergyCount = 200;
+
         public ResourceAccounter ResourceAccounter { get; private set; }
 
         private void Awake()
@@ -19,8 +22,10 @@ namespace Example07.Bootstraps
         private void Initialize()
         {
             ResourceAccounter resourceAccounter = new ResourceAccounter();
-            resourceAccounter.Add(ResourceType.Gem, 450);
-            resourceAccounter.Add(ResourceType.Energy, 200);
+
+            resourceAccounter.Add(ResourceType.Gem, DefaultGemsCount);
+            resourceAccounter.Add(ResourceType.Energy, DefaultEnergyCount);
+
             _uiBootstrap.Initialize(resourceAccounter);
         }
     }
