@@ -1,46 +1,19 @@
-using Example07.GameResources;
-using Example07.UI.Factories;
-using System.Collections.Generic;
-
 namespace Example07.UI
 {
     public class ChangeFubricButton : UIButton
     {
-        private Queue<ResourceViewFactory> _gemFactories;
-        private Queue<ResourceViewFactory> _energyFactories;
-        private ResourceCell _gemResourceCell;
-        private ResourceCell _batteryResourceCell;
+        private ChangeFabricMediator _changeFabricMediator;
 
-        public void Initialize(ResourceCell gemResourceCell, ResourceCell batteryResourceCell,
-            IEnumerable<ResourceViewFactory> gemFactories, IEnumerable<ResourceViewFactory> energyFactories)
+        public void Initialize(ChangeFabricMediator changeFabricMediator)
         {
-            _gemResourceCell = gemResourceCell;
-            _batteryResourceCell = batteryResourceCell;
-            _gemFactories = new Queue<ResourceViewFactory>(gemFactories);
-            _energyFactories = new Queue<ResourceViewFactory>(energyFactories);
-
-            OnButtonClick();
-
+            _changeFabricMediator = changeFabricMediator;
+            _changeFabricMediator.Change();
             CompleteInitialization();
         }
 
         protected override void OnButtonClick()
         {
-            ChangeCellView(_gemResourceCell, _gemFactories);
-            ChangeCellView(_batteryResourceCell, _energyFactories);
-        }
-
-        private void ChangeCellView(ResourceCell resourceCell, Queue<ResourceViewFactory> factories)
-        {
-            ChangeCellFactory(resourceCell, factories);
-            resourceCell.CreateResourceView(ResourceColor.Blue);
-        }
-
-        private void ChangeCellFactory(ResourceCell resourceCell, Queue<ResourceViewFactory> factories)
-        {
-            ResourceViewFactory nextFactory = factories.Dequeue();
-            resourceCell.Initialize(nextFactory);
-            factories.Enqueue(nextFactory);
+            _changeFabricMediator.Change();
         }
     }
 }

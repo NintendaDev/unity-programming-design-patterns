@@ -29,9 +29,11 @@ namespace Example07.Bootstraps
             _gemResourceCell.Initialize(_pentagonGemViewFactory);
             _energyResourceCell.Initialize(_badgeEnergyViewFactory);
 
-            _changeFubricButton.Initialize(_gemResourceCell, _energyResourceCell,
+            ChangeFabricMediator changeFabricMediator = new(_gemResourceCell, _energyResourceCell,
                 new List<ResourceViewFactory> { _pentagonGemViewFactory, _triangleGemViewFactory },
                 new List<ResourceViewFactory> { _badgeEnergyViewFactory, _batteryEnergyViewFactory });
+
+            _changeFubricButton.Initialize(changeFabricMediator);
         }
     }
 }

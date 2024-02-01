@@ -32,7 +32,7 @@ namespace Example07.UI.Factories
             view.Initialize(resource);
 
             ResourceType resourceType = GetResourceType();
-            ResourceMediator mediator = new(resourceType, _resourceAccounter, view);
+            ResourceViewMediator mediator = new(resourceType, _resourceAccounter, view);
 
             return view;
         }

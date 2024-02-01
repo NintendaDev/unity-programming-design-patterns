@@ -4,13 +4,13 @@ using System;
 
 namespace Example07.UI
 {
-    public class ResourceMediator : IDisposable
+    public class ResourceViewMediator : IDisposable
     {
         private ResourceType _mediatorResourceType;
         private ResourceAccounter _resourcesAccounter;
         private ResourceView _resourceView;
 
-        public ResourceMediator(ResourceType mediatorResourceType, ResourceAccounter resourcesAccounter, ResourceView resourceView)
+        public ResourceViewMediator(ResourceType mediatorResourceType, ResourceAccounter resourcesAccounter, ResourceView resourceView)
         {
             _mediatorResourceType = mediatorResourceType;
             _resourcesAccounter = resourcesAccounter;
