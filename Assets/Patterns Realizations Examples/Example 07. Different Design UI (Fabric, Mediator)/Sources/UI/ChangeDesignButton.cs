@@ -2,18 +2,18 @@ namespace Example07.UI
 {
     public class ChangeDesignButton : UIButton
     {
-        private ChangeDesignMediator _changeFabricMediator;
+        private IDesignChanger _designChanger;
 
-        public void Initialize(ChangeDesignMediator changeFabricMediator)
+        public void Initialize(IDesignChanger designChanger)
         {
-            _changeFabricMediator = changeFabricMediator;
-            _changeFabricMediator.Change();
+            _designChanger = designChanger;
+            _designChanger.ChangeDesign();
             CompleteInitialization();
         }
 
         protected override void OnButtonClick()
         {
-            _changeFabricMediator.Change();
+            _designChanger.ChangeDesign();
         }
     }
 }

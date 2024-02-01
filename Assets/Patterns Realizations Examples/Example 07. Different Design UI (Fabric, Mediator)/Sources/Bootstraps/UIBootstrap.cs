@@ -1,5 +1,4 @@
 using Example07.Accounters;
-using Example07.GameResources;
 using Example07.UI;
 using Example07.UI.Factories;
 using Sirenix.OdinInspector;
@@ -10,7 +9,8 @@ namespace Example07.Bootstraps
 {
     public class UIBootstrap : MonoBehaviour
     {
-        [SerializeField, Required] private ChangeDesignButton _changeFubricButton;
+        [SerializeField, Required] private ChangeDesignButton _changeDesignButton;
+        [SerializeField, Required] private ChangeColorButton _changeColorButton;
         [SerializeField, Required] private ResourceCell _gemResourceCell;
         [SerializeField, Required] private ResourceCell _energyResourceCell;
         [SerializeField, Required] private PentagonGemViewFactory _pentagonGemViewFactory;
@@ -29,11 +29,12 @@ namespace Example07.Bootstraps
             _gemResourceCell.Initialize(_pentagonGemViewFactory);
             _energyResourceCell.Initialize(_badgeEnergyViewFactory);
 
-            ChangeDesignMediator changeFabricMediator = new(_gemResourceCell, _energyResourceCell,
+            ChangeDesignMediator changeDesignMediator = new(_gemResourceCell, _energyResourceCell,
                 new List<ResourceViewFactory> { _pentagonGemViewFactory, _triangleGemViewFactory },
                 new List<ResourceViewFactory> { _badgeEnergyViewFactory, _batteryEnergyViewFactory });
 
-            _changeFubricButton.Initialize(changeFabricMediator);
+            _changeDesignButton.Initialize(changeDesignMediator);
+            _changeColorButton.Initialize(changeDesignMediator);
         }
     }
 }
