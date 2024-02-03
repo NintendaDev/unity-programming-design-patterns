@@ -13,7 +13,7 @@ namespace Example07.Accounters
 
         public void Add(ResourceType type, int count)
         {
-            StaticSpecification.ValidateIntGreatOrEqualZero(count);
+            IntValidator.GreatOrEqualZero(count);
 
             if (_resourcesCount.ContainsKey(type) == false)
                 _resourcesCount[type] = 0;
@@ -26,7 +26,7 @@ namespace Example07.Accounters
 
         public bool TryRemove(ResourceType type, int count)
         {
-            StaticSpecification.ValidateIntGreatOrEqualZero(count);
+            IntValidator.GreatOrEqualZero(count);
 
             if (_resourcesCount.ContainsKey(type) == false)
                 return false;

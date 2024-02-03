@@ -9,7 +9,7 @@ namespace Example06
     {
         public int GetMaxValueBy(int level)
         {
-            StaticSpecification.ValidateIntGreatOrEqualZero(level);
+            IntValidator.GreatOrEqualZero(level);
 
             IEnumerable<int> levelDataArray = GetLevelDataArray();
             int levelDataArraySize = levelDataArray.Count();

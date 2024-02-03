@@ -1,0 +1,18 @@
+{
+    "name": "Example09Assembly",
+    "rootNamespace": "Example09",
+    "references": [
+        "GUID:533da2fac530b884382c8f9f4c716499",
+        "GUID:552447fb6cdb3d34b969d73c1b33b7d8",
+        "GUID:d3646cb6c22de2d4e9ab342c87024f8e"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

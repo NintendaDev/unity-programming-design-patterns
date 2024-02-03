@@ -71,7 +71,7 @@ namespace Example06.Attributes
 
         public void TakeDamage(int damage)
         {
-            StaticSpecification.ValidateIntGreatOrEqualZero(damage);
+            IntValidator.GreatOrEqualZero(damage);
 
             int previousValue = CurrentValue;
             CurrentValue -= damage;
