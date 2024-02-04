@@ -972,7 +972,7 @@ MonoBehaviour:
         Raw: 1920
         Type: 0
       Y:
-        Raw: 630.3694
+        Raw: 1080.4221
         Type: 0
       Z:
         Raw: 0
@@ -1152,7 +1152,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.2113091, y: 0.2113091, z: -0.0468461, w: 0.9531539}
   m_LocalPosition: {x: -7.1969776, y: 7.9373813, z: -15.428606}
-  m_LocalScale: {x: 0.025381943, y: 0.025381943, z: 0.025381943}
+  m_LocalScale: {x: 0.014809026, y: 0.014809026, z: 0.014809026}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2085977696}
@@ -1169,7 +1169,7 @@ GameObject:
   - component: {fileID: 1680264474}
   - component: {fileID: 1680264473}
   m_Layer: 0
-  m_Name: RootBootstrap
+  m_Name: EntryPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1606,7 +1606,7 @@ Transform:
   m_GameObject: {fileID: 2085977695}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -813.0764, y: 189.70468, z: 0}
+  m_LocalPosition: {x: -813.0764, y: 414.73105, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7490,7 +7490,7 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1680264474}
   - {fileID: 1375907703}
   - {fileID: 926989476}
-  - {fileID: 1680264474}
   - {fileID: 1639928887}

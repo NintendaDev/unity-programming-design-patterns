@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3d27f22b41eb9c4b8d33a95342f2406, type: 3}
+  m_Name: SkillsConfiguration
+  m_EditorClassIdentifier: 
+  <MorningExercises>k__BackingField:
+    <MaxForceMultiplier>k__BackingField: 1
+    <MaxForceAdder>k__BackingField: 250
+    <ForceMultiplier>k__BackingField: 1
+    <ForceAdder>k__BackingField: 0
+    <MaxIntelligenceMultiplier>k__BackingField: 1
+    <MaxIntelligenceAdder>k__BackingField: 0
+    <IntelligenceMultiplier>k__BackingField: 1
+    <IntelligenceAdder>k__BackingField: 0
+    <MaxDexterityMultiplier>k__BackingField: 1
+    <MaxDexterityAdder>k__BackingField: 250
+    <DexterityMultiplier>k__BackingField: 1
+    <DexterityeAdder>k__BackingField: 0
+  <Chess>k__BackingField:
+    <MaxForceMultiplier>k__BackingField: 1
+    <MaxForceAdder>k__BackingField: 0
+    <ForceMultiplier>k__BackingField: 1
+    <ForceAdder>k__BackingField: 0
+    <MaxIntelligenceMultiplier>k__BackingField: 1
+    <MaxIntelligenceAdder>k__BackingField: 500
+    <IntelligenceMultiplier>k__BackingField: 1
+    <IntelligenceAdder>k__BackingField: 0
+    <MaxDexterityMultiplier>k__BackingField: 1
+    <MaxDexterityAdder>k__BackingField: 0
+    <DexterityMultiplier>k__BackingField: 1
+    <DexterityeAdder>k__BackingField: 0
+  <Bodybuilding>k__BackingField:
+    <MaxForceMultiplier>k__BackingField: 1
+    <MaxForceAdder>k__BackingField: 0
+    <ForceMultiplier>k__BackingField: 1
+    <ForceAdder>k__BackingField: 500
+    <MaxIntelligenceMultiplier>k__BackingField: 1
+    <MaxIntelligenceAdder>k__BackingField: 0
+    <IntelligenceMultiplier>k__BackingField: 1
+    <IntelligenceAdder>k__BackingField: 0
+    <MaxDexterityMultiplier>k__BackingField: 1
+    <MaxDexterityAdder>k__BackingField: 0
+    <DexterityMultiplier>k__BackingField: 1
+    <DexterityeAdder>k__BackingField: 0

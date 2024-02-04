@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87a32392c98d8ec47b0d90bd9dad8ab7, type: 3}
+  m_Name: RacialMaxStatsConfiguration
+  m_EditorClassIdentifier: 
+  <HumanStatMaxParameters>k__BackingField:
+    <MaxForce>k__BackingField: 1500
+    <MaxIntelligence>k__BackingField: 2000
+    <MaxDexterity>k__BackingField: 1200
+  <ElfStatMaxParameters>k__BackingField:
+    <MaxForce>k__BackingField: 1100
+    <MaxIntelligence>k__BackingField: 2300
+    <MaxDexterity>k__BackingField: 1650
+  <OrkStatMaxParameters>k__BackingField:
+    <MaxForce>k__BackingField: 2500
+    <MaxIntelligence>k__BackingField: 1200
+    <MaxDexterity>k__BackingField: 800

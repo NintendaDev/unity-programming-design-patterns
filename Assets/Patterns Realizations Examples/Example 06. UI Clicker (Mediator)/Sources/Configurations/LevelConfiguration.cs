@@ -10,7 +10,7 @@ namespace Example06.Configurations
 
         public int GetLevelBy(int currentExperience)
         {
-            StaticSpecification.ValidateIntGreatOrEqualZero(currentExperience);
+            IntValidator.GreatOrEqualZero(currentExperience);
 
             if (_levelByExperience.Length == 0)
                 return 0;

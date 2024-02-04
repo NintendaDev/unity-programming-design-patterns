@@ -13,7 +13,7 @@ namespace Example06.Attributes
 
         public Experience(int currentValue)
         {
-            StaticSpecification.ValidateIntGreatOrEqualZero(currentValue);
+            IntValidator.GreatOrEqualZero(currentValue);
             Value = currentValue;
         }
 
@@ -29,7 +29,7 @@ namespace Example06.Attributes
 
         public void AddExperience(int delta)
         {
-            StaticSpecification.ValidateIntGreatOrEqualZero(delta);
+            IntValidator.GreatOrEqualZero(delta);
 
             int previousExperienceValue = Value;
             Value += delta;

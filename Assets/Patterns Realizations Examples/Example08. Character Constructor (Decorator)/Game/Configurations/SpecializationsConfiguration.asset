@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30e893b054bdc784d9d305db7095b3d1, type: 3}
+  m_Name: SpecializationsConfiguration
+  m_EditorClassIdentifier: 
+  <MagicianSpecilization>k__BackingField:
+    <MaxForceMultiplier>k__BackingField: 1
+    <MaxForceAdder>k__BackingField: 500
+    <ForceMultiplier>k__BackingField: 1
+    <ForceAdder>k__BackingField: 100
+    <MaxIntelligenceMultiplier>k__BackingField: 1.1
+    <MaxIntelligenceAdder>k__BackingField: 0
+    <IntelligenceMultiplier>k__BackingField: 1
+    <IntelligenceAdder>k__BackingField: 0
+    <MaxDexterityMultiplier>k__BackingField: 1
+    <MaxDexterityAdder>k__BackingField: 0
+    <DexterityMultiplier>k__BackingField: 1
+    <DexterityeAdder>k__BackingField: 0
+  <ThiefSpecilization>k__BackingField:
+    <MaxForceMultiplier>k__BackingField: 1
+    <MaxForceAdder>k__BackingField: 0
+    <ForceMultiplier>k__BackingField: 1
+    <ForceAdder>k__BackingField: 0
+    <MaxIntelligenceMultiplier>k__BackingField: 1
+    <MaxIntelligenceAdder>k__BackingField: 0
+    <IntelligenceMultiplier>k__BackingField: 1.2
+    <IntelligenceAdder>k__BackingField: 0
+    <MaxDexterityMultiplier>k__BackingField: 1
+    <MaxDexterityAdder>k__BackingField: 300
+    <DexterityMultiplier>k__BackingField: 1
+    <DexterityeAdder>k__BackingField: 0
+  <BarbarianSpecilization>k__BackingField:
+    <MaxForceMultiplier>k__BackingField: 1.5
+    <MaxForceAdder>k__BackingField: 0
+    <ForceMultiplier>k__BackingField: 1
+    <ForceAdder>k__BackingField: 500
+    <MaxIntelligenceMultiplier>k__BackingField: 1
+    <MaxIntelligenceAdder>k__BackingField: 0
+    <IntelligenceMultiplier>k__BackingField: 1
+    <IntelligenceAdder>k__BackingField: 0
+    <MaxDexterityMultiplier>k__BackingField: 1
+    <MaxDexterityAdder>k__BackingField: 0
+    <DexterityMultiplier>k__BackingField: 1
+    <DexterityeAdder>k__BackingField: 0

@@ -1,0 +1,16 @@
+{
+    "name": "Example08Assembly",
+    "rootNamespace": "Example08",
+    "references": [
+        "GUID:60b4005883a7af84698681e14aa2af15"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
