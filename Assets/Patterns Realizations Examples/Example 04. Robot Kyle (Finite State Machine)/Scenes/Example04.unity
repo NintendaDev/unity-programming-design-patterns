@@ -793,7 +793,7 @@ GameObject:
   - component: {fileID: 1406365130}
   - component: {fileID: 1406365129}
   m_Layer: 0
-  m_Name: RootBootstrap
+  m_Name: EntryPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5380,8 +5380,8 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1406365130}
   - {fileID: 670393343}
   - {fileID: 7230386265659617153}
   - {fileID: 1305372273}
   - {fileID: 1623221998}
-  - {fileID: 1406365130}
