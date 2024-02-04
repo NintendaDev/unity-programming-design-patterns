@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Example07.UI
 {
-    public class ChangeDesignMediator : IDesignChanger, IColorChanger
+    public class ResourceViewChangeMediator : IDesignChanger, IColorChanger
     {
         private Queue<ResourceViewFactory> _gemFactories;
         private Queue<ResourceViewFactory> _energyFactories;
@@ -13,7 +13,7 @@ namespace Example07.UI
         private ResourceCell _batteryResourceCell;
         private Queue<ResourceColor> _resourceColors;
 
-        public ChangeDesignMediator(ResourceCell gemResourceCell, ResourceCell batteryResourceCell,
+        public ResourceViewChangeMediator(ResourceCell gemResourceCell, ResourceCell batteryResourceCell,
             IEnumerable<ResourceViewFactory> gemFactories, IEnumerable<ResourceViewFactory> energyFactories)
         {
             _gemResourceCell = gemResourceCell;

@@ -29,7 +29,7 @@ namespace Example07.Bootstraps
             _gemResourceCell.Initialize(_pentagonGemViewFactory);
             _energyResourceCell.Initialize(_badgeEnergyViewFactory);
 
-            ChangeDesignMediator changeDesignMediator = new(_gemResourceCell, _energyResourceCell,
+            ResourceViewChangeMediator changeDesignMediator = new(_gemResourceCell, _energyResourceCell,
                 new List<ResourceViewFactory> { _pentagonGemViewFactory, _triangleGemViewFactory },
                 new List<ResourceViewFactory> { _badgeEnergyViewFactory, _batteryEnergyViewFactory });
 
