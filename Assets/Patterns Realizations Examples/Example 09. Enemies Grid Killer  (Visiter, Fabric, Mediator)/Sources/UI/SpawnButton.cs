@@ -14,7 +14,7 @@ namespace Example09.UI
 
         protected override void OnButtonClick()
         {
-            _spawner.TrySpawn();
+            _spawner.StartSpawn();
         }
     }
 }

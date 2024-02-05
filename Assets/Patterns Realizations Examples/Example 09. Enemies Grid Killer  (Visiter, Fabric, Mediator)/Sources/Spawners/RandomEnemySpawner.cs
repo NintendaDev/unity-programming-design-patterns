@@ -15,25 +15,19 @@ namespace Example09.Spawners
     public class RandomEnemySpawner: InitializedMonoBehaviour, ISpawner, ILevelEnemies, IEnemySpawnNotifier, IEnemyDeathNotifier
     {
         [SerializeField, MinValue(0)] private float _spawnCooldown;
-        [SerializeField, MinValue(0)] private int _forceWeightThreshold = 50;
         [SerializeField, Required] private EnemyFactory _enemyFactory;
 
         private Coroutine _spawn;
         private Dictionary<Vector3, Enemy> _spawnedEnemies = new();
         private Transform _transform;
         private EnemiesForceWeight _enemiesForceWeight;
+        private bool _isPaused;
 
         public event Action<Enemy> Spawned;
-
-        public event Action<int, int> ForceWeightChanged;
 
         public event Action<Enemy> EnemiDied;
 
         public IEnumerable<Enemy> Enemies => _spawnedEnemies.Where(x => x.Value != null).Select(x => x.Value);
-
-        public int ForceWeightThreshold => _forceWeightThreshold;
-
-        public int CurrentForceEnemyWeight => _enemiesForceWeight.Value;
 
         public void Initialize(GridMaker gridMaker, EnemiesForceWeight spawnForceWeight)
         {
@@ -47,10 +41,22 @@ namespace Example09.Spawners
             CompleteInitialization();
         }
 
-        [Button, DisableInEditorMode]
-        public bool TrySpawn()
+        private void OnEnable()
         {
-            Stop();
+            _enemiesForceWeight.LimitExceeded += OnLimitExceed;
+            _enemiesForceWeight.ValueConsistented += OnLimitNormalize;
+        }
+
+        private void OnDisable()
+        {
+            _enemiesForceWeight.LimitExceeded -= OnLimitExceed;
+            _enemiesForceWeight.ValueConsistented -= OnLimitNormalize;
+        }
+
+        [Button, DisableInEditorMode]
+        public bool StartSpawn()
+        {
+            StopSpawn();
 
             List<Vector3> freeSpawnPoints = _spawnedEnemies.Where(x => x.Value == null).Select(x => x.Key).ToList();
 
@@ -62,7 +68,7 @@ namespace Example09.Spawners
             return true;
         }
 
-        public void Stop()
+        public void StopSpawn()
         {
             if (_spawn != null)
                 StopCoroutine(_spawn);
@@ -70,34 +76,28 @@ namespace Example09.Spawners
 
         private IEnumerator Spawn(IEnumerable<Vector3> spawnPoints)
         {
-            foreach(Vector3 spawnPoint in spawnPoints)
+            var cooldownWaiter = new WaitForSeconds(_spawnCooldown);
+
+            foreach (Vector3 spawnPoint in spawnPoints)
             {
-                if (_enemiesForceWeight.Value >= _forceWeightThreshold)
-                    break;
+                if (_isPaused == false)
+                {
+                    if (_spawnedEnemies[spawnPoint] != null)
+                        throw new Exception("The creation point is already occupied by another object");
 
-                if (_spawnedEnemies[spawnPoint] != null)
-                    throw new Exception("The creation point is already occupied by another object");
+                    EnemyType randomEnemyType = (EnemyType)Random.Range(0, Enum.GetValues(typeof(EnemyType)).Length);
+                    Enemy enemy = _enemyFactory.Get(randomEnemyType);
 
-                EnemyType randomEnemyType = (EnemyType)Random.Range(0, Enum.GetValues(typeof(EnemyType)).Length);
-                Enemy enemy = _enemyFactory.Get(randomEnemyType);
+                    enemy.Died += OnEnemyDie;
+                    enemy.MoveTo(spawnPoint);
+                    enemy.SetParrent(_transform);
 
-                enemy.Died += OnEnemyDie;
-                enemy.MoveTo(spawnPoint);
-                enemy.SetParrent(_transform);
+                    _spawnedEnemies[spawnPoint] = enemy;
+                    Spawned?.Invoke(enemy);
+                }
 
-                _spawnedEnemies[spawnPoint] = enemy;
-                Spawned?.Invoke(enemy);
-
-                UpdateForceWeight();
-
-                yield return new WaitForSeconds(_spawnCooldown);
+                yield return cooldownWaiter;
             }
-        }
-
-        private void UpdateForceWeight()
-        {
-            _enemiesForceWeight.Update(Enemies);
-            ForceWeightChanged?.Invoke(CurrentForceEnemyWeight, ForceWeightThreshold);
         }
 
         private void OnEnemyDie(Enemy enemy)
@@ -110,9 +110,18 @@ namespace Example09.Spawners
                 .First();
 
             _spawnedEnemies[enemySpawnedPosition] = null;
-            UpdateForceWeight();
 
             EnemiDied?.Invoke(enemy);
+        }
+
+        private void OnLimitExceed()
+        {
+            _isPaused = true;
+        }
+
+        private void OnLimitNormalize()
+        {
+            _isPaused = false;
         }
     }
 }
