@@ -9,45 +9,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3d27f22b41eb9c4b8d33a95342f2406, type: 3}
+  m_Script: {fileID: 11500000, guid: 45669e087a811544496be16243ba2063, type: 3}
   m_Name: SkillsConfiguration
   m_EditorClassIdentifier: 
-  <MorningExercises>k__BackingField:
-    <MaxForceMultiplier>k__BackingField: 1
-    <MaxForceAdder>k__BackingField: 250
-    <ForceMultiplier>k__BackingField: 1
-    <ForceAdder>k__BackingField: 0
-    <MaxIntelligenceMultiplier>k__BackingField: 1
-    <MaxIntelligenceAdder>k__BackingField: 0
-    <IntelligenceMultiplier>k__BackingField: 1
-    <IntelligenceAdder>k__BackingField: 0
-    <MaxDexterityMultiplier>k__BackingField: 1
-    <MaxDexterityAdder>k__BackingField: 250
-    <DexterityMultiplier>k__BackingField: 1
-    <DexterityeAdder>k__BackingField: 0
-  <Chess>k__BackingField:
-    <MaxForceMultiplier>k__BackingField: 1
-    <MaxForceAdder>k__BackingField: 0
-    <ForceMultiplier>k__BackingField: 1
-    <ForceAdder>k__BackingField: 0
-    <MaxIntelligenceMultiplier>k__BackingField: 1
-    <MaxIntelligenceAdder>k__BackingField: 500
-    <IntelligenceMultiplier>k__BackingField: 1
-    <IntelligenceAdder>k__BackingField: 0
-    <MaxDexterityMultiplier>k__BackingField: 1
-    <MaxDexterityAdder>k__BackingField: 0
-    <DexterityMultiplier>k__BackingField: 1
-    <DexterityeAdder>k__BackingField: 0
-  <Bodybuilding>k__BackingField:
-    <MaxForceMultiplier>k__BackingField: 1
-    <MaxForceAdder>k__BackingField: 0
-    <ForceMultiplier>k__BackingField: 1
-    <ForceAdder>k__BackingField: 500
-    <MaxIntelligenceMultiplier>k__BackingField: 1
-    <MaxIntelligenceAdder>k__BackingField: 0
-    <IntelligenceMultiplier>k__BackingField: 1
-    <IntelligenceAdder>k__BackingField: 0
-    <MaxDexterityMultiplier>k__BackingField: 1
-    <MaxDexterityAdder>k__BackingField: 0
-    <DexterityMultiplier>k__BackingField: 1
-    <DexterityeAdder>k__BackingField: 0
+  <BodybuildingParameters>k__BackingField:
+    _maxForce: 300
+    _force: 300
+    _maxIntelligence: 0
+    _intelligence: 0
+    _maxDexterity: 0
+    _dexterity: 0
+  <ChessParameters>k__BackingField:
+    _maxForce: 0
+    _force: 0
+    _maxIntelligence: 500
+    _intelligence: 500
+    _maxDexterity: 0
+    _dexterity: 0
+  <MorningExercisesParameters>k__BackingField:
+    _maxForce: 0
+    _force: 0
+    _maxIntelligence: 0
+    _intelligence: 0
+    _maxDexterity: 500
+    _dexterity: 500

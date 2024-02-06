@@ -1,5 +1,4 @@
 using Example08.Configurations;
-using Example08.Skills.Decorators;
 using Example08.Stats;
 
 namespace Example08.Skills
@@ -13,22 +12,22 @@ namespace Example08.Skills
             _skillsConfiguration = skillsConfiguration;
         }
 
-        public IStats Make(IStats stats, SkillType skillType)
+        public BaseStats Make(SkillType skillType)
         {
-            IStats skill;
+            BaseStats skill;
 
             switch(skillType)
             {
                 case SkillType.Bodybuilding:
-                    skill = new BodybuildingSkill(stats, _skillsConfiguration);
+                    skill = new BaseStats(_skillsConfiguration.BodybuildingParameters);
                     break;
 
                 case SkillType.Chess:
-                    skill = new ChessSkill(stats, _skillsConfiguration);
+                    skill = new BaseStats(_skillsConfiguration.ChessParameters);
                     break;
 
                 case SkillType.MorningExercises:
-                    skill = new MorningExercisesSkill(stats, _skillsConfiguration);
+                    skill = new BaseStats(_skillsConfiguration.MorningExercisesParameters);
                     break;
 
                 default:

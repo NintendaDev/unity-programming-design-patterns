@@ -9,45 +9,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30e893b054bdc784d9d305db7095b3d1, type: 3}
+  m_Script: {fileID: 11500000, guid: b4817da2c82dd52409962ea038cbbba3, type: 3}
   m_Name: SpecializationsConfiguration
   m_EditorClassIdentifier: 
-  <MagicianSpecilization>k__BackingField:
-    <MaxForceMultiplier>k__BackingField: 1
-    <MaxForceAdder>k__BackingField: 500
-    <ForceMultiplier>k__BackingField: 1
-    <ForceAdder>k__BackingField: 100
-    <MaxIntelligenceMultiplier>k__BackingField: 1.1
-    <MaxIntelligenceAdder>k__BackingField: 0
-    <IntelligenceMultiplier>k__BackingField: 1
-    <IntelligenceAdder>k__BackingField: 0
-    <MaxDexterityMultiplier>k__BackingField: 1
-    <MaxDexterityAdder>k__BackingField: 0
-    <DexterityMultiplier>k__BackingField: 1
-    <DexterityeAdder>k__BackingField: 0
-  <ThiefSpecilization>k__BackingField:
-    <MaxForceMultiplier>k__BackingField: 1
-    <MaxForceAdder>k__BackingField: 0
-    <ForceMultiplier>k__BackingField: 1
-    <ForceAdder>k__BackingField: 0
-    <MaxIntelligenceMultiplier>k__BackingField: 1
-    <MaxIntelligenceAdder>k__BackingField: 0
-    <IntelligenceMultiplier>k__BackingField: 1.2
-    <IntelligenceAdder>k__BackingField: 0
-    <MaxDexterityMultiplier>k__BackingField: 1
-    <MaxDexterityAdder>k__BackingField: 300
-    <DexterityMultiplier>k__BackingField: 1
-    <DexterityeAdder>k__BackingField: 0
-  <BarbarianSpecilization>k__BackingField:
-    <MaxForceMultiplier>k__BackingField: 1.5
-    <MaxForceAdder>k__BackingField: 0
-    <ForceMultiplier>k__BackingField: 1
-    <ForceAdder>k__BackingField: 500
-    <MaxIntelligenceMultiplier>k__BackingField: 1
-    <MaxIntelligenceAdder>k__BackingField: 0
-    <IntelligenceMultiplier>k__BackingField: 1
-    <IntelligenceAdder>k__BackingField: 0
-    <MaxDexterityMultiplier>k__BackingField: 1
-    <MaxDexterityAdder>k__BackingField: 0
-    <DexterityMultiplier>k__BackingField: 1
-    <DexterityeAdder>k__BackingField: 0
+  <MagicianParameters>k__BackingField:
+    _maxForce: 0
+    _force: 0
+    _maxIntelligence: 200
+    _intelligence: 200
+    _maxDexterity: 0
+    _dexterity: 0
+  <ThiefParameters>k__BackingField:
+    _maxForce: 0
+    _force: 0
+    _maxIntelligence: 0
+    _intelligence: 0
+    _maxDexterity: 200
+    _dexterity: 200
+  <BarbarianParameters>k__BackingField:
+    _maxForce: 200
+    _force: 200
+    _maxIntelligence: 0
+    _intelligence: 0
+    _maxDexterity: 0
+    _dexterity: 0

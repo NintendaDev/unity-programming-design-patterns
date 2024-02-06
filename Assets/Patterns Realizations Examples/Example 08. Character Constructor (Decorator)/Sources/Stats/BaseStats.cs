@@ -3,21 +3,24 @@ using Example08.Configurations;
 
 namespace Example08.Stats
 {
-    public abstract class BaseStats : IStats
+    public class BaseStats
     {
         private AttributeValue _force;
         private AttributeValue _intelligence;
         private AttributeValue _dexterity;
 
-        public BaseStats(StatsMaxParameters maxParameters) : this(maxParameters.MaxForce, maxParameters.MaxIntelligence, maxParameters.MaxDexterity)
+        public BaseStats()
         {
+            _force = new AttributeValue();
+            _intelligence = new AttributeValue();
+            _dexterity = new AttributeValue();
         }
 
-        public BaseStats(int maxForce, int maxIntelligence, int maxDexterity)
+        public BaseStats(StatsParameters parameters)
         {
-            _force = new AttributeValue(maxForce);
-            _intelligence = new AttributeValue(maxIntelligence);
-            _dexterity = new AttributeValue(maxDexterity);
+            _force = new AttributeValue(parameters.MaxForce, parameters.Force);
+            _intelligence = new AttributeValue(parameters.MaxIntelligence, parameters.Intelligence);
+            _dexterity = new AttributeValue(parameters.MaxDexterity, parameters.Dexterity);
         }
 
         public int MaxForce => _force.MaxValue;
@@ -31,6 +34,20 @@ namespace Example08.Stats
         public int MaxDexterity => _dexterity.MaxValue;
 
         public int Dexterity => _dexterity.Value;
+
+        public static BaseStats operator + (BaseStats firstStats, BaseStats secondStats)
+        {
+            StatsParameters statsParameters = new StatsParametersBuilder()
+                .SetForce(firstStats.Force + secondStats.Force)
+                .SetMaxForce(firstStats.MaxForce + secondStats.MaxForce)
+                .SetIntelligence(firstStats.Intelligence + secondStats.Intelligence)
+                .SetMaxIntelligence(firstStats.MaxIntelligence + secondStats.MaxIntelligence)
+                .SetDexterity(firstStats.Dexterity + secondStats.Dexterity)
+                .SetMaxDexterity(firstStats.MaxDexterity + secondStats.MaxDexterity)
+                .Build();
+
+            return new BaseStats(statsParameters);
+        }
 
         public void IncreaseForce(int value) => _force.Increase(value);
 

@@ -16,7 +16,7 @@ namespace Example09.Bootstraps
         private void Initialize()
         {
             _enemiesBootstrap.Initialize();
-            _uiBootstrap.Initialize(_enemiesBootstrap.Spawner, _enemiesBootstrap.Score);
+            _uiBootstrap.Initialize(_enemiesBootstrap.Spawner, _enemiesBootstrap.Score, _enemiesBootstrap.EnemiesForceWeight);
         }
     }
 }

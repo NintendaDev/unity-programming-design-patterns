@@ -8,10 +8,25 @@ namespace Example08.Attributes
         private int _value;
         private int _previousValue;
 
+        public AttributeValue()
+        {
+            Value = MaxValue = 0;
+        }
+
+        public AttributeValue(int maxValue, int value) : this(maxValue)
+        {
+            IntValidator.GreatOrEqualZero(value);
+
+            if (value > maxValue)
+                throw new Exception("Ìalue is greater than maximum value");
+
+            Value = value;
+        }
+
         public AttributeValue(int maxValue)
         {
             IntValidator.GreatOrEqualZero(maxValue);
-            MaxValue = Value = maxValue;
+            MaxValue = maxValue;
         }
 
         public event Action<int, int> Changed;
@@ -37,7 +52,7 @@ namespace Example08.Attributes
             IntValidator.GreatOrEqualZero(value);
 
             Value += value;
-            Changed?.Invoke(Value, _previousValue);
+            Changed?.Invoke(_previousValue, Value);
         }
 
         public void Decrease(int value)
@@ -45,7 +60,7 @@ namespace Example08.Attributes
             IntValidator.GreatOrEqualZero(value);
 
             Value -= value;
-            Changed?.Invoke(Value, _previousValue);
+            Changed?.Invoke(_previousValue, Value);
         }
     }
 }

@@ -1,3 +1,4 @@
+using Example09.Accounters;
 using Example09.Spawners;
 using System;
 
@@ -5,26 +6,28 @@ namespace Example09.UI
 {
     public class EnemySpawnMediator : ISpawner, IDisposable
     {
+        private IReadOnlyForceWeight _forceWeight;
         private RandomEnemySpawner _spawner;
         private EnemiesForceWeightView _forceWeightView;
 
-        public EnemySpawnMediator(RandomEnemySpawner spawner, EnemiesForceWeightView forceWeightView)
+        public EnemySpawnMediator(IReadOnlyForceWeight forceWeight, RandomEnemySpawner spawner, EnemiesForceWeightView forceWeightView)
         {
+            _forceWeight = forceWeight;
             _spawner = spawner;
             _forceWeightView = forceWeightView;
 
-            UpdateForceView(_spawner.CurrentForceEnemyWeight, _spawner.ForceWeightThreshold);
-            _spawner.ForceWeightChanged += UpdateForceView;
+            UpdateForceView(_forceWeight.Value, _forceWeight.MaxValue);
+            _forceWeight.Changed += UpdateForceView;
         }
 
         public void Dispose()
         {
-            _spawner.ForceWeightChanged -= UpdateForceView;
+            _forceWeight.Changed -= UpdateForceView;
         }
 
-        public bool TrySpawn()
+        public bool StartSpawn()
         {
-            return _spawner.TrySpawn();
+            return _spawner.StartSpawn();
         }
 
         private void UpdateForceView(int currentValue, int maxValue)

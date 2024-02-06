@@ -14,26 +14,23 @@ namespace Example09.Spawners
 {
     public class RandomEnemySpawner: InitializedMonoBehaviour, ISpawner, ILevelEnemies, IEnemySpawnNotifier, IEnemyDeathNotifier
     {
-        [SerializeField, MinValue(0)] private float _spawnCooldown;
         [SerializeField, MinValue(0)] private int _forceWeightThreshold = 50;
+        [SerializeField, MinValue(0)] private float _spawnCooldown;
         [SerializeField, Required] private EnemyFactory _enemyFactory;
 
-        private Coroutine _spawn;
-        private Dictionary<Vector3, Enemy> _spawnedEnemies = new();
+        private Coroutine _spawnCoroutine;
+        private List<EnemySpawnPoint> _spawnPoints = new();
         private Transform _transform;
         private EnemiesForceWeight _enemiesForceWeight;
+        private bool _isPaused;
 
         public event Action<Enemy> Spawned;
 
-        public event Action<int, int> ForceWeightChanged;
-
         public event Action<Enemy> EnemiDied;
 
-        public IEnumerable<Enemy> Enemies => _spawnedEnemies.Where(x => x.Value != null).Select(x => x.Value);
+        public IEnumerable<Enemy> Enemies => _spawnPoints.Where(x => x.IsEmpty == false).Select(x => x.PointObject);
 
         public int ForceWeightThreshold => _forceWeightThreshold;
-
-        public int CurrentForceEnemyWeight => _enemiesForceWeight.Value;
 
         public void Initialize(GridMaker gridMaker, EnemiesForceWeight spawnForceWeight)
         {
@@ -41,76 +38,109 @@ namespace Example09.Spawners
 
             _enemiesForceWeight = spawnForceWeight;
 
-            _spawnedEnemies.Clear();
-            gridMaker.GetGridPoints(transform.position).ForEach(spawnPosition => _spawnedEnemies.Add(spawnPosition, null));
+            _spawnPoints.Clear();
+            gridMaker.GetGridPoints(transform.position).ForEach(spawnPosition => _spawnPoints.Add(new EnemySpawnPoint(spawnPosition)));
 
             CompleteInitialization();
         }
 
-        [Button, DisableInEditorMode]
-        public bool TrySpawn()
+        private void OnEnable()
         {
-            Stop();
+            _enemiesForceWeight.LimitExceeded += OnLimitExceed;
+            _enemiesForceWeight.ValueConsistented += OnLimitNormalize;
+        }
 
-            List<Vector3> freeSpawnPoints = _spawnedEnemies.Where(x => x.Value == null).Select(x => x.Key).ToList();
+        private void OnDisable()
+        {
+            _enemiesForceWeight.LimitExceeded -= OnLimitExceed;
+            _enemiesForceWeight.ValueConsistented -= OnLimitNormalize;
+        }
 
-            if (freeSpawnPoints.Count() == 0)
-                return false;
-
-            _spawn = StartCoroutine(Spawn(freeSpawnPoints));
+        [Button, DisableInEditorMode]
+        public bool StartSpawn()
+        {
+            StopSpawn();
+            _spawnCoroutine = StartCoroutine(SpawnCoroutine());
 
             return true;
         }
 
-        public void Stop()
+        public void StopSpawn()
         {
-            if (_spawn != null)
-                StopCoroutine(_spawn);
+            if (_spawnCoroutine != null)
+                StopCoroutine(_spawnCoroutine);
         }
 
-        private IEnumerator Spawn(IEnumerable<Vector3> spawnPoints)
+        private void OnLimitExceed()
         {
-            foreach(Vector3 spawnPoint in spawnPoints)
+            _isPaused = true;
+        }
+
+        private void OnLimitNormalize()
+        {
+            _isPaused = false;
+        }
+
+        private IEnumerator SpawnCoroutine()
+        {
+            bool isEnd = false;
+            var cooldownWaiter = new WaitForSeconds(_spawnCooldown);
+            EnemySpawnPoint spawnPoint;
+
+            while (isEnd == false)
             {
-                if (_enemiesForceWeight.Value >= _forceWeightThreshold)
-                    break;
+                spawnPoint = GetEmptyRandomPoint();
 
-                if (_spawnedEnemies[spawnPoint] != null)
-                    throw new Exception("The creation point is already occupied by another object");
+                if (spawnPoint == null || _isPaused)
+                {
+                    yield return cooldownWaiter;
 
-                EnemyType randomEnemyType = (EnemyType)Random.Range(0, Enum.GetValues(typeof(EnemyType)).Length);
-                Enemy enemy = _enemyFactory.Get(randomEnemyType);
+                    continue;
+                }
 
-                enemy.Died += OnEnemyDie;
-                enemy.MoveTo(spawnPoint);
-                enemy.SetParrent(_transform);
+                SpawnRandomEnemy(spawnPoint);
 
-                _spawnedEnemies[spawnPoint] = enemy;
-                Spawned?.Invoke(enemy);
-
-                UpdateForceWeight();
-
-                yield return new WaitForSeconds(_spawnCooldown);
+                yield return cooldownWaiter;
             }
         }
 
-        private void UpdateForceWeight()
+        private EnemySpawnPoint GetEmptyRandomPoint()
         {
-            _enemiesForceWeight.Update(Enemies);
-            ForceWeightChanged?.Invoke(CurrentForceEnemyWeight, ForceWeightThreshold);
+            IEnumerable<EnemySpawnPoint> emptySpawnPoints = GetEmptySpawnPoints();
+
+            if (emptySpawnPoints.Count() == 0)
+                return null;
+
+            int randomPointIndex = Random.Range(0, emptySpawnPoints.Count());
+
+            return emptySpawnPoints.ElementAt(randomPointIndex);
+        }
+
+        private IEnumerable<EnemySpawnPoint> GetEmptySpawnPoints()
+        {
+            return _spawnPoints.Where(x => x.IsEmpty);
+        }
+
+        private void SpawnRandomEnemy(EnemySpawnPoint spawnPoint)
+        {
+            EnemyType randomEnemyType = (EnemyType)Random.Range(0, Enum.GetValues(typeof(EnemyType)).Length);
+            Enemy enemy = _enemyFactory.Get(randomEnemyType);
+
+            enemy.Died += OnEnemyDie;
+            enemy.MoveTo(spawnPoint.Position);
+            enemy.SetParrent(_transform);
+
+            spawnPoint.Set(enemy);
+
+            Spawned?.Invoke(enemy);
         }
 
         private void OnEnemyDie(Enemy enemy)
         {
             enemy.Died -= OnEnemyDie;
 
-            Vector3 enemySpawnedPosition = _spawnedEnemies
-                .Where(x => x.Value == enemy)
-                .Select(x => x.Key)
-                .First();
-
-            _spawnedEnemies[enemySpawnedPosition] = null;
-            UpdateForceWeight();
+            EnemySpawnPoint spawnPoint = _spawnPoints.Where(x => x.PointObject == enemy).FirstOrDefault();
+            spawnPoint?.Unset();
 
             EnemiDied?.Invoke(enemy);
         }

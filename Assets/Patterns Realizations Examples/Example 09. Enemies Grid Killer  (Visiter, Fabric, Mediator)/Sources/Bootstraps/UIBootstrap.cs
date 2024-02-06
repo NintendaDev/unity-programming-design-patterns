@@ -19,12 +19,12 @@ namespace Example09.Bootstraps
         private ScoreViewMediator _scoreMediator;
         private bool _isInitialized;
 
-        public void Initialize(RandomEnemySpawner spawner, Score score)
+        public void Initialize(RandomEnemySpawner spawner, Score score, EnemiesForceWeight enemiesForceWeight)
         {
             if (_isInitialized)
                 Dispose();
 
-            _enemyMediator = new EnemySpawnMediator(spawner, _enemiesForceWeightView);
+            _enemyMediator = new EnemySpawnMediator(enemiesForceWeight, spawner, _enemiesForceWeightView);
             _spawnButton.Initialize(_enemyMediator);
 
             var randomEnemyKiller = new RandomEnemyKiller(spawner);
