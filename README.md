@@ -43,13 +43,13 @@
 
 Данные в UI передаются с помощью паттерна "Медиатор".
 
-## 7. Example 07. Different Design UI (Fabric, Mediator)
+## 7. Assets\Patterns Realizations Examples\Example 07. Different Design UI (Fabric, Mediator)
 
 Паттерны "Фабрика" и "Медиатор"
 
 В UI отображаются иконки денег и энергии. С помощью фабрики можно поменять дизайн иконок и их цвет.
 
-## 8. Example 08. Character Constructor (Decorator, Fluent Builder, Fabric)
+## 8. Assets\Patterns Realizations Examples\Example 08. Character Constructor (Decorator, Fluent Builder, Fabric)
 
 Паттерны "Декоратор", Fluent Builder и "Фабрика"
 
@@ -65,7 +65,7 @@
 
 В точке входа сцены создаются несколько персонажей и выводится информация в консоль.
 
-## 9. Example 09. Enemies Grid Killer  (Visiter, Fabric, Mediator)
+## 9. Assets\Patterns Realizations Examples\Example 09. Enemies Grid Killer  (Visiter, Fabric, Mediator)
 
 Паттерны "Визитер", "Фабрика" и "Медиатор"
 
