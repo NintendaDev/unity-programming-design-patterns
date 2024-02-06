@@ -1,5 +1,4 @@
 using Example08.Configurations;
-using Example08.Specializations.Decorators;
 using Example08.Stats;
 
 namespace Example08.Specializations
@@ -13,22 +12,22 @@ namespace Example08.Specializations
             _specializationsConfiguration = specializationsConfiguration;
         }
 
-        public IStats Make(IStats stats, SpecializationType specializationType)
+        public BaseStats Make(SpecializationType specializationType)
         {
-            IStats specialization;
+            BaseStats specialization;
 
             switch(specializationType)
             {
                 case SpecializationType.Barbarian:
-                    specialization = new BarbarianSpecialization(stats, _specializationsConfiguration);
+                    specialization = new BaseStats(_specializationsConfiguration.BarbarianParameters);
                     break;
 
                 case SpecializationType.Magician:
-                    specialization = new MagicianSpecialization(stats, _specializationsConfiguration);
+                    specialization = new BaseStats(_specializationsConfiguration.MagicianParameters);
                     break;
 
                 case SpecializationType.Thief:
-                    specialization = new ThiefSpecialization(stats, _specializationsConfiguration);
+                    specialization = new BaseStats(_specializationsConfiguration.ThiefParameters);
                     break;
 
                 default:

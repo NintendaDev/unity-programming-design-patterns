@@ -1,33 +1,32 @@
 using Example08.Configurations;
-using Example08.Stats.Racial;
 
 namespace Example08.Stats
 {
-    public class RaceStatProvider
+    public class RaceStatsProvider
     {
-        private RacialMaxStatsConfiguration _racialMaxStatsConfiguration;
+        private RacialConfiguration _racialMaxStatsConfiguration;
 
-        public RaceStatProvider(RacialMaxStatsConfiguration racialMaxStatsConfiguration)
+        public RaceStatsProvider(RacialConfiguration racialMaxStatsConfiguration)
         {
             _racialMaxStatsConfiguration = racialMaxStatsConfiguration;
         }
 
-        public IStats Make(RaceType raceType)
+        public BaseStats Make(RaceType raceType)
         {
-            IStats raceStats;
+            BaseStats raceStats;
 
             switch(raceType)
             {
                 case RaceType.Elf:
-                    raceStats = new ElfStats(_racialMaxStatsConfiguration);
+                    raceStats = new BaseStats(_racialMaxStatsConfiguration.ElfParameters);
                     break;
 
                 case RaceType.Human:
-                    raceStats = new HumanStats(_racialMaxStatsConfiguration);
+                    raceStats = new BaseStats(_racialMaxStatsConfiguration.HumanParameters);
                     break;
 
                 case RaceType.Ork:
-                    raceStats = new OrcStats(_racialMaxStatsConfiguration);
+                    raceStats = new BaseStats(_racialMaxStatsConfiguration.OrkParameters);
                     break;
 
                 default:

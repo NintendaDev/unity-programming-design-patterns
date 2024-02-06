@@ -10,16 +10,26 @@ namespace Example08.Bootstraps
 {
     public class CharactersBootstrap : MonoBehaviour
     {
-        [SerializeField, Required] private RacialMaxStatsConfiguration _racialMaxStatsConfiguration;
+        [SerializeField, Required] private RacialConfiguration _racialMaxStatsConfiguration;
         [SerializeField, Required] private SpecializationsConfiguration _specializationsConfiguration;
         [SerializeField, Required] private SkillsConfiguration _skillsConfiguration;
 
         public void Initialize()
         {
-            CharacterCreator characterCreator = new CharacterCreator(_racialMaxStatsConfiguration, _specializationsConfiguration, _skillsConfiguration);
-            characterCreator.Create(RaceType.Human, SpecializationType.Thief, SkillType.MorningExercises);
-            characterCreator.Create(RaceType.Elf, SpecializationType.Magician, SkillType.Chess);
-            characterCreator.Create(RaceType.Ork, SpecializationType.Barbarian, SkillType.Bodybuilding);
+            BaseStats humanCharacter = new CharacterBuilder().CreateRace(_racialMaxStatsConfiguration, RaceType.Human)
+                .SetSpecialization(_specializationsConfiguration, SpecializationType.Thief)
+                .SetSkill(_skillsConfiguration, SkillType.MorningExercises)
+                .Build();
+
+            BaseStats elfCharacter = new CharacterBuilder().CreateRace(_racialMaxStatsConfiguration, RaceType.Elf)
+                .SetSpecialization(_specializationsConfiguration, SpecializationType.Magician)
+                .SetSkill(_skillsConfiguration, SkillType.Chess)
+                .Build();
+
+            BaseStats orkCharacter = new CharacterBuilder().CreateRace(_racialMaxStatsConfiguration, RaceType.Ork)
+                .SetSpecialization(_specializationsConfiguration, SpecializationType.Barbarian)
+                .SetSkill(_skillsConfiguration, SkillType.Bodybuilding)
+                .Build();
         }
     }
 }
