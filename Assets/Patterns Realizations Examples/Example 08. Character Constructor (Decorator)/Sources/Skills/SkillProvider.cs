@@ -3,20 +3,24 @@ using Example08.Stats;
 
 namespace Example08.Skills
 {
-    public class SkillProvider
+    public class SkillProvider : IStatsProvider
     {
+        private IStatsProvider _statsProvider;
+        private SkillType _skillType;
         private SkillsConfiguration _skillsConfiguration;
 
-        public SkillProvider(SkillsConfiguration skillsConfiguration)
+        public SkillProvider(IStatsProvider statsProvider, SkillType skillType, SkillsConfiguration skillsConfiguration)
         {
+            _statsProvider = statsProvider;
+            _skillType = skillType;
             _skillsConfiguration = skillsConfiguration;
         }
 
-        public BaseStats Make(SkillType skillType)
+        public BaseStats Make()
         {
             BaseStats skill;
 
-            switch(skillType)
+            switch(_skillType)
             {
                 case SkillType.Bodybuilding:
                     skill = new BaseStats(_skillsConfiguration.BodybuildingParameters);
@@ -34,7 +38,7 @@ namespace Example08.Skills
                     throw new System.Exception("Detected unknown skill type");
             }
 
-            return skill;
+            return _statsProvider.Make() + skill;
         }
     }
 }
