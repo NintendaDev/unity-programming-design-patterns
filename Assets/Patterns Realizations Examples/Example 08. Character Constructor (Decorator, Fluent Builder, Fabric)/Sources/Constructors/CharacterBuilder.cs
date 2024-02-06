@@ -24,9 +24,9 @@ namespace Example08.Constructors
             return this;
         }
 
-        public CharacterBuilder SetSkill(SkillsConfiguration skillsConfigurationn, SkillType skill)
+        public CharacterBuilder SetSkill(SkillsConfiguration skillsConfiguration, SkillType skill)
         {
-            _characterStatProvider = new SkillProvider(_characterStatProvider, skill, skillsConfigurationn);
+            _characterStatProvider = new SkillProvider(_characterStatProvider, skill, skillsConfiguration);
 
             return this;
         }
