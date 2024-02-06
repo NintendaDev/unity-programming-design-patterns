@@ -8,35 +8,32 @@ namespace Example08.Constructors
 {
     public class CharacterBuilder
     {
-        private BaseStats _character = new BaseStats();
+        private IStatsProvider _characterStatProvider;
+        private BaseStats _character;
 
-        public CharacterBuilder CreateRace(RacialConfiguration racialMaxStatsConfiguration, RaceType race)
+        public CharacterBuilder(RaceType raceType, RacialConfiguration racialMaxStatsConfiguration)
         {
-            RaceStatsProvider raceStatsProvider = new RaceStatsProvider(racialMaxStatsConfiguration);
-            _character += raceStatsProvider.Make(race);
-
-            return this;
+            _characterStatProvider = new RaceStatsProvider(raceType, racialMaxStatsConfiguration);
         }
 
         public CharacterBuilder SetSpecialization(SpecializationsConfiguration specializationsConfiguration, 
             SpecializationType specialization)
         {
-            SpecializationProvider specializationProvider = new SpecializationProvider(specializationsConfiguration);
-            _character += specializationProvider.Make(specialization);
+            _characterStatProvider = new SpecializationProvider(_characterStatProvider, specialization, specializationsConfiguration);
 
             return this;
         }
 
         public CharacterBuilder SetSkill(SkillsConfiguration skillsConfigurationn, SkillType skill)
         {
-            SkillProvider skillProvider = new SkillProvider(skillsConfigurationn); ;
-            _character += skillProvider.Make(skill);
+            _characterStatProvider = new SkillProvider(_characterStatProvider, skill, skillsConfigurationn);
 
             return this;
         }
 
         public BaseStats Build()
         {
+            _character = _characterStatProvider.Make();
             PrintCharacter();
 
             return _character;

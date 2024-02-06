@@ -16,17 +16,17 @@ namespace Example08.Bootstraps
 
         public void Initialize()
         {
-            BaseStats humanCharacter = new CharacterBuilder().CreateRace(_racialMaxStatsConfiguration, RaceType.Human)
+            BaseStats humanCharacter = new CharacterBuilder(RaceType.Human, _racialMaxStatsConfiguration)
                 .SetSpecialization(_specializationsConfiguration, SpecializationType.Thief)
                 .SetSkill(_skillsConfiguration, SkillType.MorningExercises)
                 .Build();
 
-            BaseStats elfCharacter = new CharacterBuilder().CreateRace(_racialMaxStatsConfiguration, RaceType.Elf)
+            BaseStats elfCharacter = new CharacterBuilder(RaceType.Elf, _racialMaxStatsConfiguration)
                 .SetSpecialization(_specializationsConfiguration, SpecializationType.Magician)
                 .SetSkill(_skillsConfiguration, SkillType.Chess)
                 .Build();
 
-            BaseStats orkCharacter = new CharacterBuilder().CreateRace(_racialMaxStatsConfiguration, RaceType.Ork)
+            BaseStats orkCharacter = new CharacterBuilder(RaceType.Ork, _racialMaxStatsConfiguration)
                 .SetSpecialization(_specializationsConfiguration, SpecializationType.Barbarian)
                 .SetSkill(_skillsConfiguration, SkillType.Bodybuilding)
                 .Build();

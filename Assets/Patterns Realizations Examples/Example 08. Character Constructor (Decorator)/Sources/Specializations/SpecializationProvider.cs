@@ -3,20 +3,25 @@ using Example08.Stats;
 
 namespace Example08.Specializations
 {
-    public class SpecializationProvider
+    public class SpecializationProvider : IStatsProvider
     {
+        private IStatsProvider _statsProvider;
+        private SpecializationType _specializationType;
         private SpecializationsConfiguration _specializationsConfiguration;
 
-        public SpecializationProvider(SpecializationsConfiguration specializationsConfiguration)
+        public SpecializationProvider(IStatsProvider statsProvider, SpecializationType specializationType,
+            SpecializationsConfiguration specializationsConfiguration)
         {
+            _statsProvider = statsProvider;
+            _specializationType = specializationType;
             _specializationsConfiguration = specializationsConfiguration;
         }
 
-        public BaseStats Make(SpecializationType specializationType)
+        public BaseStats Make()
         {
             BaseStats specialization;
 
-            switch(specializationType)
+            switch(_specializationType)
             {
                 case SpecializationType.Barbarian:
                     specialization = new BaseStats(_specializationsConfiguration.BarbarianParameters);
@@ -34,7 +39,7 @@ namespace Example08.Specializations
                     throw new System.Exception("Detected unknown specialization type");
             }
 
-            return specialization;
+            return _statsProvider.Make() + specialization;
         }
     }
 }
