@@ -22,10 +22,8 @@ namespace Example09.Bootstraps
 
         public void Initialize()
         {
-            int forceWeightThreshold = 50;
-
             var gridMaker = new RectangleGridMaker(_rectangleGridConfig);
-            EnemiesForceWeight = new EnemiesForceWeight(forceWeightThreshold, _enemiesWeightsConfig, _spawner, _spawner);
+            EnemiesForceWeight = new EnemiesForceWeight(_spawner.ForceWeightThreshold, _enemiesWeightsConfig, _spawner, _spawner);
             _spawner.Initialize(gridMaker, EnemiesForceWeight);
 
             Score = new Score(_spawner, _killEnemyScoreConfig);

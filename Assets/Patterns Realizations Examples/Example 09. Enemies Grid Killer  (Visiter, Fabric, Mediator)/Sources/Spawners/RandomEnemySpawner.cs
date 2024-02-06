@@ -14,6 +14,7 @@ namespace Example09.Spawners
 {
     public class RandomEnemySpawner: InitializedMonoBehaviour, ISpawner, ILevelEnemies, IEnemySpawnNotifier, IEnemyDeathNotifier
     {
+        [SerializeField, MinValue(0)] private int _forceWeightThreshold = 50;
         [SerializeField, MinValue(0)] private float _spawnCooldown;
         [SerializeField, Required] private EnemyFactory _enemyFactory;
 
@@ -28,6 +29,8 @@ namespace Example09.Spawners
         public event Action<Enemy> EnemiDied;
 
         public IEnumerable<Enemy> Enemies => _spawnPoints.Where(x => x.IsEmpty == false).Select(x => x.PointObject);
+
+        public int ForceWeightThreshold => _forceWeightThreshold;
 
         public void Initialize(GridMaker gridMaker, EnemiesForceWeight spawnForceWeight)
         {
