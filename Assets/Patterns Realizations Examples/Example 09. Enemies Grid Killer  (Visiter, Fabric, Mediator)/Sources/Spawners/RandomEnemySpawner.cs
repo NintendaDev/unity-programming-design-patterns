@@ -17,8 +17,8 @@ namespace Example09.Spawners
         [SerializeField, MinValue(0)] private float _spawnCooldown;
         [SerializeField, Required] private EnemyFactory _enemyFactory;
 
-        private Coroutine _spawn;
-        private Dictionary<Vector3, Enemy> _spawnedEnemies = new();
+        private Coroutine _spawnCoroutine;
+        private List<EnemySpawnPoint> _spawnPoints = new();
         private Transform _transform;
         private EnemiesForceWeight _enemiesForceWeight;
         private bool _isPaused;
@@ -27,7 +27,7 @@ namespace Example09.Spawners
 
         public event Action<Enemy> EnemiDied;
 
-        public IEnumerable<Enemy> Enemies => _spawnedEnemies.Where(x => x.Value != null).Select(x => x.Value);
+        public IEnumerable<Enemy> Enemies => _spawnPoints.Where(x => x.IsEmpty == false).Select(x => x.PointObject);
 
         public void Initialize(GridMaker gridMaker, EnemiesForceWeight spawnForceWeight)
         {
@@ -35,8 +35,8 @@ namespace Example09.Spawners
 
             _enemiesForceWeight = spawnForceWeight;
 
-            _spawnedEnemies.Clear();
-            gridMaker.GetGridPoints(transform.position).ForEach(spawnPosition => _spawnedEnemies.Add(spawnPosition, null));
+            _spawnPoints.Clear();
+            gridMaker.GetGridPoints(transform.position).ForEach(spawnPosition => _spawnPoints.Add(new EnemySpawnPoint(spawnPosition)));
 
             CompleteInitialization();
         }
@@ -57,61 +57,15 @@ namespace Example09.Spawners
         public bool StartSpawn()
         {
             StopSpawn();
-
-            List<Vector3> freeSpawnPoints = _spawnedEnemies.Where(x => x.Value == null).Select(x => x.Key).ToList();
-
-            if (freeSpawnPoints.Count() == 0)
-                return false;
-
-            _spawn = StartCoroutine(Spawn(freeSpawnPoints));
+            _spawnCoroutine = StartCoroutine(SpawnCoroutine());
 
             return true;
         }
 
         public void StopSpawn()
         {
-            if (_spawn != null)
-                StopCoroutine(_spawn);
-        }
-
-        private IEnumerator Spawn(IEnumerable<Vector3> spawnPoints)
-        {
-            var cooldownWaiter = new WaitForSeconds(_spawnCooldown);
-
-            foreach (Vector3 spawnPoint in spawnPoints)
-            {
-                if (_isPaused == false)
-                {
-                    if (_spawnedEnemies[spawnPoint] != null)
-                        throw new Exception("The creation point is already occupied by another object");
-
-                    EnemyType randomEnemyType = (EnemyType)Random.Range(0, Enum.GetValues(typeof(EnemyType)).Length);
-                    Enemy enemy = _enemyFactory.Get(randomEnemyType);
-
-                    enemy.Died += OnEnemyDie;
-                    enemy.MoveTo(spawnPoint);
-                    enemy.SetParrent(_transform);
-
-                    _spawnedEnemies[spawnPoint] = enemy;
-                    Spawned?.Invoke(enemy);
-                }
-
-                yield return cooldownWaiter;
-            }
-        }
-
-        private void OnEnemyDie(Enemy enemy)
-        {
-            enemy.Died -= OnEnemyDie;
-
-            Vector3 enemySpawnedPosition = _spawnedEnemies
-                .Where(x => x.Value == enemy)
-                .Select(x => x.Key)
-                .First();
-
-            _spawnedEnemies[enemySpawnedPosition] = null;
-
-            EnemiDied?.Invoke(enemy);
+            if (_spawnCoroutine != null)
+                StopCoroutine(_spawnCoroutine);
         }
 
         private void OnLimitExceed()
@@ -122,6 +76,70 @@ namespace Example09.Spawners
         private void OnLimitNormalize()
         {
             _isPaused = false;
+        }
+
+        private IEnumerator SpawnCoroutine()
+        {
+            bool isEnd = false;
+            var cooldownWaiter = new WaitForSeconds(_spawnCooldown);
+            EnemySpawnPoint spawnPoint;
+
+            while (isEnd == false)
+            {
+                spawnPoint = GetEmptyRandomPoint();
+
+                if (spawnPoint == null || _isPaused)
+                {
+                    yield return cooldownWaiter;
+
+                    continue;
+                }
+
+                SpawnRandomEnemy(spawnPoint);
+
+                yield return cooldownWaiter;
+            }
+        }
+
+        private EnemySpawnPoint GetEmptyRandomPoint()
+        {
+            IEnumerable<EnemySpawnPoint> emptySpawnPoints = GetEmptySpawnPoints();
+
+            if (emptySpawnPoints.Count() == 0)
+                return null;
+
+            int randomPointIndex = Random.Range(0, emptySpawnPoints.Count());
+
+            return emptySpawnPoints.ElementAt(randomPointIndex);
+        }
+
+        private IEnumerable<EnemySpawnPoint> GetEmptySpawnPoints()
+        {
+            return _spawnPoints.Where(x => x.IsEmpty);
+        }
+
+        private void SpawnRandomEnemy(EnemySpawnPoint spawnPoint)
+        {
+            EnemyType randomEnemyType = (EnemyType)Random.Range(0, Enum.GetValues(typeof(EnemyType)).Length);
+            Enemy enemy = _enemyFactory.Get(randomEnemyType);
+
+            enemy.Died += OnEnemyDie;
+            enemy.MoveTo(spawnPoint.Position);
+            enemy.SetParrent(_transform);
+
+            spawnPoint.Set(enemy);
+
+            Spawned?.Invoke(enemy);
+        }
+
+        private void OnEnemyDie(Enemy enemy)
+        {
+            enemy.Died -= OnEnemyDie;
+
+            EnemySpawnPoint spawnPoint = _spawnPoints.Where(x => x.PointObject == enemy).FirstOrDefault();
+            spawnPoint?.Unset();
+
+            EnemiDied?.Invoke(enemy);
         }
     }
 }
