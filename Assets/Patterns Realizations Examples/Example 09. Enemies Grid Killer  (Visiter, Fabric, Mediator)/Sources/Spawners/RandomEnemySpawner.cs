@@ -1,28 +1,42 @@
 ﻿using Example09.Enemies;
-using MonoUtils;
+using Example09.Configurations;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Example09.Core;
-using Sirenix.OdinInspector;
 using Example09.Accounters;
 using Random = UnityEngine.Random;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace Example09.Spawners
 {
-    public class RandomEnemySpawner: InitializedMonoBehaviour, ISpawner, ILevelEnemies, IEnemySpawnNotifier, IEnemyDeathNotifier
+    public class RandomEnemySpawner: IDisposable, ILevelEnemies, IEnemySpawnNotifier, IEnemyDeathNotifier
     {
-        [SerializeField, MinValue(0)] private int _forceWeightThreshold = 50;
-        [SerializeField, MinValue(0)] private float _spawnCooldown;
-        [SerializeField, Required] private EnemyFactory _enemyFactory;
-
-        private Coroutine _spawnCoroutine;
+        private EnemySpawnerConfig _spawnConfig;
+        private EnemyFactory _enemyFactory;
+        private Transform _spawnPoint;
         private List<EnemySpawnPoint> _spawnPoints = new();
-        private Transform _transform;
         private EnemiesForceWeight _enemiesForceWeight;
+        private MonoBehaviour _context;
         private bool _isPaused;
+        private Coroutine _spawnCoroutine;
+
+        public RandomEnemySpawner(Transform spawnPoint, EnemySpawnerConfig spawnConfig, EnemyFactory enemyFactory,
+            GridMaker gridMaker, EnemiesWeightsConfig weightsConfigt)
+        {
+            _spawnConfig = spawnConfig;
+            _enemyFactory = enemyFactory;
+            _spawnPoint = spawnPoint;
+            _enemiesForceWeight = new EnemiesForceWeight(ForceWeightThreshold, weightsConfigt, this, this);
+
+            _context = ContextMaker.Make();
+
+            gridMaker.GetGridPoints(_spawnPoint.position).ForEach(spawnPosition => _spawnPoints.Add(new EnemySpawnPoint(spawnPosition)));
+
+            _enemiesForceWeight.LimitExceeded += OnLimitExceed;
+            _enemiesForceWeight.ValueConsistented += OnLimitNormalize; 
+        }
 
         public event Action<Enemy> Spawned;
 
@@ -30,45 +44,31 @@ namespace Example09.Spawners
 
         public IEnumerable<Enemy> Enemies => _spawnPoints.Where(x => x.IsEmpty == false).Select(x => x.PointObject);
 
-        public int ForceWeightThreshold => _forceWeightThreshold;
+        public int ForceWeightThreshold => _spawnConfig.ForceWeightThreshold;
 
-        public void Initialize(GridMaker gridMaker, EnemiesForceWeight spawnForceWeight)
-        {
-            _transform = transform;
+        public IReadOnlyForceWeight ForceWeight => _enemiesForceWeight;
 
-            _enemiesForceWeight = spawnForceWeight;
-
-            _spawnPoints.Clear();
-            gridMaker.GetGridPoints(transform.position).ForEach(spawnPosition => _spawnPoints.Add(new EnemySpawnPoint(spawnPosition)));
-
-            CompleteInitialization();
-        }
-
-        private void OnEnable()
-        {
-            _enemiesForceWeight.LimitExceeded += OnLimitExceed;
-            _enemiesForceWeight.ValueConsistented += OnLimitNormalize;
-        }
-
-        private void OnDisable()
-        {
-            _enemiesForceWeight.LimitExceeded -= OnLimitExceed;
-            _enemiesForceWeight.ValueConsistented -= OnLimitNormalize;
-        }
-
-        [Button, DisableInEditorMode]
-        public bool StartSpawn()
+        public void Dispose()
         {
             StopSpawn();
-            _spawnCoroutine = StartCoroutine(SpawnCoroutine());
 
-            return true;
+            _enemiesForceWeight.LimitExceeded -= OnLimitExceed;
+            _enemiesForceWeight.ValueConsistented -= OnLimitNormalize;
+
+            _enemiesForceWeight.Dispose();
+        }
+
+        public void StartSpawn()
+        {
+            StopSpawn();
+
+            _spawnCoroutine = _context.StartCoroutine(SpawnCoroutine());
         }
 
         public void StopSpawn()
         {
-            if (_spawnCoroutine != null)
-                StopCoroutine(_spawnCoroutine);
+            if (_spawnCoroutine != null && _context != null)
+                _context.StopCoroutine(_spawnCoroutine);
         }
 
         private void OnLimitExceed()
@@ -83,24 +83,19 @@ namespace Example09.Spawners
 
         private IEnumerator SpawnCoroutine()
         {
-            bool isEnd = false;
-            var cooldownWaiter = new WaitForSeconds(_spawnCooldown);
             EnemySpawnPoint spawnPoint;
+
+            var spawnDelay = new WaitForSeconds(_spawnConfig.SpawnCooldown);
+            bool isEnd = false;
 
             while (isEnd == false)
             {
                 spawnPoint = GetEmptyRandomPoint();
 
-                if (spawnPoint == null || _isPaused)
-                {
-                    yield return cooldownWaiter;
+                if (spawnPoint != null && _isPaused == false)
+                    SpawnRandomEnemy(spawnPoint);
 
-                    continue;
-                }
-
-                SpawnRandomEnemy(spawnPoint);
-
-                yield return cooldownWaiter;
+                yield return spawnDelay;
             }
         }
 
@@ -128,7 +123,7 @@ namespace Example09.Spawners
 
             enemy.Died += OnEnemyDie;
             enemy.MoveTo(spawnPoint.Position);
-            enemy.SetParrent(_transform);
+            enemy.SetParrent(_spawnPoint);
 
             spawnPoint.Set(enemy);
 

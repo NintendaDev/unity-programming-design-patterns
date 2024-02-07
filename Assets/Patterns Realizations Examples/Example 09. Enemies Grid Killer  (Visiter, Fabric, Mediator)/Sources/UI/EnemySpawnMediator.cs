@@ -10,9 +10,9 @@ namespace Example09.UI
         private RandomEnemySpawner _spawner;
         private EnemiesForceWeightView _forceWeightView;
 
-        public EnemySpawnMediator(IReadOnlyForceWeight forceWeight, RandomEnemySpawner spawner, EnemiesForceWeightView forceWeightView)
+        public EnemySpawnMediator(RandomEnemySpawner spawner, EnemiesForceWeightView forceWeightView)
         {
-            _forceWeight = forceWeight;
+            _forceWeight = spawner.ForceWeight;
             _spawner = spawner;
             _forceWeightView = forceWeightView;
 
@@ -25,9 +25,9 @@ namespace Example09.UI
             _forceWeight.Changed -= UpdateForceView;
         }
 
-        public bool StartSpawn()
+        public void StartSpawn()
         {
-            return _spawner.StartSpawn();
+            _spawner.StartSpawn();
         }
 
         private void UpdateForceView(int currentValue, int maxValue)

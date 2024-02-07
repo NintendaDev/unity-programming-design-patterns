@@ -1,4 +1,5 @@
 using Example09.Enemies;
+using Zenject;
 
 namespace Example09.UI
 {
@@ -6,10 +7,10 @@ namespace Example09.UI
     {
         private RandomEnemyKiller _enemyKiller;
 
-        public void Initialize(RandomEnemyKiller enemyKiller)
+        [Inject]
+        private void Construct(RandomEnemyKiller enemyKiller)
         {
             _enemyKiller = enemyKiller;
-            CompleteInitialization();
         }
 
         protected override void OnButtonClick()
