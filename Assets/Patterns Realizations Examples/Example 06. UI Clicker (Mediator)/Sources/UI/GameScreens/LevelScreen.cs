@@ -1,4 +1,5 @@
 using Example05.UI.HealthVisualization;
+using Example06.Core;
 using Example06.UI.DamageVisualization;
 using Example06.UI.ExperienceVisualization;
 using Example06.UI.LevelVisualization;
@@ -7,7 +8,7 @@ using UnityEngine;
 
 namespace Example06.UI.GameScreens
 {
-    public class LevelScreen : Screen
+    public class LevelScreen : Screen, IReset
     {
         [SerializeField, Required] private TextHealthIndicator _healthTextIndicator;
         [SerializeField, Required] private UIDamageButton _damageButton;
@@ -24,5 +25,10 @@ namespace Example06.UI.GameScreens
         public UIExperienceButton ExperienceButton => _experienceButton;
 
         public UILevelLabel LevelLabel => _levelLabel;
+
+        public void Reset()
+        {
+            Enable();
+        }
     }
 }

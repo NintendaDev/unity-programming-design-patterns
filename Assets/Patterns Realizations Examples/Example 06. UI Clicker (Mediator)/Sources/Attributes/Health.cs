@@ -89,6 +89,9 @@ namespace Example06.Attributes
 
         private void OnLevelChanged(int previousLevelValue, int currentLevelValue)
         {
+            if (previousLevelValue == currentLevelValue)
+                return;
+
             UpdateMaxValueFromConfiguration();
 
             int previousHealthValue = CurrentValue;

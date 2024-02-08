@@ -1,5 +1,6 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
+using Zenject;
 
 namespace Example06.UI.DamageVisualization
 {
@@ -9,7 +10,8 @@ namespace Example06.UI.DamageVisualization
 
         private DamageMediator _damageMediator;
 
-        public void Initialize(DamageMediator damageMediator)
+        [Inject]
+        private void Construct(DamageMediator damageMediator)
         {
             _damageMediator = damageMediator;
 

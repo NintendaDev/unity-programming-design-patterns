@@ -1,5 +1,6 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Zenject;
 
 namespace Example06.UI.ExperienceVisualization
 {
@@ -9,7 +10,8 @@ namespace Example06.UI.ExperienceVisualization
 
         private ExperienceMediator _experienceButtonMediator;
 
-        public void Initialize(ExperienceMediator experienceButtonMediator)
+        [Inject]
+        private void Construct(ExperienceMediator experienceButtonMediator)
         {
             _experienceButtonMediator = experienceButtonMediator;
 

@@ -2,6 +2,6 @@ namespace Example09.Spawners
 {
     public interface ISpawner
     {
-        public bool StartSpawn();
+        public void StartSpawn();
     }
 }

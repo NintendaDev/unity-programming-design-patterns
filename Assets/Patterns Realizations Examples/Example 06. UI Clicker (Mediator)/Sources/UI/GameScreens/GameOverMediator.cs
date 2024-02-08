@@ -1,3 +1,4 @@
+using Example06.Attributes;
 using System;
 
 namespace Example06.UI.GameScreens
@@ -6,20 +7,20 @@ namespace Example06.UI.GameScreens
     {
         private LevelScreen _levelScreen;
         private GameOverScreen _gameOverScreen;
-        private Player _player;
+        private Health _health;
 
-        public GameOverMediator(LevelScreen levelScreen, GameOverScreen gameOverScreen, Player player)
+        public GameOverMediator(LevelScreen levelScreen, GameOverScreen gameOverScreen, Health health)
         {
             _levelScreen = levelScreen;
             _gameOverScreen = gameOverScreen;
-            _player = player;
+            _health = health;
 
-            _player.Health.Died += OnPlayerDie;
+            _health.Died += OnPlayerDie;
         }
 
         public void Dispose()
         {
-            _player.Health.Died -= OnPlayerDie;
+            _health.Died -= OnPlayerDie;
         }
 
         private void OnPlayerDie()

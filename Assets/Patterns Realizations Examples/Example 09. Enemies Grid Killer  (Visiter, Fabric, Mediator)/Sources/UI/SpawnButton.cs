@@ -1,4 +1,5 @@
 using Example09.Spawners;
+using Zenject;
 
 namespace Example09.UI
 {
@@ -6,10 +7,10 @@ namespace Example09.UI
     {
         private ISpawner _spawner;
 
-        public void Initialize(ISpawner spawner)
+        [Inject]
+        private void Construct(ISpawner spawner)
         {
             _spawner = spawner;
-            CompleteInitialization();
         }
 
         protected override void OnButtonClick()

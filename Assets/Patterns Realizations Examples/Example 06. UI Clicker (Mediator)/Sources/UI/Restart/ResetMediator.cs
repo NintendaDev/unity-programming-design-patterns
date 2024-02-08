@@ -1,20 +1,20 @@
 using Example06.Core;
-using System;
+using System.Collections.Generic;
 
 namespace Example06.UI.Reset
 {
     public class ResetMediator
     {
-        private IReset _reseter;
+        private List<IReset> _resetObjects;
 
-        public ResetMediator(IReset reseter)
+        public ResetMediator(List<IReset> resetObjects)
         {
-            _reseter = reseter;
+            _resetObjects = resetObjects;
         }
 
         public void Reset()
         {
-            _reseter.Reset();
+            _resetObjects.ForEach(x => x.Reset());
         }
     }
 }
