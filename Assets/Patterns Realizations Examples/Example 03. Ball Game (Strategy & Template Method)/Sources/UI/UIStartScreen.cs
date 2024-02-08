@@ -1,13 +1,15 @@
 using Example03.Control;
+using Example03.Core;
 using Example03.GameRules;
 using Example03.Strategies;
 using NovaSamples.UIControls;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Zenject;
 
 namespace Example03.UI
 {
-    public class UIStartScreen : UIScreen
+    public class UIStartScreen : UIScreen, IRestart
     {
         [SerializeField, Required, ChildGameObjectsOnly] private Button _startGameButton;
         [SerializeField, Required, ChildGameObjectsOnly] private Dropdown _gameRulesDropdown;
@@ -17,7 +19,8 @@ namespace Example03.UI
         private GameRulesNames _gameRulesNames;
         private IPlayerInput _playerInput;
 
-        public void Initialize(LevelRestarter levelRestarter, WinLoseStrategyChanger winLoseStrategyChanger, 
+        [Inject]
+        private void Construct(LevelRestarter levelRestarter, WinLoseStrategyChanger winLoseStrategyChanger, 
             GameRulesNames gameRulesNames, IPlayerInput playerInput)
         {
             _levelRestarter = levelRestarter;
@@ -40,6 +43,12 @@ namespace Example03.UI
         {
             _gameRulesDropdown.OnValueChanged.RemoveListener(OnGameRuleChange);
             _startGameButton.OnClicked.RemoveListener(OnStartButtonClick);
+        }
+
+        public void Restart()
+        {
+            Enable();
+            _playerInput.Disable();
         }
 
         private void SetGameRule(string gameRuleName)

@@ -1,16 +1,19 @@
+using Example03.Core;
 using NovaSamples.UIControls;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Zenject;
 
 namespace Example03.UI
 {
-    public class UIGameOverScreen : UIScreen
+    public class UIGameOverScreen : UIScreen, IRestart
     {
         [SerializeField, Required, ChildGameObjectsOnly] private Button _mainMenuButton;
 
         private UIStartScreen _startScreen;
 
-        public void Initialize(UIStartScreen startScreen)
+        [Inject]
+        private void Construct(UIStartScreen startScreen)
         {
             _startScreen = startScreen;
 
@@ -25,6 +28,11 @@ namespace Example03.UI
         private void OnDisable()
         {
             _mainMenuButton.OnClicked.RemoveListener(OnManiMenuButtonClick);
+        }
+
+        public void Restart()
+        {
+            Disable();
         }
 
         private void OnManiMenuButtonClick()

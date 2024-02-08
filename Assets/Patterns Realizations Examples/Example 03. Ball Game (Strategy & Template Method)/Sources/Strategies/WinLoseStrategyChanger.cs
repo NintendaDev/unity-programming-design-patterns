@@ -4,6 +4,7 @@ using Example03.Handler;
 using MonoUtils;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
+using Zenject;
 
 namespace Example03.Strategies
 {
@@ -13,7 +14,8 @@ namespace Example03.Strategies
         private IWinLoseCondition _oneColorBallBurstWinRule;
         private Level _level;
 
-        public void Initialize(BallsAccounter ballsAccounter, BurstBallsAccounter burstBallsAccounter, Level level)
+        [Inject]
+        private void Construct(BallsAccounter ballsAccounter, BurstBallsAccounter burstBallsAccounter, Level level)
         {
             _allBallsBurstWinRule = new WinLoseCondition(
                 new List<ICondition> { new AllBallsBurstVictoryCondition(ballsAccounter) }

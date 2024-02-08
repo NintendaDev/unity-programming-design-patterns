@@ -2,6 +2,7 @@ using Example03.Control;
 using Example03.Handler;
 using Example03.UI;
 using MonoUtils;
+using Zenject;
 
 namespace Example03
 {
@@ -12,7 +13,8 @@ namespace Example03
         private Level _level;
         private IPlayerInput _playerInput;
 
-        public void Initialize(UIGameOverScreen winScreen, UIGameOverScreen loseScreen, Level level, IPlayerInput playerInput)
+        [Inject]
+        private void Construct(UIGameOverScreen winScreen, UIGameOverScreen loseScreen, Level level, IPlayerInput playerInput)
         {
             _winScreen = winScreen;
             _loseScreen = loseScreen;

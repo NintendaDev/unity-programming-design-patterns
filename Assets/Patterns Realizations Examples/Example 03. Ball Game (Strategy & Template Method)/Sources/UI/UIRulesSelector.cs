@@ -3,6 +3,7 @@ using MonoUtils;
 using NovaSamples.UIControls;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Zenject;
 
 namespace Example03
 {
@@ -10,7 +11,8 @@ namespace Example03
     {
         [SerializeField, Required, ChildGameObjectsOnly] private Dropdown _gameRulesDropdown;
 
-        public void Initialize(GameRulesNames gameRulesNames)
+        [Inject]
+        private void Construct(GameRulesNames gameRulesNames)
         {
             _gameRulesDropdown.ResetOptions();
 

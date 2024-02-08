@@ -1,17 +1,20 @@
-using Example03.Bootstraps;
-using Sirenix.OdinInspector;
-using UnityEngine;
+using Example03.Core;
+using System.Collections.Generic;
 
 namespace Example03
 {
-    public class LevelRestarter : MonoBehaviour
+    public class LevelRestarter
     {
-        [SerializeField] private RootBootstrap _rootBootstrap;
+        private List<IRestart> _restartObjects;
 
-        [Button, DisableInEditorMode]
+        public LevelRestarter(List<IRestart> restartObjects)
+        {
+            _restartObjects = restartObjects;
+        }
+
         public void Restart()
         {
-            _rootBootstrap.Initialize();
+            _restartObjects.ForEach(x => x.Restart());
         }
     }
 }
