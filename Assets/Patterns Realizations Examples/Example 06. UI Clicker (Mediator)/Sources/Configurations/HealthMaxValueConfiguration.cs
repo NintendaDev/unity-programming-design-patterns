@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Example06.Configurations
 {
     [CreateAssetMenu(fileName = "new HealthMaxValueConfiguration", menuName = "Example06 / HealthMaxValueConfiguration")]
-    public class HealthMaxValueConfiguration : ValueByLevelConfiguration, IValueByLevel
+    public class HealthMaxValueConfiguration : ValueByLevelConfiguration
     {
         [SerializeField] private int[] _healthMaxValueOnLevel;
 

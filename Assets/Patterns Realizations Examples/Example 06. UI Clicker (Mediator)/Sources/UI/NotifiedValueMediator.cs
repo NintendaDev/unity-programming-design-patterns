@@ -12,6 +12,9 @@ namespace Example06.UI
         {
             _notifiedValue = notifiedValue;
             _uiValue = uiValue;
+
+            SetValueText(_notifiedValue.Value);
+
             _notifiedValue.Changed += OnValueChanged;
         }
 
@@ -20,9 +23,14 @@ namespace Example06.UI
             _notifiedValue.Changed -= OnValueChanged;
         }
 
-        private void OnValueChanged(int previousValue, int currentValue)
+        private void SetValueText(int currentValue)
         {
             _uiValue.SetValueText(currentValue);
+        }
+
+        private void OnValueChanged(int previousValue, int currentValue)
+        {
+            SetValueText(currentValue);
         }
     }
 }
