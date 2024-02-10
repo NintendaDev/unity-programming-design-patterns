@@ -1486,6 +1486,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ballsAccounterInitializer: {fileID: 612368538}
   _winLoseStrategyChanger: {fileID: 1988367920}
+  _levelRestarter: {fileID: 6083648210553607389, guid: c0d633df299933b4aac003b61fb73663,
+    type: 3}
 --- !u!4 &256021571
 Transform:
   m_ObjectHideFlags: 0

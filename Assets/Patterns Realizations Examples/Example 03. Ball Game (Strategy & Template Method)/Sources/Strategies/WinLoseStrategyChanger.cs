@@ -1,4 +1,5 @@
 using Example03.Accounters;
+using Example03.Core;
 using Example03.GameRules;
 using Example03.Handler;
 using MonoUtils;
@@ -8,7 +9,7 @@ using Zenject;
 
 namespace Example03.Strategies
 {
-    public class WinLoseStrategyChanger : InitializedMonoBehaviour
+    public class WinLoseStrategyChanger : InitializedMonoBehaviour, IRestart
     {
         private IWinLoseCondition _allBallsBurstWinRule;
         private IWinLoseCondition _oneColorBallBurstWinRule;
@@ -32,6 +33,12 @@ namespace Example03.Strategies
             _level = level;
 
             CompleteInitialization();
+        }
+
+        public void Restart()
+        {
+            _allBallsBurstWinRule.Restart();
+            _oneColorBallBurstWinRule.Restart();
         }
 
         public void ActivateGameRule(GameRuleType gameRuleType)

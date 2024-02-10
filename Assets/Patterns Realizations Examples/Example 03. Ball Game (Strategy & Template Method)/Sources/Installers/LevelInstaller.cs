@@ -1,4 +1,5 @@
 using Example03.Accounters;
+using Example03.Core;
 using Example03.Handler;
 using Example03.Strategies;
 using Sirenix.OdinInspector;
@@ -11,19 +12,31 @@ namespace Example03.Installers
     {
         [SerializeField, Required, SceneObjectsOnly] private BallAccounterInitializer _ballsAccounterInitializer;
         [SerializeField, Required, SceneObjectsOnly] private WinLoseStrategyChanger _winLoseStrategyChanger;
+        [SerializeField, Required, AssetsOnly] private LevelRestarter _levelRestarter;
 
         public override void InstallBindings()
         {
             BindLevel();
+            BindRestarter();
         }
 
         private void BindLevel()
         {
             Container.Bind<Level>().FromInstance(new Level()).AsSingle();
             Container.Bind<BallAccounterInitializer>().FromInstance(_ballsAccounterInitializer).AsSingle();
+
             Container.Bind<BallsAccounter>().FromResolveGetter<BallAccounterInitializer>(x => x.BallsAccounter).AsSingle();
-            Container.Bind<BurstBallsAccounter>().AsSingle();
+            Container.Bind<IRestart>().FromResolveGetter<BallAccounterInitializer>(x => x.BallsAccounter);
+
+            Container.BindInterfacesAndSelfTo<BurstBallsAccounter>().AsSingle();
             Container.Bind<WinLoseStrategyChanger>().FromInstance(_winLoseStrategyChanger).AsSingle();
+        }
+
+        private void BindRestarter()
+        {
+            Container.Bind<IRestart>().FromComponentsInHierarchy().AsSingle();
+            LevelRestarter levelRestarter = Container.InstantiatePrefabForComponent<LevelRestarter>(_levelRestarter);
+            Container.Bind<LevelRestarter>().FromInstance(levelRestarter).AsSingle();
         }
     }
 }

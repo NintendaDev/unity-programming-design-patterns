@@ -1,9 +1,10 @@
+using Example03.Core;
 using Example03.Items;
 using System.Collections.Generic;
 
 namespace Example03.Accounters
 {
-    public class BurstBallsAccounter
+    public class BurstBallsAccounter : IRestart
     {
         private IEnumerable<IReadOnlyBall> _currentBalls;
         private Dictionary<BallColor, int> _burstedBallsStatistics = new();
@@ -17,6 +18,17 @@ namespace Example03.Accounters
         }
 
         public IReadOnlyDictionary<BallColor, int> BurstedBallsStatistic => _burstedBallsStatistics;
+
+        public void Restart()
+        {
+            _burstedBallsStatistics.Clear();
+
+            foreach (IReadOnlyBall ball in _currentBalls)
+            {
+                ball.Bursted -= OnBallBurst;
+                ball.Bursted += OnBallBurst;
+            }
+        }
 
         private void OnBallBurst(IReadOnlyBall ball)
         {

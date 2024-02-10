@@ -14,7 +14,11 @@ namespace Example03
         private IPlayerInput _playerInput;
 
         [Inject]
-        private void Construct(UIGameOverScreen winScreen, UIGameOverScreen loseScreen, Level level, IPlayerInput playerInput)
+        private void Construct(
+            [Inject(Id = "WinScreen")] UIGameOverScreen winScreen,
+            [Inject(Id = "LoseScreen")] UIGameOverScreen loseScreen, 
+            Level level,
+            IPlayerInput playerInput)
         {
             _winScreen = winScreen;
             _loseScreen = loseScreen;

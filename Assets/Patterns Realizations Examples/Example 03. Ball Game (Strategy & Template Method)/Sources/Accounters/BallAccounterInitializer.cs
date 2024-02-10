@@ -1,11 +1,10 @@
-using Example03.Core;
 using Example03.Items;
 using MonoUtils;
 using Zenject;
 
 namespace Example03.Accounters
 {
-    public class BallAccounterInitializer : InitializedMonoBehaviour, IRestart
+    public class BallAccounterInitializer : InitializedMonoBehaviour
     {
         private Ball[] _allBalls;
 
@@ -14,23 +13,10 @@ namespace Example03.Accounters
         [Inject]
         private void Construct()
         {
-            if (IsInitialized)
-                Restart();
-            else
-                _allBalls = GetComponentsInChildren<Ball>();
-
+           _allBalls = GetComponentsInChildren<Ball>();
             BallsAccounter = new BallsAccounter(_allBalls);
 
             CompleteInitialization();
-        }
-
-        public void Restart()
-        {
-            if (_allBalls == null)
-                return;
-
-            foreach (Ball ball in _allBalls)
-                ball.gameObject.SetActive(true);
         }
     }
 }

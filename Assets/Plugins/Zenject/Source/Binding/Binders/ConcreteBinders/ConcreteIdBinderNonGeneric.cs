@@ -1,3 +1,5 @@
+using System;
+
 namespace Zenject
 {
     [NoReflectionBaking]
@@ -14,6 +16,11 @@ namespace Zenject
         {
             BindInfo.Identifier = identifier;
             return this;
+        }
+
+        public object FromResolveGetter<T>(Func<object, object> p)
+        {
+            throw new NotImplementedException();
         }
     }
 }
