@@ -15,6 +15,13 @@ namespace Example03.GameRules
             _oneColorBallBurstLoseCondition = oneColorBallBurstLoseCondition;
         }
 
+        public override void Restart()
+        {
+            base.Restart();
+
+            _isInitializedWinColor = false;
+        }
+
         protected override void OnBallBursted(BallColor ballColor)
         {
             InitializeWinColor(ballColor);

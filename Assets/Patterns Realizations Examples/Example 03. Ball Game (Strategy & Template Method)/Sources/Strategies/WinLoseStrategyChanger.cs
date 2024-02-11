@@ -1,19 +1,22 @@
 using Example03.Accounters;
+using Example03.Core;
 using Example03.GameRules;
-using Example03.Handler;
+using Example03.Handlers;
 using MonoUtils;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
+using Zenject;
 
 namespace Example03.Strategies
 {
-    public class WinLoseStrategyChanger : InitializedMonoBehaviour
+    public class WinLoseStrategyChanger : InitializedMonoBehaviour, IRestart
     {
         private IWinLoseCondition _allBallsBurstWinRule;
         private IWinLoseCondition _oneColorBallBurstWinRule;
         private Level _level;
 
-        public void Initialize(BallsAccounter ballsAccounter, BurstBallsAccounter burstBallsAccounter, Level level)
+        [Inject]
+        private void Construct(BallsAccounter ballsAccounter, BurstBallsAccounter burstBallsAccounter, Level level)
         {
             _allBallsBurstWinRule = new WinLoseCondition(
                 new List<ICondition> { new AllBallsBurstVictoryCondition(ballsAccounter) }
@@ -30,6 +33,12 @@ namespace Example03.Strategies
             _level = level;
 
             CompleteInitialization();
+        }
+
+        public void Restart()
+        {
+            _allBallsBurstWinRule.Restart();
+            _oneColorBallBurstWinRule.Restart();
         }
 
         public void ActivateGameRule(GameRuleType gameRuleType)

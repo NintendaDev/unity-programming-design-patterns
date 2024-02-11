@@ -1,5 +1,6 @@
 using Example03.Items;
 using MonoUtils;
+using Zenject;
 
 namespace Example03.Accounters
 {
@@ -9,22 +10,13 @@ namespace Example03.Accounters
 
         public BallsAccounter BallsAccounter { get; private set; }
 
-        public void Initialize()
+        [Inject]
+        private void Construct()
         {
-            if (IsInitialized)
-                Reset();
-            else
-                _allBalls = GetComponentsInChildren<Ball>();
-
+           _allBalls = GetComponentsInChildren<Ball>();
             BallsAccounter = new BallsAccounter(_allBalls);
 
             CompleteInitialization();
-        }
-
-        private void Reset()
-        {
-            foreach (Ball ball in _allBalls)
-                ball.gameObject.SetActive(true);
         }
     }
 }

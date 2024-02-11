@@ -1,6 +1,7 @@
 using Example03.Items;
 using MonoUtils;
 using UnityEngine;
+using Zenject;
 
 namespace Example03.Control
 {
@@ -11,7 +12,8 @@ namespace Example03.Control
         private Camera _camera;
         private RaycastHit[] _raycastHits = new RaycastHit[MaxHitInfoCount];
 
-        public void Initialize()
+        [Inject]
+        private void Construct()
         {
             _playerInputEventer = new PlayerInputEventer();
             _camera = Camera.main;

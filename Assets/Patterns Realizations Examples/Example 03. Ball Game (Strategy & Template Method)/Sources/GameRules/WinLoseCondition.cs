@@ -24,6 +24,24 @@ namespace Example03.GameRules
 
         public event Action Lost;
 
+        public virtual void Restart()
+        {
+            Unsubscribe();
+
+            foreach (ICondition condition in _winConditions)
+                condition.Restart();
+
+            Subscribe(_winConditions, OnWinConditionCompleted);
+
+            if (_loseConditions != null)
+            {
+                foreach (ICondition condition in _loseConditions)
+                    condition.Restart();
+
+                Subscribe(_loseConditions, OnLoseConditionCompleted);
+            }
+        }
+
         private void OnWinConditionCompleted()
         {
             Unsubscribe();

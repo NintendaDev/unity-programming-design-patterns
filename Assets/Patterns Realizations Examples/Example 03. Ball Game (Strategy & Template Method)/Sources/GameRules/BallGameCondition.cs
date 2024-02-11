@@ -24,6 +24,15 @@ namespace Example03.GameRules
 
         public event Action Completed;
 
+        public virtual void Restart()
+        {
+            foreach (IReadOnlyBall ball in _currentBalls)
+            {
+                ball.Bursted -= OnBallBursted;
+                ball.Bursted += OnBallBursted;
+            }
+        }
+
         protected abstract void OnBallBursted(BallColor ballColor);
 
         protected void SendCompleteEvent()

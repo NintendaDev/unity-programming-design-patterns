@@ -2,10 +2,11 @@ using Example03.Items;
 using System.Collections.Generic;
 using Specifications;
 using Sirenix.OdinInspector;
+using Example03.Core;
 
 namespace Example03.Accounters
 {
-    public class BallsAccounter
+    public class BallsAccounter : IRestart
     {
         private List<Ball> _allLevelBalls = new();
         private List<IReadOnlyBall> _currentBalls = new();
@@ -15,6 +16,25 @@ namespace Example03.Accounters
         public BallsAccounter(IEnumerable<Ball> balls)
         {
             _allLevelBalls = new List<Ball>(balls);
+
+            Initialize();
+        }
+
+        public IReadOnlyList<IReadOnlyBall> CurrentBalls => _currentBalls;
+
+        public IReadOnlyDictionary<BallColor, int> BallsColorStatistic => _ballsColorStatistic;
+
+        public void Restart()
+        {
+            foreach (Ball ball in _currentBalls)
+                ball.Bursted -= OnBallBursted;
+
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            _currentBalls.Clear();
 
             foreach (Ball ball in _allLevelBalls)
             {
@@ -30,10 +50,6 @@ namespace Example03.Accounters
                 _currentBalls.Add(ball);
             }
         }
-
-        public IReadOnlyList<IReadOnlyBall> CurrentBalls => _currentBalls;
-
-        public IReadOnlyDictionary<BallColor, int> BallsColorStatistic => _ballsColorStatistic;
 
         [ShowInInspector, ReadOnly]
         public int BallsCount => _currentBalls.Count;

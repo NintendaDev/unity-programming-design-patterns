@@ -15,6 +15,12 @@ namespace Example03.GameRules
             _burstBallsAccounter = burstBallsAccounter;
         }
 
+        public override void Restart()
+        {
+            base.Restart();
+            _isInitializedWinColor = false;
+        }
+
         public void SetWinColor(BallColor winColor)
         {
             _winColor = winColor;
