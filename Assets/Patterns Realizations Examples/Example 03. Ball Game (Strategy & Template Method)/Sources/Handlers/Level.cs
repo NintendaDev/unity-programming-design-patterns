@@ -1,7 +1,7 @@
 using Example03.GameRules;
 using System;
 
-namespace Example03.Handler
+namespace Example03.Handlers
 {
     public class Level
     {
