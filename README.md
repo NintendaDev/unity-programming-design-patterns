@@ -1,4 +1,4 @@
-# Examples of implementing game design patterns in Unity
+# Examples of implementing design patterns in Unity
 
 ## 1. Assets\Patterns Realizations Examples\Example 01. Weapon Types (Template Method)
 
